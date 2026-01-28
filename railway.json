@@ -3,8 +3,8 @@
     {
       "name": "web",
       "type": "web",
-      "buildCommand": "pip install -r dependencies.txt",
-      "startCommand": "gunicorn app:app"
+      "buildCommand": "pip install -r deps.txt",
+      "startCommand": "gunicorn brian:app"
     }
   ]
 }
