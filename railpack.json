@@ -1,0 +1,10 @@
+{
+  "services": [
+    {
+      "name": "web",
+      "type": "web",
+      "buildCommand": "pip install -r dependencies.txt",
+      "startCommand": "gunicorn python:brian.py"
+    }
+  ]
+}
