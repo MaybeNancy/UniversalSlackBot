@@ -1,15 +1,19 @@
 #!/bin/bash
-set -e  # exit on any error
+set -e
 
-# Ensure we are in the script's directory
 cd "$(dirname "$0")"
 
-# Optional: create/activate a virtual environment
-python -m venv .venv
+# Create a virtual environment in .venv (only if it doesn't exist)
+if [ ! -d .venv ]; then
+    python -m venv .venv
+fi
 source .venv/bin/activate
 
-# Install dependencies
+# Upgrade pip (optional but helpful)
+pip install --upgrade pip
+
+# Install project dependencies, including gunicorn
 pip install -r deps.txt
 
-# Start the app
+# Run the app
 exec gunicorn brian:app --bind 0.0.0.0:"${PORT:-8000}"
