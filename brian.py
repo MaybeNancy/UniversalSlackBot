@@ -33,3 +33,7 @@ def slack_events():
     return handler.handle(request)
 
 app = flask_app
+
+@flask_app.route("/", methods=["GET"])
+def index():
+    return "Slack Bolt app is running", 200
