@@ -7,7 +7,7 @@ from slack_bolt.adapter.flask import SlackRequestHandler
 
 #app init
 
-bolt_app = App(token=os.getenv("XOXB"),token=os.getenv("SECRET"))
+bolt_app = App(token=os.getenv("XOXB"),signing_secret=os.getenv("SECRET"))
 
 #functionality
 @bolt_app.message("hi")
