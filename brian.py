@@ -7,7 +7,16 @@ from slack_bolt.adapter.flask import SlackRequestHandler
 
 #app init
 
-bolt_app = App(token=os.getenv("SLACK_BOT_TOKEN"),signing_secret=os.getenv("SLACK_SIGNING_SECRET"))
+def require_env(name):
+    val = os.getenv(name)
+    if not val:
+        raise RuntimeError(f"Missing environment variable: {name}")
+    return val
+
+bolt_app = App(
+    token=require_env("SLACK_BOT_TOKEN"),
+    signing_secret=require_env("SLACK_SIGNING_SECRET")
+)
 
 #functionality
 @bolt_app.message("hi")
