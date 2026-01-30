@@ -24,6 +24,11 @@ def reply(message,say):
   user = message['user']
   say(f"Hey <@{user}>! 👋")
 
+@bolt_app.event("app_mention")
+def mention(event, say):
+    user = event["user"]
+    say(f"👋 <@{user}> you mentioned me!")
+
 #flask wrapper
 flask_app = Flask(__name__)
 handler = SlackRequestHandler(bolt_app)
