@@ -8,6 +8,11 @@ jobs:
    steps:
        - name: Check code
          uses: actions/checkout@v2
-       -name:
+       - name:
          uses: actions/checkout@v2
-   
+         with: 
+             python-version: 'latest'
+        #- name: install
+             
+        - name: Exec
+            run: python railway.py
