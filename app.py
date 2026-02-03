@@ -50,9 +50,12 @@ def SendMessage(channel_id, text):
 def slack_events():
     if not IsValidRequest(request):
         abort(400)  # Invalid request if verification fails
-    SendMessage(channel_id, request.data)
-    """
+
     data = request.json
+    channel_id = data['event']['channel']
+    SendMessage(channel_id, data)
+    """
+    
     
     # Respond to the challenge verification
     if 'challenge' in data:
@@ -62,7 +65,7 @@ def slack_events():
     event_type = data.get('event', {}).get('type')
     if event_type == 'message' and 'subtype' not in data['event']:
         user_id = data['event']['user']
-        channel_id = data['event']['channel']
+        
         text = data['event']['text']
         SendMessage(channel_id, f"Hello <@{user_id}>, you said: {text}")
     """
