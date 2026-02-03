@@ -8,7 +8,7 @@ import hashlib
 
 #init
 app = Flask(__name__)
-admin = U0AAS5ZGSAD
+ADMIN = "U0AAS5ZGSAD"
 
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
@@ -56,7 +56,7 @@ def slack_events():
     channel_id = data['event']['channel']
     user_id = data['event']['user']
 
-    if user_id == admin:
+    if user_id == ADMIN:
        SendMessage(channel_id, data)
     """
     
