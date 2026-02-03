@@ -50,7 +50,7 @@ def SendMessage(channel_id, text):
 def slack_events():
     if not IsValidRequest(request):
         abort(400)  # Invalid request if verification fails
-    SendMessage(channel_id, data)
+    SendMessage(channel_id, request.data)
     """
     data = request.json
     
