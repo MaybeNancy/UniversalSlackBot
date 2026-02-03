@@ -31,28 +31,6 @@ def IsValidRequest(req):
 
     return hmac.compare_digest(my_signature, slack_signature)
 
-# Endpoint to handle Slack events
-@app.route('/slack/events', methods=['POST'])
-def slack_events():
-    if not IsValidRequest(request):
-        abort(400)  # Invalid request if verification fails
-    
-    data = request.json
-    
-    # Respond to the challenge verification
-    if 'challenge' in data:
-        return jsonify({'challenge': data['challenge']})
-    
-    # Handle other events here
-    event_type = data.get('event', {}).get('type')
-    if event_type == 'message' and 'subtype' not in data['event']:
-        user_id = data['event']['user']
-        channel_id = data['event']['channel']
-        text = data['event']['text']
-        SendMessage(channel_id, f"Hello <@{user_id}>, you said: {text}")
-    
-    return jsonify({'status': 'ok'})
-
 # Function to send a message to a Slack channel
 def SendMessage(channel_id, text):
     url = 'https://slack.com/api/chat.postMessage'
@@ -66,3 +44,26 @@ def SendMessage(channel_id, text):
     }
     response = requests.post(url, headers=headers, json=data)
     return response.json()
+
+# Endpoint to handle Slack events
+@app.route('/slack/events', methods=['POST'])
+def slack_events():
+    if not IsValidRequest(request):
+        abort(400)  # Invalid request if verification fails
+    SendMessage(channel_id, data)
+    """
+    data = request.json
+    
+    # Respond to the challenge verification
+    if 'challenge' in data:
+        return jsonify({'challenge': data['challenge']})
+    
+    # Handle other events here
+    event_type = data.get('event', {}).get('type')
+    if event_type == 'message' and 'subtype' not in data['event']:
+        user_id = data['event']['user']
+        channel_id = data['event']['channel']
+        text = data['event']['text']
+        SendMessage(channel_id, f"Hello <@{user_id}>, you said: {text}")
+    """
+    return jsonify({'status': 'ok'})
