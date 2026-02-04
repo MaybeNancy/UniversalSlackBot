@@ -74,3 +74,22 @@ def slack_events():
         SendMessage(channel_id, f"Hello <@{user_id}>, you said: {text}")
     """
     return jsonify({'status': 'ok'})
+
+"""
+# Slash command endpoint
+@app.route('/slack/commands', methods=['POST'])
+def slack_commands():
+    data = request.form
+    command = data.get("command")
+    text = data.get("text")
+    user_id = data.get("user_id")
+
+    # Define your custom logic for slash command
+    response_text = f"Hello <@{user_id}>, you typed: {text}"
+
+    # Respond to the slash command
+    return jsonify({
+        "response_type": "in_channel",
+        "text": response_text
+    })
+""'
