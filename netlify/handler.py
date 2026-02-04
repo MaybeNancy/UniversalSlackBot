@@ -1,32 +1,32 @@
-import json
-from werkzeug.wrappers import Request, Response
+# netlify/handler.py
+import base64
+from io import BytesIO
+from werkzeug.wrappers import Response
 from werkzeug.test import EnvironBuilder
-from app import app  # the Flask instance from app.py
+from main import app   # import your Flask app
 
 def handler(event, context):
-    """
-    Netlify Function entry point.
-    `event` contains the HTTP request data.
-    """
-    # Build a WSGI environ from the Netlify event
+    # ---------- 1️⃣ Build the WSGI environ ----------
+    # Netlify may give the body as a string (plain) or base64‑encoded.
+    raw_body = event.get("body", "")
+    if event.get("isBase64Encoded"):
+        raw_body = base64.b64decode(raw_body)
+
+    # Build the environ; we feed the raw bytes directly.
     builder = EnvironBuilder(
         method=event.get("httpMethod", "GET"),
         path=event.get("path", "/"),
         query_string=event.get("queryStringParameters", {}),
         headers=event.get("headers", {}),
-        data=event.get("body", ""),
-        # Netlify may base64‑encode the body
+        data=raw_body,                     # <-- raw bytes, not a string
         environ_base={"wsgi.input_terminated": True},
     )
     env = builder.get_environ()
-    # If the body was base64‑encoded, decode it
-    if event.get("isBase64Encoded"):
-        env["wsgi.input"] = BytesIO(base64.b64decode(event["body"]))
 
-    # Run the Flask app with the generated environ
+    # ---------- 2️⃣ Run the Flask app ----------
     resp = Response.from_app(app, env)
 
-    # Convert the Werkzeug response back to Netlify format
+    # ---------- 3️⃣ Return Netlify‑compatible dict ----------
     return {
         "statusCode": resp.status_code,
         "headers": dict(resp.headers),
