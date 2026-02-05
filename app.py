@@ -87,5 +87,9 @@ def slack_commands():
     text = data.get("text")
     user_id = data.get("user_id")
     channel = data.get("channel")
-    
+
+    response_text: "hey there"
+
     SendMessage(channel,data)
+    
+    return jsonify({"response_type": "in_channel", "text": response_text})
