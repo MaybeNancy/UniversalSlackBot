@@ -74,7 +74,7 @@ def slack_events():
     channel_id = data['event']['channel']
     user_id = data['event']['user']
 
-    rn = datetime.datetime.now()/60
+    rn = datetime.datetime.now().seconds/60
 
     if rn % 1==0
     #if user_id == ADMIN:
