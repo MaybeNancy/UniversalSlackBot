@@ -10,6 +10,7 @@ import hashlib
 app = Flask(__name__)
 ADMIN = "U0AAS5ZGSAD"
 BOT = "U0ABJJQ288M"
+timer = false
 
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
@@ -33,6 +34,21 @@ def IsValidRequest(req):
 
     return hmac.compare_digest(my_signature, slack_signature)
 
+#deletes message inmediately
+def DelMessage(channel_id,timestamp):
+    url = "https://slack.com/api/chat.delete"
+    headers = {
+        'Authorization': f'Bearer {SLACK_BOT_TOKEN}',
+        'Content-Type': 'application/json'
+    }
+    data = {
+        "channel" : channel_id,
+        "ts" :timestamp
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+    return response.json()
+    
 # Function to send a message to a Slack channel
 def SendMessage(channel_id, text):
     url = 'https://slack.com/api/chat.postMessage'
