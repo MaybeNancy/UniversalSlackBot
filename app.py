@@ -78,7 +78,7 @@ def slack_events():
     txt = user_id+f"Bearer {temp_bot_msg_timer}"
 
     if user_id == ADMIN:
-        SendMessage(channel_id, data)
+        SendMessage(channel_id, txt)
     
     elif user_id == BOT:
         DelMessage(channel_id,temp_bot_msg_timer)
@@ -115,6 +115,6 @@ def slack_commands():
     response_text = data
 
     b_msg = SendMessage(channel,response_text)
-    temp_bot_msg_timer = b_msg['event']['ts']
+    temp_bot_msg_timer = b_msg.get('event', {}).get('ts')
 
     return jsonify({"response_type": "in_channel", "text": "🧠👍"})
