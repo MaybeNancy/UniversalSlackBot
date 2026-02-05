@@ -11,7 +11,6 @@ import datetime
 app = Flask(__name__)
 ADMIN = "U0AAS5ZGSAD"
 BOT = "U0ABJJQ288M"
-timer = false
 
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
@@ -78,8 +77,8 @@ def slack_events():
     if user_id == ADMIN:
         SendMessage(channel_id, data)
 
-    #else if user_id == BOT:
-        #DelMessage(channel_id,ts)
+    else if user_id == BOT:
+        DelMessage(channel_id,ts)
     """
     
     
