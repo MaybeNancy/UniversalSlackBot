@@ -67,7 +67,7 @@ def SendMessage(channel_id, text):
 
 #Removes commands as text
 def CommDup(text,channel,ts):
-    if text.startswith("/"):
+    if text.startswith("/",0,1):
         DelMessage(channel,ts)
 
 # Endpoint to handle Slack events
@@ -126,4 +126,4 @@ def slack_commands():
     global bottimer 
     bottimer = b_msg["ts"]
 
-    return jsonify({"response_type": "ephemeral", "text": "🧠👍"})
+    return jsonify({"response_type": "in_channel", "text": "🧠👍"})
