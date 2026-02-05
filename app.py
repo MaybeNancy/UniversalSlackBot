@@ -91,5 +91,6 @@ def slack_commands():
     response_text = data
 
     SendMessage(channel,response_text)
-    
+
+    invisible = "\u200b"
     return jsonify({"response_type": "ephemeral", "text": invisible})
