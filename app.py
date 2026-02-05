@@ -81,7 +81,7 @@ def slack_events():
         SendMessage(channel_id, txt)
     
     elif user_id == BOT:
-        DelMessage(channel_id,temp_bot_msg_timer)
+        DelMessage(channel_id,bottimer)
     
     
     """
@@ -116,6 +116,6 @@ def slack_commands():
 
     b_msg = SendMessage(channel,response_text)
     SendMessage(channel,b_msg["ts"])
-    bottimer = b_msg["ts"]
+    global bottimer = b_msg["ts"]
 
     return jsonify({"response_type": "in_channel", "text": "🧠👍"})
