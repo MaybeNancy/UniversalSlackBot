@@ -88,7 +88,7 @@ def slack_commands():
     user_id = data.get("user_id")
     channel = data.get("channel_id")
 
-    response_text = "hey there"
+    response_text = data
 
     SendMessage(channel,response_text)
     
