@@ -78,8 +78,8 @@ def slack_events():
     if user_id == ADMIN:
         SendMessage(channel_id, data)
 
-    else if user_id == BOT:
-        DelMessage(channel_id,ts)
+    #else if user_id == BOT:
+        #DelMessage(channel_id,ts)
     """
     
     
