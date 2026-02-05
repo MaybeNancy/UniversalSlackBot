@@ -89,7 +89,7 @@ def slack_events():
     text = data['event']['text']
     txt = user_id+f"Bearer {perm_bot_msg}"
 
-    CommDup(text,channel_id,ts)
+    #CommDup(text,channel_id,ts)
     if user_id == ADMIN:
         SendMessage(channel_id, data)
     
@@ -125,9 +125,7 @@ def slack_commands():
     user_id = data.get("user_id")
     channel = data.get("channel_id")
 
-    response_text = data
-
-    b_msg = SendMessage(channel,response_text)
+    b_msg = SendMessage(channel,text)
     SendMessage(channel,b_msg["ts"])
     global perm_bot_msg 
     perm_bot_msg = b_msg["ts"]
