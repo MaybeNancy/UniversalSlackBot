@@ -116,6 +116,7 @@ def slack_commands():
 
     b_msg = SendMessage(channel,response_text)
     SendMessage(channel,b_msg["ts"])
-    global bottimer = b_msg["ts"]
+    global bottimer 
+    bottimer = b_msg["ts"]
 
     return jsonify({"response_type": "in_channel", "text": "🧠👍"})
