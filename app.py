@@ -11,6 +11,7 @@ import datetime
 app = Flask(__name__)
 ADMIN = "U0AAS5ZGSAD"
 BOT = "U0ABJJQ288M"
+timer = 0
 
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
@@ -74,9 +75,13 @@ def slack_events():
     user_id = data['event']['user']
     #ts = data['event']['ts']
 
-    if user_id == ADMIN:
+    #if user_id == ADMIN:
+    if timer == 3
         SendMessage(channel_id, data)
+        timer = 0
 
+    timer = timer+1
+    
     """
     else if user_id == BOT:
         DelMessage(channel_id,ts)
@@ -114,4 +119,4 @@ def slack_commands():
 
     SendMessage(channel,response_text)
 
-    return jsonify({"response_type": "in-channel", "text": "🧠👍"})
+    return jsonify({"response_type": "in_channel", "text": "🧠👍"})
