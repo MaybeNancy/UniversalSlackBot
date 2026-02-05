@@ -5,6 +5,7 @@ import requests
 import os
 import hmac
 import hashlib
+import datetime
 
 #init
 app = Flask(__name__)
@@ -73,7 +74,10 @@ def slack_events():
     channel_id = data['event']['channel']
     user_id = data['event']['user']
 
-    if user_id == ADMIN:
+    rn = datetime.datetime.now()/60
+
+    if rn % 2==0
+    #if user_id == ADMIN:
         SendMessage(channel_id, data)
     """
     
