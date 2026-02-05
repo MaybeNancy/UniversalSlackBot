@@ -78,6 +78,10 @@ def slack_events():
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
 def slack_commands():
+
+    if not IsValidRequest(request):
+        abort(400)
+        
     data = request.form
     command = data.get("command")
     text = data.get("text")
