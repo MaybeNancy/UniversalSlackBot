@@ -89,12 +89,12 @@ def slack_events():
     text = data['event']['text']
     txt = user_id+f"Bearer {perm_bot_msg}"
 
-    #CommDup(text,channel_id,ts)
+    CommDup(text,channel_id,ts)
     if user_id == ADMIN:
         SendMessage(channel_id, data)
     
-    #elif user_id == BOT and ts != perm_bot_msg:
-        #DelMessage(channel_id,ts)
+    elif user_id == BOT and ts != perm_bot_msg:
+        DelMessage(channel_id,ts)
     
     
     """
@@ -130,4 +130,4 @@ def slack_commands():
     global perm_bot_msg 
     perm_bot_msg = b_msg["ts"]
 
-    return jsonify({"response_type": "in_channel", "text": "🧠👍"})
+    return jsonify({"response_type": "ephemeral", "text": "🧠👍"})
