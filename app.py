@@ -76,7 +76,7 @@ def slack_events():
     #ts = data['event']['ts']
 
     #if user_id == ADMIN:
-    if timer == 3
+    if timer == 3:
         SendMessage(channel_id, data)
         timer = 0
 
