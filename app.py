@@ -75,12 +75,9 @@ def slack_events():
     user_id = data['event']['user']
     #ts = data['event']['ts']
 
-    if user_id == ADMIN:
-        SendMessage(channel_id, data)
-        timer = 0
-    else if user_id == BOT and timer == 0:
-        SendMessage(channel_id, data)
-        timer = 1
+    #if user_id == ADMIN:
+    SendMessage(channel_id, user_id)
+        #timer = 0
     
     """
     else if user_id == BOT:
