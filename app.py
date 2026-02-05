@@ -67,7 +67,7 @@ def SendMessage(channel_id, text):
 
 #Removes commands as text
 def CommDup(text,channel,ts):
-    if text.startswidth("/"):
+    if text.startswith("/"):
         DelMessage(channel,ts)
 
 # Endpoint to handle Slack events
