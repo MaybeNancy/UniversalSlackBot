@@ -93,8 +93,8 @@ def slack_events():
     if user_id == ADMIN:
         SendMessage(channel_id, data)
     
-    elif user_id == BOT and ts != perm_bot_msg:
-        DelMessage(channel_id,ts)
+    #elif user_id == BOT and ts != perm_bot_msg:
+        #DelMessage(channel_id,ts)
     
     
     """
