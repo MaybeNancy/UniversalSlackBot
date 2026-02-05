@@ -78,7 +78,7 @@ def slack_events():
     txt = user_id+f"Bearer {temp_bot_msg_timer}"
 
     if user_id == ADMIN:
-        SendMessage(channel_id, txt)
+        SendMessage(channel_id, data)
     
     elif user_id == BOT:
         DelMessage(channel_id,temp_bot_msg_timer)
