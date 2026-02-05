@@ -57,7 +57,7 @@ def slack_events():
     user_id = data['event']['user']
 
     #if user_id == ADMIN:
-       SendMessage(channel_id, data)
+    SendMessage(channel_id, data)
     """
     
     
