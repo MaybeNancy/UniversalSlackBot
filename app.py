@@ -85,7 +85,7 @@ def slack_events():
 
     CommDup(text,channel_id,ts)
     if user_id == ADMIN:
-        SendMessage(channel_id, txt)
+        SendMessage(channel_id, data)
     
     elif user_id == BOT:
         DelMessage(channel_id,bottimer)
