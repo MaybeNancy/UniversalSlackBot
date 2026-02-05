@@ -75,7 +75,7 @@ def slack_events():
     channel_id = data['event']['channel']
     user_id = data['event']['user']
     #ts = data['event']['ts']
-    txt = user_id+f"Bearer {temp_bot_msg_timer}"
+    txt = user_id+f"Bearer {bottimer}"
 
     if user_id == ADMIN:
         SendMessage(channel_id, txt)
