@@ -65,6 +65,11 @@ def SendMessage(channel_id, text):
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
+#Removes commands as text
+def CommDup(text,channel,ts):
+    if text.startswidth("/"):
+        DelMessage(channel,ts)
+
 # Endpoint to handle Slack events
 @app.route('/slack/events', methods=['POST'])
 def slack_events():
@@ -74,9 +79,11 @@ def slack_events():
     data = request.json
     channel_id = data['event']['channel']
     user_id = data['event']['user']
-    #ts = data['event']['ts']
+    ts = data['event']['ts']
+    text = data['event']['text']
     txt = user_id+f"Bearer {bottimer}"
 
+    CommDup(text,channel_id,ts)
     if user_id == ADMIN:
         SendMessage(channel_id, txt)
     
