@@ -76,7 +76,7 @@ def slack_events():
 
     rn = datetime.datetime.now()/60
 
-    if rn % 2==0
+    if rn % 1==0
     #if user_id == ADMIN:
         SendMessage(channel_id, data)
     """
