@@ -12,7 +12,7 @@ app = Flask(__name__)
 ADMIN = "U0AAS5ZGSAD"
 BOT = "U0ABJJQ288M"
 
-temp_bot_msg_timer = 0
+temp_bot_msg_timer = ""
 
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
@@ -115,6 +115,6 @@ def slack_commands():
     response_text = data
 
     b_msg = SendMessage(channel,response_text)
-    temp_bot_msg_timer = b_msg.get('event', {}).get('ts')
+    temp_bot_msg_timer = b_msg["ts"]
 
     return jsonify({"response_type": "in_channel", "text": "🧠👍"})
