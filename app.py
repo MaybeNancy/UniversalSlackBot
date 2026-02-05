@@ -87,7 +87,7 @@ def slack_events():
     user_id = data['event']['user']
     ts = data['event']['ts']
     text = data['event']['text']
-    txt = user_id+f"Bearer {bottimer}"
+    txt = user_id+f"Bearer {perm_bot_msg}"
 
     CommDup(text,channel_id,ts)
     if user_id == ADMIN:
