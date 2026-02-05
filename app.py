@@ -56,7 +56,7 @@ def slack_events():
     channel_id = data['event']['channel']
     user_id = data['event']['user']
 
-    if user_id == ADMIN:
+    #if user_id == ADMIN:
        SendMessage(channel_id, data)
     """
     
@@ -92,5 +92,4 @@ def slack_commands():
 
     SendMessage(channel,response_text)
 
-    invisible = "\u200b"
-    return jsonify({"response_type": "ephemeral", "text": invisible})
+    return jsonify({"response_type": "in-channel", "text": 🧠👍})
