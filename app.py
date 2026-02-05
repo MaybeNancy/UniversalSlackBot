@@ -12,7 +12,7 @@ app = Flask(__name__)
 ADMIN = "U0AAS5ZGSAD"
 BOT = "U0ABJJQ288M"
 
-bottimer = ""
+perm_bot_msg = ""
 
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
@@ -67,7 +67,13 @@ def SendMessage(channel_id, text):
 
 #Removes commands as text
 def CommDup(text,channel,ts):
-    if text.startswith("/",0,1):
+    """
+    TODO: Implememt a parser that searches for 
+    custom commands written at first (attempting
+    to do a command as plain text), otherwise is just
+    normal text mentioning a command
+    """
+    if text.startswith("\/",0,2):
         DelMessage(channel,ts)
 
 # Endpoint to handle Slack events
@@ -87,8 +93,8 @@ def slack_events():
     if user_id == ADMIN:
         SendMessage(channel_id, data)
     
-    elif user_id == BOT:
-        DelMessage(channel_id,bottimer)
+    elif user_id == BOT and ts != perm_bot_msg:
+        DelMessage(channel_id,ts)
     
     
     """
@@ -123,7 +129,7 @@ def slack_commands():
 
     b_msg = SendMessage(channel,response_text)
     SendMessage(channel,b_msg["ts"])
-    global bottimer 
-    bottimer = b_msg["ts"]
+    global perm_bot_msg 
+    perm_bot_msg = b_msg["ts"]
 
     return jsonify({"response_type": "in_channel", "text": "🧠👍"})
