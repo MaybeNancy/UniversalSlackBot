@@ -92,4 +92,4 @@ def slack_commands():
 
     SendMessage(channel,response_text)
 
-    return jsonify({"response_type": "in-channel", "text": 🧠👍})
+    return jsonify({"response_type": "in-channel", "text": "🧠👍"})
