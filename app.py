@@ -17,6 +17,7 @@ perm_bot_msg = ""
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
 SLACK_SIGNING_SECRET = os.getenv('SLACK_SIGNING_SECRET')
+SLACK_USER_SECRET = os.getenv('SLACK_USER_SECRET')
 
 # Function to verify Slack request signatures
 def IsValidRequest(req):
@@ -37,10 +38,10 @@ def IsValidRequest(req):
     return hmac.compare_digest(my_signature, slack_signature)
 
 #deletes message inmediately
-def DelMessage(channel_id,timestamp):
+def DelMessage(token, channel_id,timestamp):
     url = "https://slack.com/api/chat.delete"
     headers = {
-        'Authorization': f'Bearer {SLACK_BOT_TOKEN}',
+        'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json'
     }
     data = {
@@ -52,7 +53,7 @@ def DelMessage(channel_id,timestamp):
     return response.json()
     
 # Function to send a message to a Slack channel
-def SendMessage(channel_id, text):
+def SendMessage(channel_id,text):
     url = 'https://slack.com/api/chat.postMessage'
     headers = {
         'Authorization': f'Bearer {SLACK_BOT_TOKEN}',
@@ -82,7 +83,8 @@ def CommDup(text,channel,ts):
     SendMessage(channel,slash_loc)
     if slash_loc == 0:
         SendMessage(channel,"hi?")
-        DelMessage(channel,ts)
+        DelMessage(SLACK_BOT_TOKEN,channel,ts)
+        DelMessage(SLACK_USER_TOKEN,channel,ts)
 
 # Endpoint to handle Slack events
 @app.route('/slack/events', methods=['POST'])
@@ -104,7 +106,7 @@ def slack_events():
     
     elif user_id == BOT and ts != perm_bot_msg:
         if 12+9 == 6:
-            DelMessage(channel_id,ts)
+            DelMessage(SLACK_BOT_TOKEN,channel_id,ts)
     
     
     """
