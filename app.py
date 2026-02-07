@@ -65,6 +65,9 @@ def SendMessage(channel_id, text):
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
+def EncText(text):
+    return text.encode("unicode_escape").decode("utf-8")
+
 #Removes commands as text
 def CommDup(text,channel,ts):
     """
@@ -87,9 +90,11 @@ def slack_events():
     user_id = data['event']['user']
     ts = data['event']['ts']
     text = data['event']['text']
+    entxt = EncText(text)
     txt = user_id+f"Bearer {perm_bot_msg}"
 
-    CommDup(text,channel_id,ts)
+    CommDup(entxt,channel_id,ts)
+    
     if user_id == ADMIN:
         SendMessage(channel_id, data)
     
@@ -130,4 +135,4 @@ def slack_commands():
     global perm_bot_msg 
     perm_bot_msg = b_msg["ts"]
 
-    return jsonify({"response_type": "ephemeral", "text": "🧠👍"})
+    return jsonify({"response_type": "in_channel", "text": "🧠👍"})
