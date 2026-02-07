@@ -81,6 +81,7 @@ def CommDup(text,channel,ts):
     slash_loc = text_batch[0].find("/")
     SendMessage(channel,slash_loc)
     if slash_loc == 0:
+        SendMessage(channel,"hi?")
         DelMessage(channel,ts)
 
 # Endpoint to handle Slack events
