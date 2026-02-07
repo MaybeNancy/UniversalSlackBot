@@ -17,7 +17,7 @@ perm_bot_msg = ""
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
 SLACK_SIGNING_SECRET = os.getenv('SLACK_SIGNING_SECRET')
-SLACK_USER_SECRET = os.getenv('SLACK_USER_SECRET')
+SLACK_USER_TOKEN = os.getenv('SLACK_USER_TOKEN')
 
 # Function to verify Slack request signatures
 def IsValidRequest(req):
