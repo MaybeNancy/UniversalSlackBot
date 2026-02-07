@@ -76,6 +76,8 @@ def CommDup(text,channel,ts):
     to do a command as plain text), otherwise is just
     normal text mentioning a command
     """
+
+    SendMessage(channel,text.find("/"))
     if text.startswith("/",0,2):
         DelMessage(channel,ts)
 
@@ -99,7 +101,7 @@ def slack_events():
         SendMessage(channel_id, entxt)
     
     elif user_id == BOT and ts != perm_bot_msg:
-        if 1==0:
+        if 12+9 == 6
             DelMessage(channel_id,ts)
     
     
