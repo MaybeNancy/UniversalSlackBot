@@ -60,7 +60,8 @@ def SendMessage(channel_id, text):
     }
     data = {
         'channel': channel_id,
-        'text': text
+        'text': text,
+        'name': "Brian🧠"
     }
     response = requests.post(url, headers=headers, json=data)
     return response.json()
@@ -94,10 +95,9 @@ def slack_events():
     text = data['event']['text']
     entxt = EncText(text)
     txt = user_id+f"Bearer {perm_bot_msg}"
-
-    CommDup(entxt,channel_id,ts)
     
     if user_id == ADMIN:
+        CommDup(entxt,channel_id,ts)
         SendMessage(channel_id, entxt)
     
     elif user_id == BOT and ts != perm_bot_msg:
