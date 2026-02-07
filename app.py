@@ -61,7 +61,7 @@ def SendMessage(channel_id, text):
     data = {
         'channel': channel_id,
         'text': text,
-        'name': "Brian🧠"
+        'username': "Brian🧠"
     }
     response = requests.post(url, headers=headers, json=data)
     return response.json()
