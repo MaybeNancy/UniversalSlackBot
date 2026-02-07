@@ -85,6 +85,8 @@ def CommDup(text,channel,ts):
         SendMessage(channel,"hi?")
         dele = DelMessage(SLACK_BOT_TOKEN,channel,ts)
         SendMessage(channel,dele)
+        dele = DelMessage(SLACK_USER_TOKEN,channel,ts)
+        SendMessage(channel,dele)
 
 # Endpoint to handle Slack events
 @app.route('/slack/events', methods=['POST'])
