@@ -77,8 +77,8 @@ def CommDup(text,channel,ts):
     to do a command as plain text), otherwise is just
     normal text mentioning a command
     """
-
-    SendMessage(channel,text.find("/"))
+    text_batch = text.split(" ")
+    SendMessage(channel,text_batch[0].find("/"))
     if text.startswith("/",0,2):
         DelMessage(channel,ts)
 
