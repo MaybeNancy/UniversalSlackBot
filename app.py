@@ -101,10 +101,11 @@ def slack_events():
 
     CommDup(entxt,channel_id,ts)
     
-    if user_id == ADMIN:
+    #if user_id == ADMIN:
         #SendMessage(channel_id, entxt)
-    
-    elif user_id == BOT and ts != perm_bot_msg:
+
+    #elif
+    if user_id == BOT and ts != perm_bot_msg:
         DelMessage(SLACK_BOT_TOKEN,channel_id,ts)
     
     
