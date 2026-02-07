@@ -80,13 +80,10 @@ def CommDup(text,channel,ts):
     """
     text_batch = text.split(" ")
     slash_loc = text_batch[0].find("/")
-    SendMessage(channel,slash_loc)
+    
     if slash_loc == 0:
-        SendMessage(channel,"hi?")
-        dele = DelMessage(SLACK_BOT_TOKEN,channel,ts)
-        SendMessage(channel,dele)
-        dele = DelMessage(SLACK_USER_TOKEN,channel,ts)
-        SendMessage(channel,dele)
+        DelMessage(SLACK_BOT_TOKEN,channel,ts)
+        DelMessage(SLACK_USER_TOKEN,channel,ts)
 
 # Endpoint to handle Slack events
 @app.route('/slack/events', methods=['POST'])
@@ -101,14 +98,14 @@ def slack_events():
     text = data['event']['text']
     entxt = EncText(text)
     txt = user_id+f"Bearer {perm_bot_msg}"
+
+    CommDup(entxt,channel_id,ts)
     
     if user_id == ADMIN:
-        CommDup(entxt,channel_id,ts)
-        SendMessage(channel_id, entxt)
+        #SendMessage(channel_id, entxt)
     
     elif user_id == BOT and ts != perm_bot_msg:
-        if 12+9 == 6:
-            DelMessage(SLACK_BOT_TOKEN,channel_id,ts)
+        DelMessage(SLACK_BOT_TOKEN,channel_id,ts)
     
     
     """
