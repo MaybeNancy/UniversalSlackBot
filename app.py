@@ -101,7 +101,7 @@ def slack_events():
         SendMessage(channel_id, entxt)
     
     elif user_id == BOT and ts != perm_bot_msg:
-        if 12+9 == 6
+        if 12+9 == 6:
             DelMessage(channel_id,ts)
     
     
