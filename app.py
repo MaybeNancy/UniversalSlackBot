@@ -78,8 +78,9 @@ def CommDup(text,channel,ts):
     normal text mentioning a command
     """
     text_batch = text.split(" ")
-    SendMessage(channel,text_batch[0].find("/"))
-    if text.startswith("/",0,2):
+    slash_loc = text_batch[0].find("/")
+    SendMessage(channel,slash_loc)
+    if slash_loc == 0:
         DelMessage(channel,ts)
 
 # Endpoint to handle Slack events
@@ -134,7 +135,6 @@ def slack_commands():
     channel = data.get("channel_id")
 
     b_msg = SendMessage(channel,text)
-    SendMessage(channel,b_msg["ts"])
     global perm_bot_msg 
     perm_bot_msg = b_msg["ts"]
 
