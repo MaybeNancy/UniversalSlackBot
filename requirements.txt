@@ -1,4 +1,4 @@
-setuptools
+setuptools==67.0.0
 slack-sdk==3.21.3
 flask>=2.0
 requests==2.31.0
