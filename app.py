@@ -1,4 +1,4 @@
-2#new api
+#new api
 #dependencies
 from flask import Flask, request, jsonify, abort
 import requests
@@ -77,6 +77,8 @@ def CommDup(text,channel,ts):
     custom commands written at first (attempting
     to do a command as plain text), otherwise is just
     normal text mentioning a command
+
+    NOT NEEDED, BUT SAVE IF LOGIC BECOMES USEFUL
     """
     text_batch = text.split(" ")
     slash_loc = text_batch[0].find("/")
@@ -99,16 +101,12 @@ def slack_events():
     entxt = EncText(text)
     txt = user_id+f"Bearer {perm_bot_msg}"
 
-    CommDup(entxt,channel_id,ts)
+    #CommDup(entxt,channel_id,ts)
     
     #if user_id == ADMIN:
         #SendMessage(channel_id, entxt)
 
     #elif
-    if 1==1:#ts != perm_bot_msg:
-        #SendMessage(channel_id,"works!")
-        DelMessage(SLACK_BOT_TOKEN,channel_id,ts)
-        DelMessage(SLACK_USER_TOKEN,channel_id,ts)
     
     
     """
@@ -143,4 +141,4 @@ def slack_commands():
     global perm_bot_msg 
     perm_bot_msg = b_msg["ts"]
 
-    return jsonify({"response_type": "in_channel", "text": "🧠👍"})
+    return jsonify({"response_type": "ephemeral", "text": "🧠👍"})
