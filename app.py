@@ -1,4 +1,4 @@
-#new api
+2#new api
 #dependencies
 from flask import Flask, request, jsonify, abort
 import requests
@@ -105,8 +105,8 @@ def slack_events():
         #SendMessage(channel_id, entxt)
 
     #elif
-    if ts != perm_bot_msg:
-        SendMessage(channel_id,"works!")
+    if 1==1:#ts != perm_bot_msg:
+        #SendMessage(channel_id,"works!")
         DelMessage(SLACK_BOT_TOKEN,channel_id,ts)
         DelMessage(SLACK_USER_TOKEN,channel_id,ts)
     
