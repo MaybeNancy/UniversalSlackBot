@@ -106,6 +106,7 @@ def slack_events():
 
     #elif
     if user_id == BOT and ts != perm_bot_msg:
+        SendMessage(channel_id,"works!")
         DelMessage(SLACK_BOT_TOKEN,channel_id,ts)
         DelMessage(SLACK_USER_TOKEN,channel_id,ts)
     
