@@ -143,4 +143,4 @@ def slack_commands():
     global perm_bot_msg 
     perm_bot_msg = b_msg["ts"]
 
-    return jsonify({"response_type": "ephemeral", "text": "🧠👍"})
+    return jsonify({"response_type": "in_channel", "text": "🧠👍"})
