@@ -81,7 +81,7 @@ def SendMedia(channel_id,img_url):
     }
     data = {
         'channel': channel_id,
-        'block': {
+        'blocks': [{
             "type":"image",
             "title": {
                 "type": "plain_text",
@@ -89,7 +89,7 @@ def SendMedia(channel_id,img_url):
             },
             "alt_txt":"img",
             "image_url":img_url
-        },
+        }],
         'username': "Brian🧠"
     }
     response = requests.post(url, headers=headers, json=data)
