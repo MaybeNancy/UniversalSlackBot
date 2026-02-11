@@ -130,7 +130,7 @@ def slack_events():
     
 #Getch DA deviation via username and/or title
 def GetDA():
-    url = 'https://www.deviantart.com/oauth2/authorize"
+    url = "https://www.deviantart.com/oauth2/authorize"
     params = {
         "response_type" : "code"
         'client_id': DA_API_ID,
