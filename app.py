@@ -272,7 +272,6 @@ def slack_commands():
             GetDA()
             user = entxt.replace("@","")
             gallery = GetDAGall(user)["results"]
-            sprint(GetDAGall(user))
 
             for i in gallery:
                 DAShow(channel, i)
