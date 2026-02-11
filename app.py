@@ -269,5 +269,9 @@ def slack_commands():
                 DAShow(channel, i)
         elif search_mode==2:
             tag = entxt.replace("#","")
+            tags = DATag(tag)["results"]
+
+            for i in tags:
+                DAShow(channel, i)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
