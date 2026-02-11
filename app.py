@@ -153,6 +153,8 @@ def slack_commands():
     user_id = data.get("user_id")
     channel = data.get("channel_id")
 
+    SendMessage(channel,command)
+
     if command == "echo":
         b_msg = SendMessage(channel,text)
         global perm_bot_msg 
