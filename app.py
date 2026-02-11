@@ -140,9 +140,7 @@ def CheckDAToken():
     url = "https://www.deviantart.com/api/v1/oauth2/placebo"
 
     params = {
-        'client_id': DA_API_ID,
-        "client_secret" : DA_API_SECRET,
-        'grant_type': 'client_credentials'
+        'access_token': DA_token
     }
     
     response = requests.get(url, params=params).json()
