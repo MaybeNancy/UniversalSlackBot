@@ -198,7 +198,7 @@ def slack_commands():
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
         GetDA()
-        GetDAGall("someone")
+        GetDAGall(text)
         SendMessage(channel,DA_token)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
