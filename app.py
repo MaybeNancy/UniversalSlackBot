@@ -174,7 +174,6 @@ def GetDAGall(user):
     }
     
     response = requests.get(url, params=params)
-    sprint(response.json())
     return response.json()
     
 # Slash command endpoint
@@ -198,7 +197,8 @@ def slack_commands():
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
         GetDA()
-        GetDAGall(text)
+        gallery = GetDAGall(text)["results"]
+        sprint(len(gallery))
         SendMessage(channel,DA_token)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
