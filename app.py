@@ -197,6 +197,18 @@ def GetDAGall(search):
     url = "https://www.deviantart.com/api/v1/oauth2/gallery/all"
     params = {
         'access_token': DA_token,
+        "username" : user,
+        "mature_content": "true"
+    }
+    
+    response = requests.get(url, params=params)
+    return response.json()
+
+#just normal search
+def DASearch(search):
+    url = "https://www.deviantart.com/api/v1/oauth2/browse/search"
+    params = {
+        'access_token': DA_token,
         "q" : search,
         "mature_content": "true",
         "page" : random.randint(1,200)
@@ -205,17 +217,11 @@ def GetDAGall(search):
     response = requests.get(url, params=params)
     return response.json()
 
-#just normal search
-def DASearch():
-    url = "https://www.deviantart.com/api/v1/oauth2/browse/search"
-    params = {
-        'access_token': DA_token,
-        "username" : user,
-        "mature_content": "true"
-    }
+def DAShow(channel, deviation):
+    sprint(len(deviation["video"]))
+    src = deviation["preview"]["src"]
+    SendMedia(channel,src)
     
-    response = requests.get(url, params=params)
-    return response.json()
 """
 type 0 for normal search
 type 1 for user
@@ -257,14 +263,17 @@ def slack_commands():
         sprint(entxt)
         if search_mode==0:
             sprint("Normal!!!!!")
+
+            searches = DASearch(entxt)
+            for i in gallery:
+                DAShow(channel, i)
         elif search_mode==1:
             GetDA()
             user = entxt.replace("@","")
             gallery = GetDAGall(user)["results"]
 
             for i in gallery:
-                src = i["preview"]["src"]
-                SendMedia(channel,src)
+                DAShow(channel, i)
         elif search_mode==2:
             tag = entxt.replace("#","")
 
