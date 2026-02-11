@@ -155,12 +155,12 @@ def slack_commands():
 
     SendMessage(channel,command)
 
-    if command == "echo":
+    if command == "/echo":
         b_msg = SendMessage(channel,text)
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
-    elif command == "da":
+    elif command == "/da":
         result = GetDA()
         SendMessage(channel,result)
 
-    return jsonify({"response_type": "ephemeral", "text": "🧠👍"})
+    return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
