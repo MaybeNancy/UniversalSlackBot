@@ -130,7 +130,15 @@ def slack_events():
     
 #Getch DA deviation via username and/or title
 def GetDA():
-    return 0
+    url = 'https://slack.com/api/chat.postMessage'
+    headers = {
+        "response_type" : "code"
+        'client_id': f'Bearer {DA_API_ID}',
+        'Content-Type': 'application/json'
+    }
+    
+    response = requests.post(url, headers=headers)
+    return response.json()
 
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
