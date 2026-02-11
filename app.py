@@ -165,6 +165,16 @@ def GetDA():
         global DA_token
         DA_token = response["access_token"]
 
+#get user's gallery
+def GetDAGall(user):
+    url = "https://www.deviantart.com/api/v1/oauth2/gallery/all"
+    params = {
+        'access_token': DA_token
+    }
+    
+    response = requests.get(url, params=params)
+    return response.json()
+    
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
 def slack_commands():
@@ -186,6 +196,7 @@ def slack_commands():
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
         GetDA()
+        GetDAGall("someone")
         SendMessage(channel,DA_token)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
