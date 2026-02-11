@@ -84,7 +84,7 @@ def SendMedia(channel_id,img_url):
             "alt_text":"img",
             "image_url":img_url
         }
-     ]
+    ]
     
     url = 'https://slack.com/api/chat.postMessage'
     headers = {
