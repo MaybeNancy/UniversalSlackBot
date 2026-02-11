@@ -220,8 +220,8 @@ def slack_commands():
 
         for i in gallery:
             src = i["preview"]["src"]
-            sprint(src)
+            #sprint(src)
         #SendMessage(channel,DA_token)
-        SendMedia(channel,src)
+            SendMedia(channel,src)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
