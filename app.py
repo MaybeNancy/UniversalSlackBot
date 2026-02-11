@@ -220,7 +220,7 @@ def DASearch(search):
 def DAShow(channel, deviation):
     sprint(len(deviation["videos"]))
     #sprint(deviation)
-    src = deviation["preview"]["src"]
+    src = deviation["content"]["src"]
     SendMedia(channel,src)
     
 """
@@ -265,7 +265,7 @@ def slack_commands():
         if search_mode==0:
             sprint("Normal!!!!!")
 
-            searches = DASearch(entxt)
+            searches = DASearch(entxt)["results"]
             for i in searches:
                 DAShow(channel, i)
         elif search_mode==1:
