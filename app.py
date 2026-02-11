@@ -79,7 +79,10 @@ def SendMedia(channel_id,img_url,video_url,is_video):
         blocks = [
             {
                 "type":"video",
-                "thumbnail_url":img_url
+                "alt_text":"text",
+                "title":"title",
+                "thumbnail_url":img_url,
+                "video_url":video_url
             }
         ]
     else:
