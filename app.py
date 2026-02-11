@@ -134,7 +134,7 @@ def GetDA():
     params = {
         "response_type" : "code",
         'client_id': DA_API_ID,
-        'redirect_uri': 'https://multitask-slack-bot.up.railway.app'
+        'redirect_uri': 'https://multitask-slack-bot.up.railway.app/'
     }
     
     response = requests.get(url, params=params)
