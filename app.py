@@ -74,18 +74,25 @@ def SendMessage(channel_id,text):
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
-def SendMedia(channel_id,img_url):
-    blocks = [
-        {
-            "type":"image",
-            "title": {
-                "type": "plain_text",
-                "text": "Please enjoy this photo :>"
-            },
-            "alt_text":"img",
-            "image_url":img_url
-        }
-    ]
+def SendMedia(channel_id,img_url,is_video):
+    if is_video:
+        blocks = [
+            {
+                "type":"video"
+            }
+        ]
+    else:
+        blocks = [
+            {
+                "type":"image",
+                "title": {
+                    "type": "plain_text",
+                    "text": "Please enjoy this photo :>"
+                },
+                "alt_text":"img",
+                "image_url":img_url
+            }
+        ]
     
     url = 'https://slack.com/api/chat.postMessage'
     headers = {
@@ -214,10 +221,12 @@ def DATag(tag):
 #def DAlink(link)
 def DAShow(channel, deviation):
     videos = deviation["videos"]
-    sprint(videos)
-    #sprint(deviation)
-    src = deviation["preview"]["src"]
-    SendMedia(channel,src)
+    if videos:
+        SendMedia(channel,src,True)
+        sprint(videos)
+    else:
+        src = deviation["preview"]["src"]
+        SendMedia(channel,src,False)
     
 """
 type 0 for normal search
