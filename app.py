@@ -207,7 +207,7 @@ def GetDAGall(user):
 type 0 for normal search
 type 1 for user
 type 2 for tag
-type 3 for url/deviation_id
+type 3 for url
 """
 
 search_mode = 0
@@ -234,7 +234,7 @@ def slack_commands():
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
         if search_mode==0:
-            sprint(etxt)
+            sprint(entxt)
         if search_mode==1:
             GetDA()
             gallery = GetDAGall(entxt)["results"]
