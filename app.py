@@ -73,6 +73,22 @@ def SendMessage(channel_id,text):
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
+def SendMedia(channel_id,ur):
+    url = 'https://slack.com/api/chat.postMessage'
+    headers = {
+        'Authorization': f'Bearer {SLACK_BOT_TOKEN}',
+        'Content-Type': 'application/json'
+    }
+    data = {
+        'channel': channel_id,
+        'block': {
+            "type":'img"
+        },
+        'username': "Brian🧠"
+    }
+    response = requests.post(url, headers=headers, json=data)
+    return response.json()
+
 #quick slack chat print for debuggin'
 def sprint(text):
     SendMessage(DFT_CHANNEL,text)
