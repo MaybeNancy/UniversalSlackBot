@@ -107,23 +107,6 @@ def sprint(text):
 def EncText(text):
     return text.encode("unicode_escape").decode("utf-8")
 
-#Removes commands as text
-def CommDup(text,channel,ts):
-    """
-    TODO: Implememt a parser that searches for 
-    custom commands written at first (attempting
-    to do a command as plain text), otherwise is just
-    normal text mentioning a command
-
-    NOT NEEDED, BUT SAVE IF LOGIC BECOMES USEFUL
-    """
-    text_batch = text.split(" ")
-    slash_loc = text_batch[0].find("/")
-    
-    if slash_loc == 0:
-        DelMessage(SLACK_BOT_TOKEN,channel,ts)
-        DelMessage(SLACK_USER_TOKEN,channel,ts)
-
 # Endpoint to handle Slack events
 @app.route('/slack/events', methods=['POST'])
 def slack_events():
@@ -214,9 +197,21 @@ def DASearch(search):
     }
     
     response = requests.get(url, params=params)
-    sprint(response.json())
     return response.json()
 
+def DATag(tag):
+    url = "https://www.deviantart.com/api/v1/oauth2/browse/home"
+    params = {
+        'access_token': DA_token,
+        "q" : search,
+        "mature_content": "true",
+    }
+    
+    response = requests.get(url, params=params)
+    return response.json()
+
+#TODO, DA FETCH VIA LINK
+#def DAlink(link)
 def DAShow(channel, deviation):
     #sprint(len(deviation["videos"]))
     #sprint(deviation)
