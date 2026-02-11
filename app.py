@@ -108,8 +108,8 @@ def slack_events():
 
     #CommDup(entxt,channel_id,ts)
     
-    #if user_id == ADMIN:
-        #SendMessage(channel_id, entxt)
+    if user_id == ADMIN:
+        SendMessage(channel_id, data)
 
     #elif
     
