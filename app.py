@@ -73,7 +73,7 @@ def SendMessage(channel_id,text):
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
-def SendMedia(channel_id,ur):
+def SendMedia(channel_id,url):
     url = 'https://slack.com/api/chat.postMessage'
     headers = {
         'Authorization': f'Bearer {SLACK_BOT_TOKEN}',
@@ -82,7 +82,9 @@ def SendMedia(channel_id,ur):
     data = {
         'channel': channel_id,
         'block': {
-            "type":'img"
+            "type":"image",
+            "alt_txt":"img",
+            "image_url":url
         },
         'username': "Brian🧠"
     }
