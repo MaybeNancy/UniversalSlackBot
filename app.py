@@ -11,6 +11,7 @@ import datetime
 app = Flask(__name__)
 ADMIN = "U0AAS5ZGSAD"
 BOT = "U0ABJJQ288M"
+DFT_CHANNEL = "C0AC0154XSL"
 
 perm_bot_msg = ""
 DA_token = "NA"
@@ -72,6 +73,10 @@ def SendMessage(channel_id,text):
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
+#quick slack chat print for debuggin'
+def sprintf(text):
+    SendMessage(DFT_CHANNEL,text)
+
 def EncText(text):
     return text.encode("unicode_escape").decode("utf-8")
 
@@ -108,8 +113,8 @@ def slack_events():
 
     #CommDup(entxt,channel_id,ts)
     
-    if user_id == ADMIN:
-        SendMessage(channel_id, data)
+    #if user_id == ADMIN:
+        #SendMessage(channel_id, data)
 
     #elif
     
@@ -141,6 +146,8 @@ def CheckDAToken():
     }
     
     response = requests.get(url, params=params).json()
+    
+    sprintf(response)
     if response["status"] == "success":
         return True
     else:
