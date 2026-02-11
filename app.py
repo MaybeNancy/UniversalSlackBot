@@ -87,7 +87,7 @@ def SendMedia(channel_id,img_url):
                 "type": "plain_text",
                 "text": "Please enjoy this photo :>"
             },
-            "alt_txt":"img",
+            "alt_text":"img",
             "image_url":img_url
         }],
         'username': "Brian🧠"
