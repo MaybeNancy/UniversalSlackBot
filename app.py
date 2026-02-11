@@ -211,7 +211,7 @@ def DASearch(search):
         'access_token': DA_token,
         "q" : search,
         "mature_content": "true",
-        "page" : random.randint(1,2)
+        "page" : 1
     }
     
     response = requests.get(url, params=params)
