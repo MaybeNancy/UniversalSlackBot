@@ -213,7 +213,8 @@ def DATag(tag):
 #TODO, DA FETCH VIA LINK
 #def DAlink(link)
 def DAShow(channel, deviation):
-    #sprint(len(deviation["videos"]))
+    videos = deviation["videos"]
+    sprint(len(videos))
     #sprint(deviation)
     src = deviation["preview"]["src"]
     SendMedia(channel,src)
