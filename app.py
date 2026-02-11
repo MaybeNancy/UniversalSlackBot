@@ -185,6 +185,7 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
+        global DA_token
         DA_token = GetDA()["access_token"]
         SendMessage(channel,DA_token)
 
