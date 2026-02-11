@@ -74,7 +74,7 @@ def SendMessage(channel_id,text):
     return response.json()
 
 #quick slack chat print for debuggin'
-def sprintf(text):
+def sprint(text):
     SendMessage(DFT_CHANNEL,text)
 
 def EncText(text):
@@ -145,7 +145,7 @@ def CheckDAToken():
     
     response = requests.get(url, params=params).json()
     
-    sprintf(response)
+    #sprint(response)
     if response["status"] == "success":
         return True
     else:
@@ -169,10 +169,12 @@ def GetDA():
 def GetDAGall(user):
     url = "https://www.deviantart.com/api/v1/oauth2/gallery/all"
     params = {
-        'access_token': DA_token
+        'access_token': DA_token,
+        "username" : user
     }
     
     response = requests.get(url, params=params)
+    sprint(response.json())
     return response.json()
     
 # Slash command endpoint
