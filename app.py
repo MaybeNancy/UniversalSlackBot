@@ -218,7 +218,8 @@ def DASearch(search):
     return response.json()
 
 def DAShow(channel, deviation):
-    sprint(len(deviation["video"]))
+    #sprint(len(deviation["video"]))
+    sprint(deviation)
     src = deviation["preview"]["src"]
     SendMedia(channel,src)
     
