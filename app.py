@@ -138,7 +138,7 @@ def GetDA(c):
     }
     
     response = requests.get(url, params=params)
-    return response.json()
+    return response
 
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
