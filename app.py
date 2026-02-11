@@ -251,6 +251,7 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
+        GetDA()
         search_mode = 0
 
         if entxt.find("@") == 0:
@@ -267,7 +268,6 @@ def slack_commands():
             for i in searches:
                 DAShow(channel, i)
         elif search_mode==1:
-            GetDA()
             user = entxt.replace("@","")
             gallery = GetDAGall(user)["results"]
             sprint("working?")
