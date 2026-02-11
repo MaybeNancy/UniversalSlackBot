@@ -138,7 +138,7 @@ def GetDA():
     }
     
     response = requests.get(url, params=params)
-    SendMessage(channel,response.json())
+    SendMessage(channel,response)
     return response.json()
 
 # Slash command endpoint
