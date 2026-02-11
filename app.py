@@ -206,13 +206,11 @@ def GetDAGall(user):
 
 #just normal search
 def DASearch(search):
-    url = "https://www.deviantart.com/api/v1/oauth2/browse/search"
+    url = "https://www.deviantart.com/api/v1/oauth2/browse/home"
     params = {
         'access_token': DA_token,
         "q" : search,
         "mature_content": "true",
-        "page" : 1,
-        "limit" : 5
     }
     
     response = requests.get(url, params=params)
