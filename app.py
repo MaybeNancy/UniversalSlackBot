@@ -193,7 +193,7 @@ def GetDA():
         DA_token = response["access_token"]
 
 #get user's gallery
-def GetDAGall(search):
+def GetDAGall(user):
     url = "https://www.deviantart.com/api/v1/oauth2/gallery/all"
     params = {
         'access_token': DA_token,
