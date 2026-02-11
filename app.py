@@ -220,7 +220,7 @@ def DASearch(search):
 def DAShow(channel, deviation):
     sprint(len(deviation["videos"]))
     #sprint(deviation)
-    src = deviation["preview"]["src"]
+    src = deviation["content"]["src"]
     SendMedia(channel,src)
     
 """
@@ -272,6 +272,7 @@ def slack_commands():
             GetDA()
             user = entxt.replace("@","")
             gallery = GetDAGall(user)["results"]
+            sprint(GetDAGall(user))
 
             for i in gallery:
                 DAShow(channel, i)
