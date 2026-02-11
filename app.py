@@ -74,11 +74,12 @@ def SendMessage(channel_id,text):
     response = requests.post(url, headers=headers, json=data)
     return response.json()
 
-def SendMedia(channel_id,img_url,is_video):
+def SendMedia(channel_id,img_url,video_url,is_video):
     if is_video:
         blocks = [
             {
-                "type":"video"
+                "type":"video",
+                "thumbnail_url":img_url
             }
         ]
     else:
@@ -222,11 +223,11 @@ def DATag(tag):
 def DAShow(channel, deviation):
     videos = deviation["videos"]
     if videos:
-        SendMedia(channel,src,True)
+        SendMedia(channel,src,1,True)
         sprint(videos)
     else:
         src = deviation["preview"]["src"]
-        SendMedia(channel,src,False)
+        SendMedia(channel,src,False,False)
     
 """
 type 0 for normal search
