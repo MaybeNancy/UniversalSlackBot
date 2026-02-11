@@ -225,11 +225,14 @@ def DATag(tag):
 #def DAlink(link)
 def DAShow(channel, deviation):
     videos = deviation["videos"]
+    src = deviation["preview"]["src"]
     if videos:
-        SendMedia(channel,src,1,True)
-        sprint(videos)
+        for v in videos:
+            vsrc = v["src"]
+            SendMedia(channel,src,vsrc,True)
+            sprint(videos)
     else:
-        src = deviation["preview"]["src"]
+        
         SendMedia(channel,src,False,False)
     
 """
