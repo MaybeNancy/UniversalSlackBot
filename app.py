@@ -243,7 +243,7 @@ def slack_commands():
 
         sprint(entxt)
         if search_mode==0:
-            
+            sprint("Normal!!!!!")
         elif search_mode==1:
             GetDA()
             user = entxt.replace("@","")
