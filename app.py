@@ -265,7 +265,7 @@ def slack_commands():
             sprint("Normal!!!!!")
 
             searches = DASearch(entxt)
-            for i in gallery:
+            for i in searches:
                 DAShow(channel, i)
         elif search_mode==1:
             GetDA()
