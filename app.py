@@ -240,15 +240,19 @@ def slack_commands():
             search_mode=2
         elif entxt.startswith("https://"):
             search_moden=3
-        
+
+        sprint(entxt)
         if search_mode==0:
-            sprint(entxt)
+            
         elif search_mode==1:
             GetDA()
-            gallery = GetDAGall(entxt)["results"]
+            user = entxt.replace("@","")
+            gallery = GetDAGall(user)["results"]
 
             for i in gallery:
                 src = i["preview"]["src"]
                 SendMedia(channel,src)
+        elif search_mode==2:
+            tag = entxt.replace("#","")
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
