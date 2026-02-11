@@ -132,7 +132,7 @@ def slack_events():
 def GetDA():
     url = "https://www.deviantart.com/oauth2/authorize"
     params = {
-        "response_type" : "code"
+        "response_type" : "code",
         'client_id': DA_API_ID,
         'redirect_uri': 'https://multitask-slack-bot.up.railway.app'
     }
