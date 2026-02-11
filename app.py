@@ -200,8 +200,8 @@ def slack_commands():
         gallery = GetDAGall(text)["results"]
 
         for i in gallery:
-            #src = gallery[i]["preview"]["src"]
-            sprint(i)
+            src = i["preview"]["src"]
+            sprint(src]
         SendMessage(channel,DA_token)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
