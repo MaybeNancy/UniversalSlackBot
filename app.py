@@ -161,9 +161,9 @@ def GetDA():
             'grant_type': 'client_credentials'
         }
     
-        response = requests.get(url, params=params)
-        return response.json()
-    return DA_token
+        response = requests.get(url, params=params).json()
+        global DA_token
+        DA_token = response["access_token"]
 
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
@@ -185,8 +185,7 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
-        global DA_token
-        DA_token = GetDA()["access_token"]
+        GetDA()
         SendMessage(channel,DA_token)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
