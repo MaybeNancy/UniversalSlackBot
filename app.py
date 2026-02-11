@@ -202,7 +202,15 @@ def GetDAGall(user):
     
     response = requests.get(url, params=params)
     return response.json()
-    
+
+"""
+type 0 for normal search
+type 1 for user
+type 2 for tag
+type 3 for url/deviation_id
+"""
+
+search_mode = 0
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
 def slack_commands():
@@ -216,6 +224,8 @@ def slack_commands():
     user_id = data.get("user_id")
     channel = data.get("channel_id")
 
+    entxt = EncText(text)
+
     #endMessage(channel,command)
 
     if command == "/echo":
@@ -223,13 +233,14 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
-        GetDA()
-        gallery = GetDAGall(text)["results"]
+        if search_mode==0:
+            sprint(etxt)
+        if search_mode==1:
+            GetDA()
+            gallery = GetDAGall(entxt)["results"]
 
-        for i in gallery:
-            src = i["preview"]["src"]
-            #sprint(src)
-        #SendMessage(channel,DA_token)
-            SendMedia(channel,src)
+            for i in gallery:
+                src = i["preview"]["src"]
+                SendMedia(channel,src)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
