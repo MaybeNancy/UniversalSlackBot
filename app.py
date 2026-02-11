@@ -210,7 +210,7 @@ def DASearch(search):
     params = {
         'access_token': DA_token,
         "q" : search,
-        "mature_content": True,
+        "mature_content": "true",
         "page" : 1,
         "limit" : 5
     }
