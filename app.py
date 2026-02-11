@@ -188,7 +188,8 @@ def GetDAGall(user):
     url = "https://www.deviantart.com/api/v1/oauth2/gallery/all"
     params = {
         'access_token': DA_token,
-        "username" : user
+        "username" : user,
+        "mature_content": "true"
     }
     
     response = requests.get(url, params=params)
@@ -220,6 +221,7 @@ def slack_commands():
         for i in gallery:
             src = i["preview"]["src"]
             sprint(src)
-        SendMessage(channel,DA_token)
+        #SendMessage(channel,DA_token)
+        SendMedia(channel,src)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
