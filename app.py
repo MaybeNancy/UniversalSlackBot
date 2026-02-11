@@ -200,10 +200,10 @@ def DASearch(search):
     return response.json()
 
 def DATag(tag):
-    url = "https://www.deviantart.com/api/v1/oauth2/browse/home"
+    url = "https://www.deviantart.com/api/v1/oauth2/browse/tags"
     params = {
         'access_token': DA_token,
-        "q" : search,
+        "tag" : tag,
         "mature_content": "true",
     }
     
