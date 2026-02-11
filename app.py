@@ -210,7 +210,6 @@ type 2 for tag
 type 3 for url
 """
 
-search_mode = 0
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
 def slack_commands():
@@ -233,9 +232,18 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
+        search_mode = 0
+
+        if entxt.find("@") == 0:
+            search_mode=1
+        elif entxt.find("#") == 0:
+            search_mode=2
+        elif entxt.startswith("https://"):
+            search_moden=3
+        
         if search_mode==0:
             sprint(entxt)
-        if search_mode==1:
+        elif search_mode==1:
             GetDA()
             gallery = GetDAGall(entxt)["results"]
 
