@@ -211,14 +211,14 @@ def DASearch(search):
         'access_token': DA_token,
         "q" : search,
         "mature_content": "true",
-        "page" : random.randint(1,200)
+        "page" : random.randint(1,2)
     }
     
     response = requests.get(url, params=params)
     return response.json()
 
 def DAShow(channel, deviation):
-    #sprint(len(deviation["video"]))
+    sprint(len(deviation["videos"]))
     #sprint(deviation)
     src = deviation["preview"]["src"]
     SendMedia(channel,src)
