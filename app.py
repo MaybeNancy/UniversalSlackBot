@@ -138,7 +138,7 @@ def GetDA():
     }
     
     response = requests.get(url, params=params)
-    return response
+    return response.json()
 
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
@@ -160,7 +160,7 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
-        GetDA()
-        SendMessage(channel,"good")
+        res = GetDA()
+        SendMessage(channel,res)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
