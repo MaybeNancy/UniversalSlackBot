@@ -131,7 +131,7 @@ def slack_events():
 
 
 #check if da token still valid after 1 hour
-def CheckDAToken(token):
+def CheckDAToken():
     url = "https://www.deviantart.com/api/v1/oauth2/placebo"
 
     params = {
@@ -141,23 +141,24 @@ def CheckDAToken(token):
     }
     
     response = requests.get(url, params=params).json()
-    if response["status"] == "good":
+    if response["status"] == "success":
         return True
     else:
         return False
 
 #Getch DA deviation via username and/or title
 def GetDA():
+    if not CheckDAToken():
+        url = "https://www.deviantart.com/oauth2/token"
+        params = {
+            'client_id': DA_API_ID,
+            "client_secret" : DA_API_SECRET,
+            'grant_type': 'client_credentials'
+        }
     
-    url = "https://www.deviantart.com/oauth2/token"
-    params = {
-        'client_id': DA_API_ID,
-        "client_secret" : DA_API_SECRET,
-        'grant_type': 'client_credentials'
-    }
-    
-    response = requests.get(url, params=params)
-    return response.json()
+        response = requests.get(url, params=params)
+        return response.json()
+    return DA_token
 
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
@@ -179,7 +180,7 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
-        res = GetDA()
-        SendMessage(channel,res)
+        DA_token = GetDA()["token"]
+        SendMessage(channel,DA_token)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
