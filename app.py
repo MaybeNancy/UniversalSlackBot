@@ -214,6 +214,7 @@ def DASearch(search):
     }
     
     response = requests.get(url, params=params)
+    sprint(response.json())
     return response.json()
 
 def DAShow(channel, deviation):
@@ -261,16 +262,13 @@ def slack_commands():
         elif entxt.startswith("https://"):
             search_mode=3
 
-        sprint(entxt)
         if search_mode==0:
             searches = DASearch(entxt)["results"]
-            sprint(searches)
             for i in searches:
                 DAShow(channel, i)
         elif search_mode==1:
             user = entxt.replace("@","")
             gallery = GetDAGall(user)["results"]
-            sprint("working?")
 
             for i in gallery:
                 DAShow(channel, i)
