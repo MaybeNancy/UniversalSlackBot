@@ -19,6 +19,10 @@ SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
 SLACK_SIGNING_SECRET = os.getenv('SLACK_SIGNING_SECRET')
 SLACK_USER_TOKEN = os.getenv('SLACK_USER_TOKEN')
 
+#DeviantArt
+DA_API_ID = os.getenv('DA_API_ID')
+DA_API_SECRET = os.getenv('DA_API_SECRET')
+
 # Function to verify Slack request signatures
 def IsValidRequest(req):
     slack_signature = req.headers['X-Slack-Signature']
@@ -123,6 +127,10 @@ def slack_events():
         SendMessage(channel_id, f"Hello <@{user_id}>, you said: {text}")
     """
     return jsonify({'status': 'ok'})
+    
+#Getch DA deviation via username and/or title
+def GetDA():
+    return 0
 
 # Slash command endpoint
 @app.route('/slack/commands', methods=['POST'])
@@ -137,8 +145,11 @@ def slack_commands():
     user_id = data.get("user_id")
     channel = data.get("channel_id")
 
-    b_msg = SendMessage(channel,text)
-    global perm_bot_msg 
-    perm_bot_msg = b_msg["ts"]
+    if command == "echo":
+        b_msg = SendMessage(channel,text)
+        global perm_bot_msg 
+        perm_bot_msg = b_msg["ts"]
+    elif command == "da":
+        GetDA()
 
     return jsonify({"response_type": "ephemeral", "text": "🧠👍"})
