@@ -134,7 +134,7 @@ def GetDA():
     headers = {
         "response_type" : "code"
         'client_id': f'Bearer {DA_API_ID}',
-        'redirect_uri': 'application/json'
+        'redirect_uri': 'https://multitask-slack-bot.up.railway.app'
     }
     
     response = requests.post(url, headers=headers)
@@ -158,6 +158,7 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "da":
-        GetDA()
+        result = GetDA()
+        SendMessage(channel,result)
 
     return jsonify({"response_type": "ephemeral", "text": "🧠👍"})
