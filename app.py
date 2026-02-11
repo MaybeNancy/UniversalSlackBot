@@ -262,9 +262,8 @@ def slack_commands():
 
         sprint(entxt)
         if search_mode==0:
-            sprint("Normal!!!!!")
-
             searches = DASearch(entxt)["results"]
+            sprint(searches)
             for i in searches:
                 DAShow(channel, i)
         elif search_mode==1:
