@@ -198,7 +198,8 @@ def slack_commands():
     elif command == "/da":
         GetDA()
         gallery = GetDAGall(text)["results"]
-        sprint(len(gallery))
+        src = gallery[0]["preview"]["src"]
+        sprint(src)
         SendMessage(channel,DA_token)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
