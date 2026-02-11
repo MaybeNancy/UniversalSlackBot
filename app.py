@@ -129,7 +129,7 @@ def slack_events():
     return jsonify({'status': 'ok'})
     
 #Getch DA deviation via username and/or title
-def GetDA():
+def GetDA(c):
     url = "https://www.deviantart.com/oauth2/authorize"
     params = {
         "response_type" : "code",
@@ -138,7 +138,7 @@ def GetDA():
     }
     
     response = requests.get(url, params=params)
-    SendMessage(channel,"good")
+    SendMessage(c,"good")
     return response
 
 # Slash command endpoint
@@ -161,6 +161,6 @@ def slack_commands():
         global perm_bot_msg 
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
-        GetDA()
+        GetDA(channel)
 
     return jsonify({"response_type": "ephemeral", "text": "Done! 🧠👍"})
