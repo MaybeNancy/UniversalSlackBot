@@ -203,6 +203,17 @@ def GetDAGall(user):
     response = requests.get(url, params=params)
     return response.json()
 
+#just normal search
+def DASearch():
+    url = "https://www.deviantart.com/api/v1/oauth2/browse/search"
+    params = {
+        'access_token': DA_token,
+        "username" : user,
+        "mature_content": "true"
+    }
+    
+    response = requests.get(url, params=params)
+    return response.json()
 """
 type 0 for normal search
 type 1 for user
