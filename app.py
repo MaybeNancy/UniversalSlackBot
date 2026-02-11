@@ -6,6 +6,7 @@ import os
 import hmac
 import hashlib
 import datetime
+import random
 
 #init
 app = Flask(__name__)
@@ -198,7 +199,7 @@ def GetDAGall(search):
         'access_token': DA_token,
         "q" : search,
         "mature_content": "true",
-        "page" : random()
+        "page" : random.randint(1,200)
     }
     
     response = requests.get(url, params=params)
