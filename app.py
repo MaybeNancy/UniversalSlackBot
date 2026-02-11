@@ -131,13 +131,13 @@ def slack_events():
 #Getch DA deviation via username and/or title
 def GetDA():
     url = 'https://www.deviantart.com/oauth2/authorize"
-    headers = {
+    params = {
         "response_type" : "code"
-        'client_id': f'Bearer {DA_API_ID}',
+        'client_id': DA_API_ID,
         'redirect_uri': 'https://multitask-slack-bot.up.railway.app'
     }
     
-    response = requests.post(url, headers=headers)
+    response = requests.get(url, params=params)
     return response.json()
 
 # Slash command endpoint
