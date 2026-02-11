@@ -239,7 +239,7 @@ def slack_commands():
         elif entxt.find("#") == 0:
             search_mode=2
         elif entxt.startswith("https://"):
-            search_moden=3
+            search_mode=3
 
         sprint(entxt)
         if search_mode==0:
