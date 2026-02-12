@@ -83,7 +83,7 @@ def SendMedia(channel_id,img_url,video_url,is_video):
                 "title":{
                     "type":"plain_text",
                     "text" :"a movie for you. :>"
-                }
+                },
                 "thumbnail_url":img_url,
                 "video_url":video_url
             }
