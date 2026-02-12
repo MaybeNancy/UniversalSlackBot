@@ -77,7 +77,6 @@ def SendMessage(channel_id,text):
 
 def SendMedia(channel_id,img_url,video_url,is_video):
     if is_video:
-        sprint(video_url)
         blocks = [
             {
                 "type":"video",
@@ -114,7 +113,6 @@ def SendMedia(channel_id,img_url,video_url,is_video):
         'username': "Brian🧠"
     }
     response = requests.post(url, headers=headers, json=data)
-    sprint(response.json())
     return response.json()
 
 #quick slack chat print for debuggin'
@@ -225,7 +223,7 @@ def DATag(tag):
         "tag" : tag,
         "mature_content": "true",
         "limit":5,
-        "offset":4
+        "offset":rando
     }
     
     response = requests.get(url, params=params)
