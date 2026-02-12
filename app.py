@@ -76,6 +76,7 @@ def SendMessage(channel_id,text):
     return response.json()
 
 def SendMedia(channel_id,img_url,video_url,is_video):
+    """
     if is_video:
         blocks = [
             {
@@ -90,17 +91,18 @@ def SendMedia(channel_id,img_url,video_url,is_video):
             }
         ]
     else:
-        blocks = [
-            {
-                "type":"image",
-                "title": {
-                    "type": "plain_text",
-                    "text": "Please enjoy this photo :>"
-                },
-                "alt_text":"img",
-                "image_url":img_url
-            }
-        ]
+    """
+    blocks = [
+        {
+            "type":"image",
+            "title": {
+                "type": "plain_text",
+                "text": "Please enjoy this photo :>"
+            },
+            "alt_text":"img",
+            "image_url":img_url
+        }
+    ]
     
     url = 'https://slack.com/api/chat.postMessage'
     headers = {
