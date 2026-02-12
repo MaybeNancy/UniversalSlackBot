@@ -76,6 +76,8 @@ def SendMessage(channel_id,text):
 
 def SendMedia(channel_id,img_url,video_url,is_video):
     if is_video:
+        sprint(is_video)
+        sprintf(video_url)
         blocks = [
             {
                 "type":"video",
@@ -208,6 +210,8 @@ def DASearch(search):
         'access_token': DA_token,
         "q" : search,
         "mature_content": "true",
+        "limit":5,
+        "offset":random.ranint(1,200)
     }
     
     response = requests.get(url, params=params)
@@ -219,6 +223,8 @@ def DATag(tag):
         'access_token': DA_token,
         "tag" : tag,
         "mature_content": "true",
+        "limit":5,
+        "offset":random.ranint(1,200)
     }
     
     response = requests.get(url, params=params)
@@ -233,7 +239,6 @@ def DAShow(channel, deviation):
         for v in videos:
             vsrc = v["src"]
             SendMedia(channel,src,vsrc,True)
-            sprint(videos)
     else:
         SendMedia(channel,src,None,False)
     
