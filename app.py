@@ -77,7 +77,7 @@ def SendMessage(channel_id,text):
 def SendMedia(channel_id,img_url,video_url,is_video):
     if is_video:
         sprint(is_video)
-        sprintf(video_url)
+        sprint(video_url)
         blocks = [
             {
                 "type":"video",
