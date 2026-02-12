@@ -224,7 +224,7 @@ def DATag(tag):
         "tag" : tag,
         "mature_content": "true",
         "limit":5,
-        "offset":random.ranint(1,200)
+        "offset":4
     }
     
     response = requests.get(url, params=params)
