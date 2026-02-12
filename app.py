@@ -16,6 +16,7 @@ DFT_CHANNEL = "C0AC0154XSL"
 
 perm_bot_msg = ""
 DA_token = "NA"
+rando = 0
 
 # Environment variables for your Slack Token and Signing Secret
 SLACK_BOT_TOKEN = os.getenv('SLACK_BOT_TOKEN')
@@ -76,6 +77,7 @@ def SendMessage(channel_id,text):
 
 def SendMedia(channel_id,img_url,video_url,is_video):
     if is_video:
+        sprint(video_url)
         blocks = [
             {
                 "type":"video",
@@ -210,7 +212,7 @@ def DASearch(search):
         "q" : search,
         "mature_content": "true",
         "limit":5,
-        "offset":8
+        "offset":rando
     }
     
     response = requests.get(url, params=params)
@@ -271,6 +273,8 @@ def slack_commands():
         perm_bot_msg = b_msg["ts"]
     elif command == "/da":
         GetDA()
+        global rando 
+        rando = random.randint(1,20)
         search_mode = 0
 
         if entxt.find("@") == 0:
