@@ -234,14 +234,8 @@ def DATag(tag):
 #TODO, DA FETCH VIA LINK
 #def DAlink(link)
 def DAShow(channel, deviation):
-    videos = deviation.get("videos")
     src = deviation["preview"]["src"]
-    if videos != None:
-        for v in videos:
-            vsrc = v["src"]
-            SendMedia(channel,src,vsrc,True)
-    else:
-        SendMedia(channel,src,None,False)
+    SendMedia(channel,src,None,False)
     
 """
 type 0 for normal search
