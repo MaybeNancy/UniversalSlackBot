@@ -165,3 +165,68 @@ Practical short checklist (what to implement first)
     One AI chat handler implementing convo storage + OpenAI calls.
     Health endpoint, structured logs, and basic rate limiting.
     Deploy to Railway and test in your workspace
+
+Code File Tree (Temporal):
+
+    .github/
+        workflows/
+            ci.yml
+    .gitignore
+    Procfile
+    README.md
+    requirements.txt
+    pyproject.toml (optional)
+    runtime.txt (optional)
+    app.py # top-level FastAPI app instance for Gunicorn: app
+    src/
+        main.py # optional CLI/start helper or alternative app export
+        config.py # loads env vars, constants
+        server.py # create_app() factory used by app.py
+        routes/
+            slack.py # Slack HTTP endpoints: /slack/events, /slack/interact, /health
+        dispatcher.py # maps events/commands to handlers; plugin registry
+        context.py # Context object passed to handlers (services, storage, logger)
+        handlers/
+            init.py
+            ai_chat/
+                init.py
+                handler.py
+                schema.py
+            deviantart_search/
+                init.py
+                handler.py
+                schema.py
+            ping/
+                handler.py
+        services/
+            init.py
+            slack_service.py
+            openai_service.py
+            deviantart_service.py
+            httpx_client.py
+        storage/
+            init.py
+            storage_interface.py
+            file_store.py
+            memory_store.py
+        tasks/
+            background.py
+            pruner.py
+        utils/
+            logging.py
+            rate_limiter.py
+            lock.py
+            slack_format.py
+        tests/
+            test_file_store.py
+            test_dispatcher.py
+            test_ai_handler.py
+    data/
+        file_store/
+            convos/
+            cache/
+            flags.json
+            meta.json
+    docs/
+        architecture.md
+        handler_guidelines.md
