@@ -28,23 +28,23 @@ async def slack_events(request: Request, background: BackgroundTasks):
     verify(request, raw)
     payload = json.loads(raw)
 
-    # -------------------------------------------------
-    # 1️⃣  URL verification – reply **immediately**
-    # -------------------------------------------------
+    # 1️⃣ URL verification – reply immediately
     if payload.get("type") == "url_verification":
-        # Slack expects exactly this JSON object
         return {"challenge": payload["challenge"]}
 
-    # -------------------------------------------------
-    # 2️⃣  Normal events – ACK quickly, process async
-    # -------------------------------------------------
-    background.add_task(handle_payload, payload)
+    # 2️⃣ Normal events – schedule async processing
+    #   We pass the dispatcher (stored on the app) as an argument
+    dispatcher = request.app.state.dispatcher
+    background.add_task(handle_payload, dispatcher, payload)
     return {"ok": True}
 
 
 # ----------------------------------------------------------------------
 # Background worker – runs after the ACK
 # ----------------------------------------------------------------------
-async def handle_payload(payload: dict):
-    dispatcher = Request.app.state.dispatcher
+async def handle_payload(dispatcher, payload: dict):
+    """
+    dispatcher – the global Dispatcher instance (saved on app.state)
+    payload    – the Slack event JSON
+    """
     await dispatcher.dispatch(payload, slack, store)
