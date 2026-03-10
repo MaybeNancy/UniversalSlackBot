@@ -2,10 +2,11 @@
 import hmac, hashlib, json
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from src.services import SlackService
+from src.storage import FileStore
 
 router = APIRouter()
-slack = SlackService()          # reads SLACK_BOT_TOKEN / SLACK_SIGNING_SECRET
-store = FileStore("data")       # tiny JSON folder (created automatically)
+slack = SlackService()
+store = FileStore("data")
 
 def verify(request: Request, body: bytes):
     ts = request.headers.get("X-Slack-Request-Timestamp")
@@ -27,20 +28,23 @@ async def slack_events(request: Request, background: BackgroundTasks):
     verify(request, raw)
     payload = json.loads(raw)
 
-    # URL verification (Slack sends this once)
+    # -------------------------------------------------
+    # 1️⃣  URL verification – reply **immediately**
+    # -------------------------------------------------
     if payload.get("type") == "url_verification":
+        # Slack expects exactly this JSON object
         return {"challenge": payload["challenge"]}
 
-    # ACK quickly, then process async
+    # -------------------------------------------------
+    # 2️⃣  Normal events – ACK quickly, process async
+    # -------------------------------------------------
     background.add_task(handle_payload, payload)
     return {"ok": True}
 
-@router.get("/health")
-async def health():
-    return {"status": "ok"}
 
 # ----------------------------------------------------------------------
-# Background worker – calls the dispatcher
+# Background worker – runs after the ACK
+# ----------------------------------------------------------------------
 async def handle_payload(payload: dict):
     dispatcher = request.app.state.dispatcher
     await dispatcher.dispatch(payload, slack, store)
