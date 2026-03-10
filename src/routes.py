@@ -46,5 +46,5 @@ async def slack_events(request: Request, background: BackgroundTasks):
 # Background worker – runs after the ACK
 # ----------------------------------------------------------------------
 async def handle_payload(payload: dict):
-    dispatcher = request.app.state.dispatcher
+    dispatcher = Request.app.state.dispatcher
     await dispatcher.dispatch(payload, slack, store)
