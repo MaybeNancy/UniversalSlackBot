@@ -5,6 +5,7 @@ from src.context import Context
 
 router = APIRouter()
 
+#Slack signature, we nees to simplify this
 def verify_signature(request: Request, body: bytes, signing_secret: str):
     # Read Slack headers required for verification
     ts = request.headers.get("X-Slack-Request-Timestamp")
@@ -32,8 +33,10 @@ def verify_signature(request: Request, body: bytes, signing_secret: str):
     if not hmac.compare_digest(my_sig, sig):
         raise HTTPException(403, "Invalid Slack signature")
 
+#Routing events
 @router.post("/slack/events")
 async def slack_events(request: Request, background: BackgroundTasks):
+    #We will handle this differently
     raw = await request.body()                   # read raw bytes for signature verification
     slack = request.app.state.slack              # get SlackService created at startup
     verify_signature(request, raw, slack.signing_secret)  # raises HTTPException on failure
@@ -43,13 +46,13 @@ async def slack_events(request: Request, background: BackgroundTasks):
     if payload.get("type") == "url_verification":
         return {"challenge": payload["challenge"]}
 
-    # Build a Context for background processing and immediately ACK Slack
+    #I don't even know what is this
     ctx = Context(
         slack=slack,
         semaphore=request.app.state.semaphore,
     )
-    # Provide ctx.logger convenience (handlers may expect ctx.logger)
-    # If handlers expect ctx.logger directly, you can set it here:
+
+    #I don't think we need this, maybe not like this
     try:
         ctx.logger = slack.logger
     except Exception:
@@ -59,6 +62,7 @@ async def slack_events(request: Request, background: BackgroundTasks):
     background.add_task(run_in_background, ctx, payload)
     return {"ok": True}
 
+#Railway needs this, for some reason
 @router.get("/health")
 async def health():
     return {"status": "ok"}  # simple healthcheck for deployment probes
