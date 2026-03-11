@@ -1,10 +1,9 @@
-###CODE GOALS:
-
--Use async (in progress)
--No critical data stored in files or memory (all credentials for app auth are handled elsewhere, anything else is no critical)
--Small independent modules
--Background jobs (in progress)
--Fewer dependencies
+## CODE GOALS:
+- Use async (in progress)
+- No critical data stored in files or memory (all credentials for app auth are handled elsewhere, anything else is no critical)
+- Small independent modules
+- Background jobs (in progress)
+- Fewer dependencies
     
 
 ###CORE COMPONENTS:
