@@ -1,14 +1,16 @@
 # src/routes.py
 import hmac, hashlib, json
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
-from src.services import SlackService
-from src.storage import FileStore
+from src.services.slack_service import SlackService
+from src.storage.file_store import FileStore
+from src.tasks.background import run_in_background
+from src.context import Context
 
 router = APIRouter()
-slack = SlackService()
-store = FileStore("data")
+slack = SlackService()                     # reads env vars
+store = FileStore(base_path="data/file_store")
 
-def verify(request: Request, body: bytes):
+def verify_signature(request: Request, body: bytes):
     ts = request.headers.get("X-Slack-Request-Timestamp")
     sig = request.headers.get("X-Slack-Signature")
     if not ts or not sig:
@@ -25,26 +27,24 @@ def verify(request: Request, body: bytes):
 @router.post("/slack/events")
 async def slack_events(request: Request, background: BackgroundTasks):
     raw = await request.body()
-    verify(request, raw)
+    verify_signature(request, raw)
     payload = json.loads(raw)
 
-    # 1️⃣ URL verification – reply immediately
+    # URL verification – must be answered synchronously
     if payload.get("type") == "url_verification":
         return {"challenge": payload["challenge"]}
 
-    # 2️⃣ Normal events – schedule async processing
-    #   We pass the dispatcher (stored on the app) as an argument
-    dispatcher = request.app.state.dispatcher
-    background.add_task(handle_payload, dispatcher, payload)
+    # ACK quickly, then process the event in the background
+    ctx = Context(
+        slack=slack,
+        openai=await slack.get_openai_service(),
+        storage=store,
+        logger=slack.logger,
+        semaphore=request.app.state.semaphore,
+    )
+    background.add_task(run_in_background, ctx, payload)
     return {"ok": True}
 
-
-# ----------------------------------------------------------------------
-# Background worker – runs after the ACK
-# ----------------------------------------------------------------------
-async def handle_payload(dispatcher, payload: dict):
-    """
-    dispatcher – the global Dispatcher instance (saved on app.state)
-    payload    – the Slack event JSON
-    """
-    await dispatcher.dispatch(payload, slack, store)
+@router.get("/health")
+async def health():
+    return {"status": "ok"}
