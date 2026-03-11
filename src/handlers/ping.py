@@ -1,3 +1,10 @@
+"""
+I can get the same approach differently,
+like more slack events (invite, edit, etc.)
+and we still need many functionality,
+we need to change this.
+"""
+
 def register(dispatcher):
     # Called by Dispatcher._load_handlers to register handlers
     dispatcher.register("app_mention", handle_ping)
