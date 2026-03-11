@@ -4,11 +4,14 @@ from fastapi import FastAPI
 from src.routes import router
 from src.dispatcher import Dispatcher
 from src.services.slack_service import SlackService
+
+#Delete this later
 from src.utils.logging import get_logger
 
-def create_app() -> FastAPI:
-    logger = get_logger()  # structured logger for startup/shutdown logs
-    app = FastAPI(title="Duck.ai Slack Bot")
+def create_app():
+    logger = get_logger() #<- To be deleted
+    
+    app = FastAPI(title="Universal Slack Bot")
 
     app.include_router(router)  # mount routes from src/routes.py
 
@@ -22,7 +25,6 @@ def create_app() -> FastAPI:
         app.state.dispatcher = Dispatcher()              # loads handlers under src.handlers
         # global concurrency semaphore (default 10); stored on app.state for handlers to use
         app.state.semaphore = asyncio.Semaphore(int(os.getenv("MAX_CONCURRENCY", "10")))
-        logger.info("App startup complete")
 
     @app.on_event("shutdown")
     async def shutdown():
@@ -30,7 +32,5 @@ def create_app() -> FastAPI:
         try:
             await app.state.slack.client.aclose()
         except Exception:
-            logger.exception("Error closing SlackService client")
-
-    logger.info("FastAPI app created")
+            printf("oh no")
     return app
