@@ -5,7 +5,7 @@ from src.context import Context
 
 router = APIRouter()
 
-#Slack signature, we nees to simplify this
+#Slack signature, we need to simplify this
 def verify_signature(request: Request, body: bytes, signing_secret: str):
     # Read Slack headers required for verification
     ts = request.headers.get("X-Slack-Request-Timestamp")
@@ -53,10 +53,12 @@ async def slack_events(request: Request, background: BackgroundTasks):
     )
 
     #I don't think we need this, maybe not like this
+    """
     try:
         ctx.logger = slack.logger
     except Exception:
         pass
+    """
 
     # Schedule background processing so request returns quickly
     background.add_task(run_in_background, ctx, payload)
