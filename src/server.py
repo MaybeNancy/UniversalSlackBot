@@ -19,10 +19,12 @@ def create_app():
 
     app.include_router(router)  # mount routes from src/routes.py
 
+    #We knit the client
     TIMEOUT = httpx.Timeout(8.0, connect=2.0)
     LIMITS = httpx.Limits(max_connections=10,max_keepalive_connections=5)
     client = httpx.AsyncClient(timeout=TIMEOUT, limit=LIMITS)
-    
+
+    #This will change btw, on_event is deprecated
     @app.on_event("startup")
     async def startup():
         app.state.dispatcher = Dispatcher()
