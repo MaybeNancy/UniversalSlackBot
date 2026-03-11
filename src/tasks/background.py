@@ -1,3 +1,5 @@
+#I don't know what this thimg even do
+#but sounds useful, might check later.
 import asyncio
 
 async def run_in_background(ctx, payload: dict):
