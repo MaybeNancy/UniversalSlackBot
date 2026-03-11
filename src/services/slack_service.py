@@ -1,4 +1,3 @@
-# src/services/slack_service.py
 import os, httpx
 
 class SlackService:
@@ -6,7 +5,6 @@ class SlackService:
         self.bot_token = os.getenv("SLACK_BOT_TOKEN")
         self.signing_secret = os.getenv("SLACK_SIGNING_SECRET")
         self.client = httpx.AsyncClient(timeout=10)
-        # keep a back‑reference to the FastAPI app for Context convenience
         self._fastapi_app = None
 
     async def post_message(self, channel: str, text: str, blocks=None):
@@ -19,6 +17,4 @@ class SlackService:
             headers={"Authorization": f"Bearer {self.bot_token}"},
         )
         data = resp.json()
-        #if not data.get("ok"):
-    
         return data
