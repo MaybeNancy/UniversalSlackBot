@@ -5,6 +5,12 @@ from src.context import Context
 # Handler type: async callable accepting (Context, payload)
 Handler = Callable[[Context, dict], Awaitable[None]]
 
+"""
+This is pretty much useless, and it doesn't
+align with the project vision, I'll see what
+to do with this later.
+"""
+
 class Dispatcher:
     def __init__(self):
         self._registry: Dict[str, Handler] = {}  # maps Slack event.type -> handler
