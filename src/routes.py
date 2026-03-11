@@ -31,13 +31,14 @@ async def slack_events(request: Request, background: BackgroundTasks):
     # URL verification – must be answered synchronously
     if payload.get("type") == "url_verification":
         return {"challenge": payload["challenge"]}
-
+    """
     # ACK quickly, then process the event in the background
     ctx = Context(
         slack=slack,
         semaphore=request.app.state.semaphore,
     )
     background.add_task(run_in_background, ctx, payload)
+    """
     return {"ok": True}
 
 @router.get("/health")
