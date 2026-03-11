@@ -10,6 +10,8 @@ from src.services.slack_service import SlackService
 #Delete this later
 from src.utils.logging import get_logger
 
+client = None
+
 def create_app():
     logger = get_logger() #<- To be deleted
     
@@ -17,6 +19,8 @@ def create_app():
 
     app.include_router(router)  # mount routes from src/routes.py
 
+    client = httpx.AsyncClient(timeout=10)
+    
     @app.on_event("startup")
     async def startup():
         # Create singletons at startup to avoid import-time side effects.
