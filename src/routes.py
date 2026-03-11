@@ -1,21 +1,24 @@
-# src/routes.py
-import hmac, hashlib, json
+import hmac, hashlib, json, time
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
-from src.services.slack_service import SlackService
 from src.tasks.background import run_in_background
 from src.context import Context
 
 router = APIRouter()
-slack = SlackService()                     # reads env vars
 
-def verify_signature(request: Request, body: bytes):
+def verify_signature(request: Request, body: bytes, signing_secret: str):
     ts = request.headers.get("X-Slack-Request-Timestamp")
     sig = request.headers.get("X-Slack-Signature")
     if not ts or not sig:
         raise HTTPException(400, "Missing Slack headers")
+    try:
+        ts_i = int(ts)
+    except Exception:
+        raise HTTPException(400, "Invalid timestamp")
+    if abs(time.time() - ts_i) > 300:
+        raise HTTPException(400, "Stale request timestamp")
     basestring = f"v0:{ts}:{body.decode()}"
     my_sig = "v0=" + hmac.new(
-        slack.signing_secret.encode(),
+        signing_secret.encode(),
         basestring.encode(),
         hashlib.sha256,
     ).hexdigest()
@@ -25,17 +28,15 @@ def verify_signature(request: Request, body: bytes):
 @router.post("/slack/events")
 async def slack_events(request: Request, background: BackgroundTasks):
     raw = await request.body()
-    verify_signature(request, raw)
+    slack = request.app.state.slack
+    verify_signature(request, raw, slack.signing_secret)
     payload = json.loads(raw)
 
-    # URL verification – must be answered synchronously
     if payload.get("type") == "url_verification":
         return {"challenge": payload["challenge"]}
 
-    # ACK quickly, then process the event in the background
     ctx = Context(
         slack=slack,
-        logger=slack.logger,
         semaphore=request.app.state.semaphore,
     )
     background.add_task(run_in_background, ctx, payload)
