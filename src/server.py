@@ -25,14 +25,9 @@ def create_app():
     
     @app.on_event("startup")
     async def startup():
-        # Create singletons at startup to avoid import-time side effects.
-        app.state.slack = SlackService()                 # Slack API helper (reads env vars)
-        app.state.slack._fastapi_app = app               # back-reference used by Context.app
-        # Attach a logger so handlers can call ctx.slack.logger or ctx.logger
-        app.state.slack.logger = get_logger("duckbot")
-        app.state.dispatcher = Dispatcher()              # loads handlers under src.handlers
+        app.state.dispatcher = Dispatcher()
         # global concurrency semaphore (default 10); stored on app.state for handlers to use
-        app.state.semaphore = asyncio.Semaphore(int(os.getenv("MAX_CONCURRENCY", "10")))
+        app.state.semaphore = asyncio.Semaphore(10)
 
     @app.on_event("shutdown")
     async def shutdown():
