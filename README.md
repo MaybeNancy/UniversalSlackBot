@@ -26,4 +26,7 @@
 - Error handling/signature verification (to be modified)
 - Ack Slack inmediately (to be modified)
         
-> AND MUCH MORE!!! (Eventually added :>)
+> AND MUCH MORE!!! (Eventually added **:>**)
+
+> [!WARNING]
+> Project is under critical modifications, prone to errors, thank you for your patience **:'P**
