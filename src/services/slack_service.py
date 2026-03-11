@@ -3,6 +3,11 @@ import os, httpx
 BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
 
+"""
+We don't need oop for this,
+the only good thing is the post message
+function, We need to tweak this.
+"""
 class SlackService:
     def __init__(self):
         # Read credentials from environment variables (set these in Railway)
