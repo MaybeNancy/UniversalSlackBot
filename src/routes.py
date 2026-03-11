@@ -2,7 +2,6 @@
 import hmac, hashlib, json
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from src.services.slack_service import SlackService
-from src.storage.file_store import FileStore
 from src.tasks.background import run_in_background
 from src.context import Context
 
