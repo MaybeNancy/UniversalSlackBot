@@ -25,11 +25,11 @@ class Dispatcher:
         # Slack events are nested under "event"
         event_type = payload.get("event", {}).get("type")
         if not event_type:
-            ctx.logger.debug("Payload without event.type", payload=payload)
+            #ctx.logger.debug("Payload without event.type", payload=payload)
             return
 
         handler = self._registry.get(event_type)
         if handler:
             await handler(ctx, payload)
-        else:
-            ctx.logger.info("No handler for event", event_type=event_type)
+        #else:
+            #ctx.logger.info("No handler for event", event_type=event_type)
