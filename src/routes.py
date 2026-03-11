@@ -7,7 +7,6 @@ from src.context import Context
 
 router = APIRouter()
 slack = SlackService()                     # reads env vars
-store = FileStore(base_path="data/file_store")
 
 def verify_signature(request: Request, body: bytes):
     ts = request.headers.get("X-Slack-Request-Timestamp")
@@ -36,8 +35,6 @@ async def slack_events(request: Request, background: BackgroundTasks):
     # ACK quickly, then process the event in the background
     ctx = Context(
         slack=slack,
-        openai=await slack.get_openai_service(),
-        storage=store,
         logger=slack.logger,
         semaphore=request.app.state.semaphore,
     )
