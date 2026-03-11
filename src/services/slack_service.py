@@ -1,10 +1,11 @@
 import os, httpx
 
+BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
+
 class SlackService:
     def __init__(self):
         # Read credentials from environment variables (set these in Railway)
-        self.bot_token = os.getenv("SLACK_BOT_TOKEN")
-        self.signing_secret = os.getenv("SLACK_SIGNING_SECRET")
         # Reusable async HTTP client for Slack API calls
         self.client = httpx.AsyncClient(timeout=10)
         # Back-reference to FastAPI app (set in startup) so Context.app can access app.state
