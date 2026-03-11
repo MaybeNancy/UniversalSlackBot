@@ -46,22 +46,11 @@ async def slack_events(request: Request, background: BackgroundTasks):
     if payload.get("type") == "url_verification":
         return {"challenge": payload["challenge"]}
 
-    #I don't even know what is this
-    ctx = Context(
-        slack=slack,
-        semaphore=request.app.state.semaphore,
-    )
+    #Context code here, idk, maybe useful
+    
+    #Another and better logger here, maybe
 
-    #I don't think we need this, maybe not like this
-    """
-    try:
-        ctx.logger = slack.logger
-    except Exception:
-        pass
-    """
-
-    # Schedule background processing so request returns quickly
-    background.add_task(run_in_background, ctx, payload)
+    #Background schedule proccessing thingy
     return {"ok": True}
 
 #Railway needs this, for some reason
