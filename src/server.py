@@ -1,6 +1,8 @@
 import asyncio
 import os
 from fastapi import FastAPI
+from contextlib import asynccontextmanager
+
 from src.routes import router
 from src.dispatcher import Dispatcher
 from src.services.slack_service import SlackService
