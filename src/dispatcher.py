@@ -1,6 +1,6 @@
 import json
 
-import handlers.ping
+from .handlers.ping import reply
 
 def challenge_verif(data):
     return {"challenge": data[challenge]}
