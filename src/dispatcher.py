@@ -23,5 +23,5 @@ def event_dispatch(type,data):
         event_d = data.get("event")
         event = event_d["type"]
         
-        if event in event_routea[types]:
+        if event in event_routes[types]:
             return event_routes[type][event](event_d)
