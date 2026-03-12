@@ -13,7 +13,7 @@ is a start :P
 def send_message(channel, txt):
     url = "https://slack.com/api/chat.postMessage"
     
-    headers={"Authorization": f"Bearer {self.bot_token}"}
+    headers={"Authorization": f"Bearer {BOT_TOKEN}"}
     
     data = {
         "channel": channel, 
