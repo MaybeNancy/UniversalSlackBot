@@ -3,7 +3,7 @@ import json
 from .handlers.ping import reply
 
 def challenge_verif(data):
-    return {"challenge": data[challenge]}
+    return {"challenge": data["challenge"]}
 
 def message(data):
     return reply(data)
