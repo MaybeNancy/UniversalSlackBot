@@ -1,3 +1,5 @@
+import json
+
 def challenge_verif(data):
     return {"challenge": data[challenge]}
 
