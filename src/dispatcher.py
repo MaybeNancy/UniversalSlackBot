@@ -2,7 +2,7 @@ def challenge_verif(data):
     return {"challenge": data[challenge]}
 
 def message():
-    print("hello")
+    return {"status":"ok"}
 
 event_routes = {
     "url_verification":challenge_verif,
@@ -10,4 +10,5 @@ event_routes = {
 }
 
 def event_dispatch(event,data):
-   return event_routes.get(event)
+    #try error catching later
+   return event_routes[event](data)
