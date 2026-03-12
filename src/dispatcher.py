@@ -1,5 +1,5 @@
-def challenge_verif():
-    print("hello")
+def challenge_verif(data):
+    return {"challenge": data[challenge]}
 
 def message():
     print("hello")
@@ -10,4 +10,4 @@ event_routes = {
 }
 
 def event_dispatch(event,data):
-    event_routes.get(event)
+   return event_routes.get(event)
