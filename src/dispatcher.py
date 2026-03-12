@@ -1,12 +1,12 @@
-import json
+import json, asyncio
 
 from .handlers.ping import reply
 
 def challenge_verif(data):
     return {"challenge": data["challenge"]}
 
-def message(data):
-    return reply(data)
+async def message(data):
+    return await reply(data)
 
 event_routes = {
      "url_verification": challenge_verif,
