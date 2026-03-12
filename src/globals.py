@@ -17,7 +17,7 @@ def globals_start():
   #start semaphore
 
 def globals_end():
-  client.aclose()
+  await client.aclose()
   #end semaphore
 
 def return_client(): return client
