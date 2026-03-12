@@ -26,9 +26,7 @@ async def verify_signature(request, signing_secret):
     # Get raw body bytes exactly as received
     body_bytes = await request.body()  #bytes, fixed
     
-    basestring = b"v0:" + timestamp.encode("utf-8") + b":" + body_bytes
-    
-    sig_basestring = basestring.encode("utf-8")
+    sig_basestring = b"v0:" + timestamp.encode("utf-8") + b":" + body_bytes
 
     my_signature = "v0=" + hmac.new(
         signing_secret.encode("utf-8"),
