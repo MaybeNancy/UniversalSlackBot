@@ -10,7 +10,7 @@ def message(data):
 
 event_routes = {
      "url_verification": challenge_verif,
-     "event_talkback":{
+     "event_callback":{
          "message":message,
          "mention":message
      }
@@ -19,6 +19,9 @@ event_routes = {
 def event_dispatch(type,data):
     if type == "url_verification":
         return event_routes[type](data)
-    else:
+    elif type == "event_callback":
         event_d = data.get("event")
-        return event_routes[type][event_d["type"]](event_d)
+        event = event_d["type"]
+        
+        if event in event_routea[types]:
+            return event_routes[type][event](event_d)
