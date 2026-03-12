@@ -9,11 +9,16 @@ def message(data):
     return reply(data)
 
 event_routes = {
-    "url_verification":challenge_verif,
-    "message":message
+     "url_verification": challenge_verif,
+     "event_talkback":{
+         "message":message,
+         "mention":message
+     }
 }
 
 def event_dispatch(event,data):
-    #try error catching later
-     
-    return event_routes[event](data)
+    if event == "url_verification":
+        return event_routes[event](data)
+    else
+        g_event = data.get("event")
+        return event_routes[0][g_event](data)
