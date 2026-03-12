@@ -1,7 +1,6 @@
 import hmac, hashlib, json, time
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from src.tasks.background import run_in_background
-from src.context import Context
 
 router = APIRouter()
 
@@ -37,6 +36,12 @@ def verify_signature(request: Request, body: bytes, signing_secret: str):
 @router.post("/slack/events")
 async def slack_events(request: Request, background: BackgroundTasks):
     #We will handle this differently
+    """
+    -We verify that the data is ok
+    -Check if comes from slack
+    -Dispatcher will handle everything
+    else. :P
+    """
     raw = await request.body()                   # read raw bytes for signature verification
     slack = request.app.state.slack              # get SlackService created at startup
     verify_signature(request, raw, slack.signing_secret)  # raises HTTPException on failure
