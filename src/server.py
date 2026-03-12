@@ -12,20 +12,15 @@ from src.dispatcher import Dispatcher
 from src.services.slack_service import SlackService
 """
 
-client = None
-
 def create_app():
-    #We init the client
-
     @asynccontextmanager
     async def lifespan(app: FastAPI):
-        #InitDispatcher
-        #Semaphoren thingy
+        #We init the client and many stuff
+        #Semaphore thingy?
         #Slack init?
         globals_start()
         yield
         globals_end()
-        #client.aclose()
         
     app = FastAPI(title="Universal Slack Bot",lifespan=lifespan)
 
