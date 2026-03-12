@@ -1,20 +1,13 @@
 """
-I can get the same approach differently,
-like more slack events (invite, edit, etc.)
-and we still need many functionality,
-we need to change this.
+I will modify this later, 
+I just need the thing working
 """
 
-def register(dispatcher):
-    # Called by Dispatcher._load_handlers to register handlers
-    dispatcher.register("app_mention", handle_ping)
+import slack_service
 
-async def handle_ping(ctx, payload):
+def reply(data):
     # Example handler: respond "pong" when bot is mentioned
-    channel = payload["event"]["channel"]
-    await ctx.slack.post_message(channel, "pong")
+    channel = data["event"]["channel"]
+    send_message(channel, "Hey")
     # Use ctx.logger if present; fallback to ctx.slack.logger
-    if hasattr(ctx, "logger"):
-        ctx.logger.info("Ping responded", channel=channel)
-    elif hasattr(ctx.slack, "logger"):
-        ctx.slack.logger.info("Ping responded", channel=channel)
+    
