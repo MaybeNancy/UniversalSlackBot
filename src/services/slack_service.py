@@ -1,6 +1,6 @@
 import os, httpx
 
-import globals
+import src.globals
 
 BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
