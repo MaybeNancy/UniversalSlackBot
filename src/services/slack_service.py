@@ -10,7 +10,7 @@ Still needs improvements, but
 is a start :P
 """
 
-def send_message(channel, txt):
+async def send_message(channel, txt):
     url = "https://slack.com/api/chat.postMessage"
     
     headers={"Authorization": f"Bearer {BOT_TOKEN}"}
@@ -21,7 +21,7 @@ def send_message(channel, txt):
     }
     
     client = return_client()
-    resp = client.post(
+    resp = await client.post(
             url,
             json=data,
             headers=headers
