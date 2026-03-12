@@ -37,7 +37,7 @@ async def verify_signature(request, signing_secret):
     ).hexdigest()
 
     if not compare_digest(my_signature, slack_signature):
-        raise HTTPException(status_code=401, detail="missing slack signature")
+        raise HTTPException(status_code=401, detail="invalid signature")
     # verified
 
 #Routing events
