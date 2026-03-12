@@ -8,7 +8,7 @@ from .services.slack_service import SLACK_SECRET
 router = APIRouter()
 
 #Slack signature, we need to simplify this
-def verify_signature(request, signing_secret):
+async def verify_signature(request, signing_secret):
     timestamp = request.headers.get("X-Slack-Request-Timestamp", "")
     slack_signature = request.headers.get("X-Slack-Signature", "")
     if not timestamp or not slack_signature:
@@ -23,7 +23,7 @@ def verify_signature(request, signing_secret):
         abort(401)
 
     # Get raw body bytes exactly as received
-    body_bytes = request.get_data()  # bytes
+    body_bytes = await request.body()  #bytes, fixed
     basestring = f"v0:{timestamp}:{body_bytes.decode('utf-8', 'surrogatepass')}"
     sig_basestring = basestring.encode("utf-8")
 
@@ -48,8 +48,9 @@ def slack_events(request: Request, background: BackgroundTasks):
     else. :P
     """
     
-    verify_signature(request, SLACK_SECRET)  # raises HTTPException on failure
-    payload = json.loads(raw)                    # parse Slack event JSON
+    await verify_signature(request, SLACK_SECRET)  # raises HTTPException on failure
+    body_bytes = await request.body()
+    payload = json.loads(body_bytes.decode("utf-8"))
 
     return event_dispatch(payload.get("type"),payload)
     # URL verification flow (Slack requires synchronous challenge response)
@@ -68,5 +69,6 @@ def slack_events(request: Request, background: BackgroundTasks):
 
 #Railway needs this, for some reason
 @router.get("/health")
-def health():
-    return {"status": "ok"}  # simple healthcheck for deployment probes
+async def health():
+    return {"status": "ok"}  
+# simple healthcheck for deployment probes
