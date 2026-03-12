@@ -1,12 +1,12 @@
-def test():
+def challenge_verif():
     print("hello")
 
 def message():
     print("hello")
 
 event_routes = {
-    "0":test,
-    "1":message
+    "url_verification":challenge_verif,
+    "message":message
 }
 
 def event_dispatch(event,data):
