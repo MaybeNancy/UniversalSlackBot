@@ -60,7 +60,9 @@ async def slack_events(request: Request, background: BackgroundTasks):
     #Another and better logger here, maybe
 
     #Background schedule proccessing thingy
-    return {"ok": True}
+    
+    #We need more info on this:
+    #return {"ok": True}
 
 #Railway needs this, for some reason
 @router.get("/health")
