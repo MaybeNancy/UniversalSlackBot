@@ -13,15 +13,15 @@ async def verify_signature(request, signing_secret):
     timestamp = request.headers.get("X-Slack-Request-Timestamp", "")
     slack_signature = request.headers.get("X-Slack-Signature", "")
     if not timestamp or not slack_signature:
-        abort(401)
+        raise HTTPException(status_code=401, detail="missing slack signature")
 
     # Reject if timestamp is too old (5 minutes)
     try:
         req_ts = int(timestamp)
     except ValueError:
-        abort(401)
+        raise HTTPException(status_code=401, detail="invalid timestamp")
     if abs(time.time() - req_ts) > 60 * 5:
-        abort(401)
+        raise HTTPException(status_code=401, detail="timestamp top old")
 
     # Get raw body bytes exactly as received
     body_bytes = await request.body()  #bytes, fixed
@@ -37,7 +37,7 @@ async def verify_signature(request, signing_secret):
     ).hexdigest()
 
     if not compare_digest(my_signature, slack_signature):
-        abort(401)
+        raise HTTPException(status_code=401, detail="missing slack signature")
     # verified
 
 #Routing events
