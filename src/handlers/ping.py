@@ -7,7 +7,7 @@ from ..services.slack_service import send_message
 
 def reply(data):
     # Example handler: respond "pong" when bot is mentioned
-    channel = data["event"]["channel"]
+    channel = data["channel"]
     send_message(channel, "Hey")
 
     return {"status":"ok"}
