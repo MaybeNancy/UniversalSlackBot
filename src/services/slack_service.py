@@ -17,7 +17,7 @@ def send_message(channel, txt):
     
     data = {
         "channel": channel, 
-        "text": text
+        "text": txt
     }
     
     client = return_client()
