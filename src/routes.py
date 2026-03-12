@@ -2,6 +2,8 @@ import hmac, hashlib, json, time
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from src.tasks.background import run_in_background
 
+import dispatch
+
 router = APIRouter()
 
 #Slack signature, we need to simplify this
