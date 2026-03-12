@@ -26,6 +26,6 @@ def create_app():
     app = FastAPI(title="Universal Slack Bot",lifespan=lifespan)
 
     #mount routes from src/routes.py
-    app.include_router(routes.router)
+    app.include_router(router)
     
     return app
