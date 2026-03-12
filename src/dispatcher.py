@@ -16,7 +16,7 @@ event_routes = {
      }
 }
 
-def event_dispatch(type,data):
+async def event_dispatch(type,data):
     if type == "url_verification":
         return event_routes[type](data)
     elif type == "event_callback":
