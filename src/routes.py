@@ -3,7 +3,7 @@ from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 #from src.tasks.background import run_in_background
 
 from .dispatcher import event_dispatch
-from services.slack_service import SIGNING_SECRET
+from services.slack_service import SLACK_SECRET
 
 router = APIRouter()
 
@@ -46,7 +46,7 @@ async def slack_events(request: Request, background: BackgroundTasks):
     else. :P
     """
     raw = await request.body()  # read raw bytes for signature verification
-    verify_signature(request, raw, SIGNING_SECRET)  # raises HTTPException on failure
+    verify_signature(request, raw, SLACK_SECRET)  # raises HTTPException on failure
     payload = json.loads(raw)                    # parse Slack event JSON
 
     return event_dispatch(payload.get("type"),payload)
