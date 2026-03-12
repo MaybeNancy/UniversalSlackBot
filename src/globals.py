@@ -8,5 +8,7 @@ def start_globals():
   LIMITS = httpx.Limits(max_connections=10,max_keepalive_connections=5)
   client = httpx.AsyncClient(timeout=TIMEOUT, limit=LIMITS)
 
-def end_globals()
+def end_globals():
   client.aclose()
+
+def return_client(): return client
