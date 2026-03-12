@@ -2,27 +2,20 @@ import json, asyncio
 
 from .handlers.ping import reply
 
-def challenge_verif(data):
-    return {"challenge": data["challenge"]}
-
 async def message(data):
     return reply(data)
 
 event_routes = {
-     "url_verification": challenge_verif,
-     "event_callback":{
-         "message":message,
-         "mention":message
-     }
+    "message":message,
+    "mention":message
 }
 
-async def event_dispatch(type,data):
-    if type == "url_verification":
-        return event_routes[type](data)
-    elif type == "event_callback":
+async def event_dispatch(data):
+    type = data.get("type")
+    if type == "event_callback":
         event_d = data.get("event")
         event = event_d["type"]
         
-        if event in event_routes[type]:
-            handler = event_routes[type][event]
+        if event in event_routes:
+            handler = event_routes[event]
             return await handler(event_d)
