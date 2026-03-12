@@ -37,7 +37,7 @@ def verify_signature(request: Request, body: bytes, signing_secret: str):
 
 #Routing events
 @router.post("/slack/events")
-async def slack_events(request: Request, background: BackgroundTasks):
+def slack_events(request: Request, background: BackgroundTasks):
     #We will handle this differently
     """
     -We verify that the data is ok
@@ -66,5 +66,5 @@ async def slack_events(request: Request, background: BackgroundTasks):
 
 #Railway needs this, for some reason
 @router.get("/health")
-async def health():
+def health():
     return {"status": "ok"}  # simple healthcheck for deployment probes
