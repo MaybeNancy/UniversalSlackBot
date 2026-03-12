@@ -3,7 +3,7 @@ I will modify this later,
 I just need the thing working
 """
 
-import slack_service
+import src.services.slack_service
 
 def reply(data):
     # Example handler: respond "pong" when bot is mentioned
