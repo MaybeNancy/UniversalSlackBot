@@ -45,7 +45,7 @@ async def slack_events(request: Request, background: BackgroundTasks):
     -Dispatcher will handle everything
     else. :P
     """
-    raw = await request.body()  # read raw bytes for signature verification
+    raw = request.body()  # read raw bytes for signature verification
     verify_signature(request, raw, SLACK_SECRET)  # raises HTTPException on failure
     payload = json.loads(raw)                    # parse Slack event JSON
 
