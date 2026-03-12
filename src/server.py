@@ -4,10 +4,10 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
 import globals
+import routes
 
 """
 Fix or use these later:
-from src.routes import router
 from src.dispatcher import Dispatcher
 from src.services.slack_service import SlackService
 """
@@ -25,6 +25,6 @@ def create_app():
     app = FastAPI(title="Universal Slack Bot",lifespan=lifespan)
 
     #mount routes from src/routes.py
-    app.include_router(router)
+    app.include_router(routes.router)
     
     return app
