@@ -9,5 +9,6 @@ def reply(data):
     # Example handler: respond "pong" when bot is mentioned
     channel = data["event"]["channel"]
     send_message(channel, "Hey")
+
+    return {"status":"ok"}
     # Use ctx.logger if present; fallback to ctx.slack.logger
-    
