@@ -20,5 +20,5 @@ def event_dispatch(type,data):
     if type == "url_verification":
         return event_routes[type](data)
     else
-        event = data.get("event")
-        return event_routes[type][event](event)
+        event_d = data.get("event")
+        return event_routes[type][event_d](event_d)
