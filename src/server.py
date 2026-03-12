@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 
 from .globals import globals_start, globals_end
 
-import routes
+from .routes import router
 
 """
 Fix or use these later:
