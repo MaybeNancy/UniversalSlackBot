@@ -39,7 +39,7 @@ async def verify_signature(request, signing_secret):
 
 #Routing events
 @router.post("/slack/events")
-def slack_events(request: Request, background: BackgroundTasks):
+async def slack_events(request: Request, background: BackgroundTasks):
     #We will handle this differently
     """
     -We verify that the data is ok
