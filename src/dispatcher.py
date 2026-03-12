@@ -5,8 +5,8 @@ from .handlers.ping import reply
 def challenge_verif(data):
     return {"challenge": data["challenge"]}
 
-async def message(data):
-    return await reply(data)
+def message(data):
+    return reply(data)
 
 event_routes = {
      "url_verification": challenge_verif,
