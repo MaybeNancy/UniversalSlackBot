@@ -15,7 +15,5 @@ event_routes = {
 
 def event_dispatch(event,data):
     #try error catching later
-    
-    ##quick fix, delete later
-   #return event_routes[event](data)
-    return message(data)
+     
+    return event_routes[event](data)
