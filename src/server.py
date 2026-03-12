@@ -3,8 +3,8 @@ import os
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
-import globals
-import routes
+import .globals
+import .routes
 
 """
 Fix or use these later:
