@@ -1,5 +1,7 @@
 import json
 
+import handlers.ping
+
 def challenge_verif(data):
     return {"challenge": data[challenge]}
 
