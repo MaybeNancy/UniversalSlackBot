@@ -1,8 +1,8 @@
 def test():
-    printf("hello")
+    print("hello")
 
 def message():
-    printf("hello")
+    print("hello")
 
 event_routes = {
     "0":test,
@@ -10,4 +10,4 @@ event_routes = {
 }
 
 def event_dispatch(event,data):
-    d[event](data)
+    event_routes.get(event)
