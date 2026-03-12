@@ -1,4 +1,4 @@
-import os, httpx, json
+import os, httpx, json, asyncio
 
 from ..globals import return_client
 
@@ -10,7 +10,7 @@ Still needs improvements, but
 is a start :P
 """
 
-def send_message(channel, txt):
+async def send_message(channel, txt):
     url = "https://slack.com/api/chat.postMessage"
     
     headers={"Authorization": f"Bearer {BOT_TOKEN}"}
@@ -27,4 +27,4 @@ def send_message(channel, txt):
             headers=headers
         )
     
-    return resp.json()
+    return await resp.json()
