@@ -16,7 +16,7 @@ def globals_start():
   client = httpx.AsyncClient(timeout=TIMEOUT, limits=LIMITS)
   #start semaphore
 
-def globals_end():
+async def globals_end():
   await client.aclose()
   #end semaphore
 
