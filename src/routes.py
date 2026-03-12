@@ -2,7 +2,7 @@ import hmac, hashlib, json, time
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 #from src.tasks.background import run_in_background
 
-from .dispatch import dispatch
+from .dispatcher import event_dispatch
 
 router = APIRouter()
 
