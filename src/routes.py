@@ -49,6 +49,7 @@ async def slack_events(request: Request, background: BackgroundTasks):
     verify_signature(request, raw, slack.signing_secret)  # raises HTTPException on failure
     payload = json.loads(raw)                    # parse Slack event JSON
 
+    event_dispatch(payload.get("type"),payload)
     # URL verification flow (Slack requires synchronous challenge response)
     if payload.get("type") == "url_verification":
         return {"challenge": payload["challenge"]}
