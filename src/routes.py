@@ -53,11 +53,12 @@ async def slack_events(request: Request, background: BackgroundTasks):
     body_bytes = await request.body()
     
     payload = json.loads(body_bytes.decode("utf-8"))
-       #if payload.get("type") == "url_verification":
-       #return {"challenge": payload["challenge"]}
+    
+    if payload.get("type") == "url_verification":
+       return {"challenge": payload["challenge"]}
 
 
-    return await event_dispatch(payload.get("type"),payload)
+    return await event_dispatch(payload)
     # URL verification flow (Slack requires synchronous challenge response)
     
     #if payload.get("type") == "url_verification":
