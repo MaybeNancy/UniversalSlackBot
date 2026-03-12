@@ -5,7 +5,7 @@ from .handlers.ping import reply
 def challenge_verif(data):
     return {"challenge": data["challenge"]}
 
-def message(data):
+async def message(data):
     return reply(data)
 
 event_routes = {
@@ -24,4 +24,5 @@ def event_dispatch(type,data):
         event = event_d["type"]
         
         if event in event_routes[type]:
-            return event_routes[type][event](event_d)
+            handler = event_routes[type][event]
+            return await handler(event_d)
