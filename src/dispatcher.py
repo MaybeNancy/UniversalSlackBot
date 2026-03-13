@@ -3,7 +3,7 @@ import json, asyncio
 from .handlers.ping import reply
 
 async def message(data):
-    return reply(data)
+    return await reply(data)
 
 event_routes = {
     "message":message,
