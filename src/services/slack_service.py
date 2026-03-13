@@ -35,7 +35,7 @@ async def send_message(channel, txt):
 
 #modify thi later
 async def new_name():
-    url = BASE_URL+""
+    url = BASE_URL+"users.profile.set"
     headers = {
         "Authorization": f"Bearer {BOT_TOKEN}"
     }
