@@ -40,7 +40,9 @@ async def new_name():
         "Authorization": f"Bearer {BOT_TOKEN}"
     }
     data = {
-        
+        "profile":{
+            "name":"Assistant"
+        }
     }
   
     client = return_client()
