@@ -41,7 +41,8 @@ async def new_name():
     }
     data = {
         "profile":{
-            "name":"Assistant"
+            "display_name":"Assistant",
+            "display_name_normalized":"assistant"
         }
     }
   
