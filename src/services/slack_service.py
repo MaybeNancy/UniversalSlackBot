@@ -21,7 +21,7 @@ async def send_message(channel, txt):
     data = {
         "channel": channel, 
         "text": txt,
-        "username":"Assistant🤖"
+        "username":"Assistant🤖 (Brian)"
     }
     
     client = return_client()
