@@ -6,8 +6,7 @@ async def message(data):
     return await reply(data)
 
 event_routes = {
-    "message":message,
-    "mention":message
+    "app_mention":message
 }
 
 async def event_dispatch(data):
