@@ -8,7 +8,7 @@ from .services.slack_service import SLACK_SECRET
 router = APIRouter()
 
 #Slack signature, we need to check this
-def verify_signature(request, signing_secret, bytes):
+def verify_signature(request, signing_secret, body_bytes):
     timestamp = request.headers.get("X-Slack-Request-Timestamp", "")
     slack_signature = request.headers.get("X-Slack-Signature", "")
     if not timestamp or not slack_signature:
@@ -22,7 +22,7 @@ def verify_signature(request, signing_secret, bytes):
     if abs(time.time() - req_ts) > 60 * 5:
         raise HTTPException(status_code=401, detail="timestamp too old")
     
-    sig_basestring = b"v0:" + timestamp.encode("utf-8") + b":" + bytes
+    sig_basestring = b"v0:" + timestamp.encode("utf-8") + b":" + body_bytes
 
     my_signature = "v0=" + hmac.new(
         signing_secret.encode("utf-8"),
