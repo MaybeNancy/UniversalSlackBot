@@ -1,5 +1,4 @@
 import hmac, hashlib, json, time
-from hmac import compare_digest
 from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 #from src.tasks.background import run_in_background
 
@@ -8,8 +7,8 @@ from .services.slack_service import SLACK_SECRET
 
 router = APIRouter()
 
-#Slack signature, we need to simplify this
-async def verify_signature(request, signing_secret, bytes):
+#Slack signature, we need to check this
+def verify_signature(request, signing_secret, bytes):
     timestamp = request.headers.get("X-Slack-Request-Timestamp", "")
     slack_signature = request.headers.get("X-Slack-Signature", "")
     if not timestamp or not slack_signature:
