@@ -9,7 +9,7 @@ from .services.slack_service import SLACK_SECRET
 router = APIRouter()
 
 #Slack signature, we need to simplify this
-async def verify_signature(request, signing_secret):
+async def verify_signature(request, signing_secret, bytes):
     timestamp = request.headers.get("X-Slack-Request-Timestamp", "")
     slack_signature = request.headers.get("X-Slack-Signature", "")
     if not timestamp or not slack_signature:
@@ -21,12 +21,9 @@ async def verify_signature(request, signing_secret):
     except ValueError:
         raise HTTPException(status_code=401, detail="invalid timestamp")
     if abs(time.time() - req_ts) > 60 * 5:
-        raise HTTPException(status_code=401, detail="timestamp top old")
-
-    # Get raw body bytes exactly as received
-    body_bytes = await request.body()  #bytes, fixed
+        raise HTTPException(status_code=401, detail="timestamp too old")
     
-    sig_basestring = b"v0:" + timestamp.encode("utf-8") + b":" + body_bytes
+    sig_basestring = b"v0:" + timestamp.encode("utf-8") + b":" + bytes
 
     my_signature = "v0=" + hmac.new(
         signing_secret.encode("utf-8"),
@@ -48,11 +45,15 @@ async def slack_events(request: Request, background: BackgroundTasks):
     -Dispatcher will handle everything
     else. :P
     """
-    
-    await verify_signature(request, SLACK_SECRET)  # raises HTTPException on failure
     body_bytes = await request.body()
+    # raises HTTPException on failure
+    await verify_signature(request, SLACK_SECRET,body_bytes)
     
-    payload = json.loads(body_bytes.decode("utf-8"))
+    
+    try:
+        payload = json.loads(body_bytes.decode("utf-8"))
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="invalid json")
     
     if payload.get("type") == "url_verification":
        return {"challenge": payload["challenge"]}
