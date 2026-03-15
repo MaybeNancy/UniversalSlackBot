@@ -46,7 +46,7 @@ async def slack_events(request: Request, background: BackgroundTasks):
     """
     body_bytes = await request.body()
     # raises HTTPException on failure
-    await verify_signature(request, SLACK_SECRET,body_bytes)
+    verify_signature(request, SLACK_SECRET,body_bytes)
     
     
     try:
