@@ -12,11 +12,11 @@
 - Handlers and plugins (to be modified more)
 - Services/Integrations (kinda added)
 - Storage [tiny json files/in memory data] (not needed right now, but possibly in a future)
-- Caching (LRU /TTL) (To be added)
 - REDIS THINGY: (To be added)
   - Rate limiter
   - Offload tasks (async stuff)
   - Concurrency thingy
+  - Caching (LRU /TTL) (To be added)
 - Logging
 
 ## EXTRA:
