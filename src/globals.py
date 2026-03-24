@@ -1,7 +1,10 @@
 import asyncio
 import httpx
+import os
 #httpx or session
 client = None
+BOT_TOKEN = None
+SLACK_SECRET = None
 #semaphore
 
 def globals_start():
@@ -14,6 +17,11 @@ def globals_start():
   
   global client
   client = httpx.AsyncClient(timeout=TIMEOUT, limits=LIMITS)
+
+  global BOT_TOKEN
+  BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+  global SLACK_SECRET
+  SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
   #start semaphore
 
 async def globals_end():
@@ -21,3 +29,6 @@ async def globals_end():
   #end semaphore
 
 def return_client(): return client
+
+def return_b_token(): return BOT_TOKEN
+def return_s_secret(): return SLACK_SECRET
