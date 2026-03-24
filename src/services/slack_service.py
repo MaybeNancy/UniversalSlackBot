@@ -1,6 +1,6 @@
 import httpx, json, asyncio
 
-from ..globals import return_client
+from ..globals import return_client, return_b_token
 
 BASE_URL = "https://slack.com/api/"
 
@@ -13,7 +13,7 @@ async def send_message(channel, txt):
     url = BASE_URL+"chat.postMessage"
     
     headers={
-        "Authorization": f"Bearer {BOT_TOKEN}"
+        "Authorization": f"Bearer {return_b_token}"
     }
     
     data = {
@@ -35,7 +35,7 @@ async def send_message(channel, txt):
 async def new_name():
     url = BASE_URL+"users.profile.set"
     headers = {
-        "Authorization": f"Bearer {BOT_TOKEN}"
+        "Authorization": f"Bearer {BOT_TOKEN()}"
     }
     data = {
         "profile":{
