@@ -1,9 +1,7 @@
-import os, httpx, json, asyncio
+import httpx, json, asyncio
 
 from ..globals import return_client
 
-BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
-SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
 BASE_URL = "https://slack.com/api/"
 
 """
