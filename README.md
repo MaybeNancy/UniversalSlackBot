@@ -4,6 +4,7 @@
 - Small independent modules
 - REDIS
 - Fewer dependencies
+- Error/duplicates/uninitiallized catching
     
 
 ## CORE COMPONENTS:
