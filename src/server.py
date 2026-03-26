@@ -19,9 +19,9 @@ def create_app():
         #We init the client and many stuff
         #Semaphore thingy?
         #Slack init?
-        globals_start()
+        await globals_start()
         yield
-        globals_end()
+        await globals_end()
         
     app = FastAPI(title="Universal Slack Bot",lifespan=lifespan)
 
