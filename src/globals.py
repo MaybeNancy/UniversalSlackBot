@@ -7,7 +7,7 @@ BOT_TOKEN = None
 SLACK_SECRET = None
 #semaphore
 
-def globals_start():
+async def globals_start():
   #aquire the slack credentiaks
   #da credentials
   #twitter credentials
