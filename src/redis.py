@@ -171,3 +171,42 @@ async def read_group(consumer_id: str = "1", count: int = 10, block: int = 5000)
 async def ack(message_id: str):
     r = get_redis()
     await r.xack(STREAM_KEY, GROUP, message_id)
+
+###stream worker
+import asyncio
+import json
+import os
+from app.redis_client import startup_redis, shutdown_redis, get_redis
+from app.queue_upstash import ensure_group, read_group, ack
+
+CONSUMER_ID = os.getenv("INSTANCE_ID", "worker1")
+
+async def handle_message(message_id: str, payload_raw: bytes):
+    payload = json.loads(payload_raw)
+    # implement processing logic here (call your event_dispatch, httpx calls, etc.)
+    # example: await event_dispatch(payload)
+    await asyncio.sleep(0)  # placeholder
+
+async def worker_loop():
+    await startup_redis()
+    await ensure_group()
+    try:
+        while True:
+            entries = await read_group(CONSUMER_ID, count=10, block=5000)
+            if not entries:
+                continue
+            # entries: [(stream, [(id, {'data': '...'}), ...])]
+            for _, msgs in entries:
+                for message_id, fields in msgs:
+                    data = fields.get("data")
+                    try:
+                        await handle_message(message_id, data)
+                        await ack(message_id)
+                    except Exception:
+                        # optionally log and don't ack to allow retries
+                        pass
+    finally:
+        await shutdown_redis()
+
+if __name__ == "__main__":
+    asyncio.run(worker_loop())
