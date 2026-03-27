@@ -83,3 +83,19 @@ async def release_lock(name: str, token: str) -> bool:
     r = get_redis()
     res = await r.eval(_RELEASE_SCRIPT, 1, name, token)
     return res == 1
+
+##### sessions uptash
+from app.redis_client import get_redis
+
+async def set_conv(user_id: str, mapping: dict, ttl: int = 300):
+    r = get_redis()
+    key = f"conv:{user_id}"
+    # hset accepts str/int/float/bool values in Upstash; serialize complex values
+    await r.hset(key, mapping={k: (v if isinstance(v, (str,int,float,bool)) else str(v)) for k,v in mapping.items()})
+    if ttl:
+        await r.expire(key, ttl)
+
+async def get_conv(user_id: str) -> dict:
+    r = get_redis()
+    key = f"conv:{user_id}"
+    return await r.hgetall(key)
