@@ -211,9 +211,14 @@ async def worker_loop():
 if __name__ == "__main__":
     asyncio.run(worker_loop())
 
-
-###Integrate startup/shutdown into your FastAPI app
-#call await startup_redis() in @app.on_event("startup") and
-#await shutdown_redis() in @app.on_event("shutdown").
-
+"""
+Integrate startup/shutdown into your FastAPI app
+call await startup_redis() in @app.on_event("startup") and
+await shutdown_redis() in @app.on_event("shutdown").
+"""
 #NOTES: 
+"""
+Upstash REST clients are connectionless; Redis.from_env() reads UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN.
+Streams are recommended for reliability (XADD / XREADGROUP / XACK) rather than Pub/Sub over REST.
+Batch operations and minimizing commands reduces Upstash request counts and cost.
+"""
