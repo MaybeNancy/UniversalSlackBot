@@ -58,3 +58,28 @@ async def try_dedupe(event_id: str, ttl: int = 60) -> bool:
     if ok and ttl:
         await r.expire(key, ttl)
     return bool(ok)
+
+###### locks upstash
+import uuid
+from app.redis_client import get_redis
+
+_RELEASE_SCRIPT = """
+if redis.call("get", KEYS[1]) == ARGV[1] then
+  return redis.call("del", KEYS[1])
+else
+  return 0
+end
+"""
+
+async def acquire_lock(name: str, ttl: int = 10) -> str | None:
+    r = get_redis()
+    token = str(uuid.uuid4())
+    ok = await r.set(name, token, nx=True)
+    if ok and ttl:
+        await r.expire(name, ttl)
+    return token if ok else None
+
+async def release_lock(name: str, token: str) -> bool:
+    r = get_redis()
+    res = await r.eval(_RELEASE_SCRIPT, 1, name, token)
+    return res == 1
