@@ -3,6 +3,8 @@
 - No critical data stored in files or memory (all credentials for app auth are handled elsewhere, anything else is no critical)
 - Small independent modules
 - REDIS
+  - Client
+  - 
 - Fewer dependencies
 - Error/duplicates/uninitiallized catching
     
