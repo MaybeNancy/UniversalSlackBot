@@ -1,4 +1,16 @@
+from .globals import return_redis
 
+async def cacheck_dupe(key):
+    redis = return_redis()
+    check = redis.get(key)
+    if check:
+        return True
+    return False
+
+async def cacheck_change(key):
+    redis = return_redis()
+    redis.set(key,"1")
+    
 ###### Cache upstash
 import json
 from app.redis_client import get_redis
