@@ -60,7 +60,7 @@ async def slack_events(request: Request, background: BackgroundTasks):
        return {"challenge": payload["challenge"]}
 
 
-    return await event_dispatch(payload)
+    result = await event_dispatch(payload)
     # URL verification flow (Slack requires synchronous challenge response)
     
     #if payload.get("type") == "url_verification":
@@ -69,11 +69,7 @@ async def slack_events(request: Request, background: BackgroundTasks):
     #Context code here, idk, maybe useful
     
     #Another and better logger here, maybe
-
-    #Background schedule proccessing thingy
-    
-    #We need more info on this:
-    #return {"ok": True}
+    return result
 
 #Railway needs this, for some reason
 @router.get("/health")
