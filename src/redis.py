@@ -47,3 +47,14 @@ async def rate_allowed(identifier: str, limit: int = 10, window: int = 60) -> bo
     if cur == 1:
         await r.expire(key, window)
     return cur <= limit
+
+###### dedupe stash
+from app.redis_client import get_redis
+
+async def try_dedupe(event_id: str, ttl: int = 60) -> bool:
+    r = get_redis()
+    key = f"dedup:{event_id}"
+    ok = await r.set(key, "1", nx=True)
+    if ok and ttl:
+        await r.expire(key, ttl)
+    return bool(ok)
