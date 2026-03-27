@@ -21,3 +21,18 @@ async def shutdown_redis():
         except Exception:
             pass
         _redis = None
+
+###### Cache upstash
+import json
+from app.redis_client import get_redis
+
+async def cache_get(key: str):
+    r = get_redis()
+    v = await r.get(key)
+    return json.loads(v) if v else None
+
+async def cache_set(key: str, value, ttl: int = 300):
+    r = get_redis()
+    await r.set(key, json.dumps(value))
+    if ttl:
+        await r.expire(key, ttl)
