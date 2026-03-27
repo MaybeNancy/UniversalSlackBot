@@ -7,18 +7,10 @@ from .globals import globals_start, globals_end
 
 from .routes import router
 
-"""
-Fix or use these later:
-from src.dispatcher import Dispatcher
-from src.services.slack_service import SlackService
-"""
-
 def create_app():
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         #We init the client and many stuff
-        #Semaphore thingy?
-        #Slack init?
         await globals_start()
         yield
         await globals_end()
