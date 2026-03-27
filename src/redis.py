@@ -210,3 +210,10 @@ async def worker_loop():
 
 if __name__ == "__main__":
     asyncio.run(worker_loop())
+
+
+###Integrate startup/shutdown into your FastAPI app
+#call await startup_redis() in @app.on_event("startup") and
+#await shutdown_redis() in @app.on_event("shutdown").
+
+#NOTES: 
