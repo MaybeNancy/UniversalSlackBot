@@ -110,3 +110,18 @@ async def set_flag(name: str, value: str):
 async def get_flag(name: str) -> str | None:
     r = get_redis()
     return await r.get(f"flag:{name}")
+
+##analitics
+from app.redis_client import get_redis
+
+async def incr_counter(name: str, by: int = 1):
+    r = get_redis()
+    await r.incrby(f"metrics:{name}", by)
+
+async def add_score(leaderboard: str, member: str, score: float):
+    r = get_redis()
+    await r.zincrby(f"leaderboard:{leaderboard}", score, member)
+
+async def top_scores(leaderboard: str, top_n: int = 10):
+    r = get_redis()
+    return await r.zrevrange(f"leaderboard:{leaderboard}", 0, top_n - 1, withscores=True)
