@@ -125,3 +125,19 @@ async def add_score(leaderboard: str, member: str, score: float):
 async def top_scores(leaderboard: str, top_n: int = 10):
     r = get_redis()
     return await r.zrevrange(f"leaderboard:{leaderboard}", 0, top_n - 1, withscores=True)
+
+###heartbeat upstash
+from app.redis_client import get_redis
+import os
+
+INSTANCE_ID = os.getenv("INSTANCE_ID", "instance:local")
+
+async def heartbeat(ttl: int = 30):
+    r = get_redis()
+    await r.set(f"instance:{INSTANCE_ID}:alive", "1")
+    if ttl:
+        await r.expire(f"instance:{INSTANCE_ID}:alive", ttl)
+
+async def active_instances():
+    r = get_redis()
+    return await r.keys("instance:*:alive")
