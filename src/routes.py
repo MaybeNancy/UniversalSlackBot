@@ -6,7 +6,7 @@ from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 
 from .dispatcher import event_dispatch
 from .globals import return_s_secret
-from .redis import cacheck_ ,cacheck_write
+from .redis import cacheck_dupe ,cacheck_change
 
 router = APIRouter()
 
@@ -60,13 +60,18 @@ async def slack_events(request: Request, background: BackgroundTasks):
     if payload.get("type") == "url_verification":
        return {"challenge": payload["challenge"]}
 
-
-    result = await event_dispatch(payload)
-    # URL verification flow (Slack requires synchronous challenge response)
+    """
+    key is made from the event 
+    and timestamp, prevents
+    duplicated slack events
+    """
+    key = "key"
     
-    #if payload.get("type") == "url_verification":
-        #return {"challenge": payload["challenge"]}
+    if await cacheck_dupe(key): return {"status": "ok"}
+        
+    result = await event_dispatch(payload)
 
+    await cacheck_change(key)
     #Context code here, idk, maybe useful
     
     #Another and better logger here, maybe
