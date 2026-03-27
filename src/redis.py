@@ -36,3 +36,14 @@ async def cache_set(key: str, value, ttl: int = 300):
     await r.set(key, json.dumps(value))
     if ttl:
         await r.expire(key, ttl)
+
+####### rate limiter
+from app.redis_client import get_redis
+
+async def rate_allowed(identifier: str, limit: int = 10, window: int = 60) -> bool:
+    r = get_redis()
+    key = f"rate:{identifier}"
+    cur = await r.incr(key)
+    if cur == 1:
+        await r.expire(key, window)
+    return cur <= limit
