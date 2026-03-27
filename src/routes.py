@@ -65,7 +65,14 @@ async def slack_events(request: Request, background: BackgroundTasks):
     and timestamp, prevents
     duplicated slack events
     """
-    key = "key"
+    type = data.get("type")
+    if type == "event_callback":
+        event_d = data.get("event")
+        event = event_d["type"]
+
+    event_type = payload.get("type").get("type")
+    ts = payload.get("type").get("ts")
+    key = "key:"+event_type+":"+ts
     
     if await cacheck_dupe(key): return {"status": "ok"}
         
