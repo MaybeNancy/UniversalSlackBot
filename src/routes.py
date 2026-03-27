@@ -65,6 +65,8 @@ async def slack_events(request: Request, background: BackgroundTasks):
     and timestamp, prevents
     duplicated slack events
     """
+    #To-Do: Handle this better
+    #Add everything else
     type = data.get("type")
     if type == "event_callback":
         event_d = data.get("event")
