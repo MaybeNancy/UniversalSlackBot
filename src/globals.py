@@ -1,11 +1,15 @@
 import asyncio
 import httpx
 import os
+
+from upstash_redis.asyncio import Redis
 #httpx or session
 client = None
 BOT_TOKEN = None
 SLACK_SECRET = None
-#semaphore
+
+#REDIS
+REDIS = None
 
 async def globals_start():
   #aquire the slack credentiaks
@@ -18,6 +22,9 @@ async def globals_start():
   global client
   client = httpx.AsyncClient(timeout=TIMEOUT, limits=LIMITS)
 
+  global REDIS
+  REDIS = Redis.from_env()
+
   global BOT_TOKEN
   BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
   global SLACK_SECRET
@@ -26,9 +33,11 @@ async def globals_start():
 
 async def globals_end():
   await client.aclose()
+  await REDIS.close()
   #end semaphore
 
 def return_client(): return client
+def return_redis(): return REDIS
 
 def return_b_token(): return BOT_TOKEN
 def return_s_secret(): return SLACK_SECRET
