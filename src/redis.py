@@ -2,7 +2,7 @@ from .globals import return_redis
 
 async def cacheck_dupe(key):
     redis = return_redis()
-    check = redis.get(key)
+    check = await asyncio.wait_for(redis.get(key), timeout=0.2)
     if check:
         return True
     return False
