@@ -99,3 +99,14 @@ async def get_conv(user_id: str) -> dict:
     r = get_redis()
     key = f"conv:{user_id}"
     return await r.hgetall(key)
+
+### flags
+from app.redis_client import get_redis
+
+async def set_flag(name: str, value: str):
+    r = get_redis()
+    await r.set(f"flag:{name}", value)
+
+async def get_flag(name: str) -> str | None:
+    r = get_redis()
+    return await r.get(f"flag:{name}")
