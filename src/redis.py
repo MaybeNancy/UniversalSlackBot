@@ -141,3 +141,33 @@ async def heartbeat(ttl: int = 30):
 async def active_instances():
     r = get_redis()
     return await r.keys("instance:*:alive")
+
+#####queue upstash
+import json
+from app.redis_client import get_redis
+
+STREAM_KEY = "stream:tasks"
+GROUP = "workers"
+CONSUMER_PREFIX = "c-"
+
+async def ensure_group():
+    r = get_redis()
+    try:
+        await r.xgroup_create(STREAM_KEY, GROUP, "$", mkstream=True)
+    except Exception:
+        # ignore if exists
+        pass
+
+async def publish_task(payload: dict):
+    r = get_redis()
+    await r.xadd(STREAM_KEY, {"data": json.dumps(payload)})
+
+async def read_group(consumer_id: str = "1", count: int = 10, block: int = 5000):
+    r = get_redis()
+    consumer = CONSUMER_PREFIX + consumer_id
+    entries = await r.xreadgroup(GROUP, consumer, {STREAM_KEY: ">"}, count=count, block=block)
+    return entries  # format: [(stream, [(id, {b'data': b'...'})...])]
+
+async def ack(message_id: str):
+    r = get_redis()
+    await r.xack(STREAM_KEY, GROUP, message_id)
