@@ -44,6 +44,9 @@ async def slack_events(request: Request, background: BackgroundTasks):
     """
     -We verify that the data is ok
     -Check if comes from slack
+    -Redis will check if the received
+    data is not duplicated
+    -Once all of the above is ok
     -Dispatcher will handle everything
     else. :P
     """
