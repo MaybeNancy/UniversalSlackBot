@@ -3,3 +3,4 @@ uvicorn[standard]
 httpx
 pydantic
 upstash-redis>=0.13.0
+jsonschema
