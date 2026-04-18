@@ -1,5 +1,5 @@
 """
-Any code related to check if json
-data is correct, will be
-placed here
+Any code related to validate
+any json
 """
+from jsonschema import validate
