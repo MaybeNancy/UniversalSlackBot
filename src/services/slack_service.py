@@ -35,7 +35,7 @@ async def send_message(channel, txt):
         "text": txt,
         "username":"Assistant🤖 (Brian)"
     }
-    return await slack_action("chat.postMessage",data,None)
+    return await slack_action("chat.postMessage",None,data)
 
 #modify thi later
 async def new_name():
@@ -45,4 +45,4 @@ async def new_name():
             "display_name_normalized":"assistant"
         }
     }
-    return await slack_action("users.profile.set",data,None)
+    return await slack_action("users.profile.set",None,data)
