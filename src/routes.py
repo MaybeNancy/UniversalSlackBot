@@ -89,7 +89,6 @@ async def slack_events(request: Request, background: BackgroundTasks):
     await cacheck_change(key)
     #Context code here, idk, maybe useful
 
-    print(result)
     #Another and better logger here, maybe
     return result
 
