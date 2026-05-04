@@ -76,6 +76,8 @@ async def slack_events(request: Request, background: BackgroundTasks):
     #To-Do: Handle this better
     #Add everything else
 
+    print(payload)
+
     event_type = payload.get("type").get("type")
     ts = payload.get("type").get("ts")
     key = "key:"+event_type+":"+ts
