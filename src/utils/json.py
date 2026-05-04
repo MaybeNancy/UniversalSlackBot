@@ -16,9 +16,9 @@ schema = {
   "required": ["type","token","team_id","api_app_id","event"]
 }
 
-def checkjson(json):
+def checkjson(data):
   try: 
-    validate(instance=json,schema=schema)
+    validate(instance=data,schema=schema)
   except ValidationError as e: 
-      errortxt = "Incorrect Json" + {e.message}
+      errortxt = "Incorrect Json, " + str(e.message)
       raise HTTPException(status_code=400, detail=errortxt)
