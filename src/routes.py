@@ -78,8 +78,6 @@ async def slack_events(request: Request, background: BackgroundTasks):
     
     #Add everything else
 
-    print(payload)
-
     event_type = payload.get("event").get("type")
     ts = payload.get("event").get("ts")
     key = "key:"+event_type+":"+ts
@@ -90,7 +88,8 @@ async def slack_events(request: Request, background: BackgroundTasks):
 
     await cacheck_change(key)
     #Context code here, idk, maybe useful
-    
+
+    print(result)
     #Another and better logger here, maybe
     return result
 
