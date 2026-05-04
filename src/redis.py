@@ -1,3 +1,4 @@
+import asyncio
 from .globals import return_redis
 
 async def cacheck_dupe(key):
