@@ -14,14 +14,9 @@ async def call_site():
   data={"data":"hi"}
 
   
-  resp = await client.post(
-            link,
-            json=data,
-            headers=headers
-  )
-  #resp = await client.get(link)
-  print(resp.status_code)
-  print(resp)
+  resp = await client.get(link)
+print(resp.status_code, await resp.text()[:1000])
+print(resp.headers)
 
   
-  return resp
+  return "hu"
