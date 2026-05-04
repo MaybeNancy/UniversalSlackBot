@@ -6,9 +6,9 @@ async def cacheck_dupe(key):
     try:
         check = await asyncio.wait_for(redis.get(key), timeout=0.2)
     except asyncio.TimeoutError:
-        return false
+        return False
     except Exception:
-        return false
+        return False
     return bool(check)
 
 async def cacheck_change(key):
