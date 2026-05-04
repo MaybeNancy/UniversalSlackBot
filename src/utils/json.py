@@ -27,7 +27,7 @@ schema = {
 }
 
 def checkjson(json):
-  try: validate(json, schema)
-      
+  try: 
+    validate(json, schema)
   except: 
       raise HTTPException(status_code=401, detail="incorrect json")
