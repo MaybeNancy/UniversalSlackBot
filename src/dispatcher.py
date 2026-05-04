@@ -14,7 +14,8 @@ async def event_dispatch(data):
     if type == "event_callback":
         event_d = data.get("event")
         event = event_d["type"]
-        
+
+        print("This is "+event)
         if event in event_routes:
             handler = event_routes[event]
             return await handler(event_d)
