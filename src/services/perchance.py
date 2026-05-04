@@ -13,14 +13,13 @@ async def call_site():
   
   data={"data":"hi"}
 
-  """
+  
   resp = await client.post(
             link,
             json=data,
             headers=headers
   )
-  """
-  resp = await client.get(link)
+  #resp = await client.get(link)
   print(resp.status_code)
   print(await resp.text())
 
