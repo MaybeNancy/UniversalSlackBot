@@ -21,7 +21,7 @@ async def call_site():
   )
   #resp = await client.get(link)
   print(resp.status_code)
-  print(await resp.text())
+  print(resp.text())
 
   
   return resp
