@@ -7,6 +7,7 @@ from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from .dispatcher import event_dispatch
 from .globals import return_s_secret
 from .redis import cacheck_dupe ,cacheck_change
+from .util import json
 
 router = APIRouter()
 
@@ -51,7 +52,7 @@ async def slack_events(request: Request, background: BackgroundTasks):
     else. :P
     """
     body_bytes = await request.body()
-    # raises HTTPException on failure
+    
     verify_signature(request,return_s_secret,body_bytes)
     
     
@@ -59,6 +60,8 @@ async def slack_events(request: Request, background: BackgroundTasks):
         payload = json.loads(body_bytes.decode("utf-8"))
     except json.JSONDecodeError:
         raise HTTPException(status_code=400, detail="invalid json")
+
+    verify(payload)
     
     if payload.get("type") == "url_verification":
        return {"challenge": payload["challenge"]}
