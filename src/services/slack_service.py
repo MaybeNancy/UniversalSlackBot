@@ -9,18 +9,16 @@ Still needs improvements, but
 is a start :P
 """
 
-async def send_message(channel, txt):
-    url = BASE_URL+"chat.postMessage"
-    
-    headers={
-        "Authorization": f"Bearer {return_b_token}"
-    }
-    
-    data = {
-        "channel": channel, 
-        "text": txt,
-        "username":"Assistant🤖 (Brian)"
-    }
+async def slack_action(url_add,n_headers,n_data):
+    url = BASE_URL+url_add
+
+    if n_headers == None:
+        headers={
+            "Authorization": f"Bearer {return_b_token}"
+        }
+    else:
+        headers=n_headers
+    data = n_data
     
     client = return_client()
     resp = await client.post(
@@ -31,24 +29,20 @@ async def send_message(channel, txt):
     
     return resp.json()
 
+async def send_message(channel, txt):
+    data = {
+        "channel": channel, 
+        "text": txt,
+        "username":"Assistant🤖 (Brian)"
+    }
+    return await slack_action("chat.postMessage",data,None)
+
 #modify thi later
 async def new_name():
-    url = BASE_URL+"users.profile.set"
-    headers = {
-        "Authorization": f"Bearer {return_b_token}"
-    }
     data = {
         "profile":{
             "display_name":"Assistant",
             "display_name_normalized":"assistant"
         }
     }
-  
-    client = return_client()
-    resp = await client.post(
-            url,
-            json=data,
-            headers=headers
-        )
-    
-    return resp.json()
+    return await slack_action("users.profile.set",data,None)
