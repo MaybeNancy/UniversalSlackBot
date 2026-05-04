@@ -73,10 +73,6 @@ async def slack_events(request: Request, background: BackgroundTasks):
     """
     #To-Do: Handle this better
     #Add everything else
-    type = data.get("type")
-    if type == "event_callback":
-        event_d = data.get("event")
-        event = event_d["type"]
 
     event_type = payload.get("type").get("type")
     ts = payload.get("type").get("ts")
