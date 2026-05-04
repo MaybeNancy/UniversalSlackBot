@@ -14,7 +14,8 @@ async def slack_action(url_add,n_headers,n_data):
 
     if n_headers == None:
         headers={
-            "Authorization": f"Bearer {return_b_token}"
+            "Authorization": f"Bearer {return_b_token}",
+            "Content-Type": "application/json; charset=utf-8"
         }
     else:
         headers=n_headers
@@ -27,7 +28,7 @@ async def slack_action(url_add,n_headers,n_data):
             headers=headers
     )
     
-    return resp.json()
+    return await resp.json()
 
 async def send_message(channel, txt):
     data = {
