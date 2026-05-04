@@ -57,13 +57,13 @@ async def try_dedupe(event_id: str, ttl: int = 60) -> bool:
 import uuid
 from app.redis_client import get_redis
 
-_RELEASE_SCRIPT = """
+_RELEASE_SCRIPT = 
 if redis.call("get", KEYS[1]) == ARGV[1] then
   return redis.call("del", KEYS[1])
 else
   return 0
 end
-"""
+
 
 async def acquire_lock(name: str, ttl: int = 10) -> str | None:
     r = get_redis()
@@ -205,8 +205,8 @@ async def worker_loop():
 if __name__ == "__main__":
     asyncio.run(worker_loop())
 
-#NOTES: 
-"""
+#NOTES:
+
 Upstash REST clients are connectionless; Redis.from_env() reads UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN.
 Streams are recommended for reliability (XADD / XREADGROUP / XACK) rather than Pub/Sub over REST.
 Batch operations and minimizing commands reduces Upstash request counts and cost.
