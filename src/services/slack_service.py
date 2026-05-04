@@ -19,7 +19,8 @@ async def slack_action(url_add,n_headers,n_data):
     else:
         headers=n_headers
     data = n_data
-    
+
+    print("mess"+headers+data)
     client = return_client()
     resp = await client.post(
             url,
@@ -35,7 +36,7 @@ async def send_message(channel, txt):
         "text": txt,
         "username":"Assistant🤖 (Brian)"
     }
-    print("mess")
+    
     return await slack_action("chat.postMessage",None,data)
 
 #modify thi later
