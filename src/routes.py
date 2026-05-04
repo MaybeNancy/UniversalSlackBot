@@ -52,8 +52,10 @@ async def slack_events(request: Request, background: BackgroundTasks):
     else. :P
     """
     body_bytes = await request.body()
+
+    s_secret=return_s_secret()
     
-    verify_signature(request,return_s_secret,body_bytes)
+    verify_signature(request,s_secret,body_bytes)
     
     
     try:
