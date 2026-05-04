@@ -35,6 +35,7 @@ async def send_message(channel, txt):
         "text": txt,
         "username":"Assistant🤖 (Brian)"
     }
+    print("mess")
     return await slack_action("chat.postMessage",None,data)
 
 #modify thi later
