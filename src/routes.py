@@ -7,7 +7,7 @@ from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 from .dispatcher import event_dispatch
 from .globals import return_s_secret
 from .redis import cacheck_dupe ,cacheck_change
-from .utils import json
+from .utils.json import checkjson
 
 router = APIRouter()
 
