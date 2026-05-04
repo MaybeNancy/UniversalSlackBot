@@ -11,7 +11,7 @@ async def reply(data):
     # Example handler: respond "pong" when bot is mentioned
     #await new_name()
     ptxt=await call_site()
-    print("Slack callin' "+str(ptxt))
+    print("Slack callin'")
     channel = data["channel"]
     text = "Hello! new me, new everything, work in progress, comeback later :nancy-wink:"
     return await send_message(channel, text)
