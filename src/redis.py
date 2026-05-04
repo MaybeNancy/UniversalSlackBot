@@ -14,6 +14,8 @@ async def cacheck_change(key):
 """
 Stuff to be checked
 """
+
+"""
 ###### Cache upstash
 import json
 from app.redis_client import get_redis
