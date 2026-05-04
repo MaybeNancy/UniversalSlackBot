@@ -4,7 +4,7 @@ I just need the thing working
 """
 import asyncio
 
-from ..services.slack_service import send_message, new_name
+from ..services.slack import send_message, new_name
 
 async def reply(data):
     # Example handler: respond "pong" when bot is mentioned
