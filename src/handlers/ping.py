@@ -10,7 +10,8 @@ from ..services.perchance import call_site
 async def reply(data):
     # Example handler: respond "pong" when bot is mentioned
     #await new_name()
-    print("Slack callin' "+await call_site())
+    ptxt=await call_site()
+    print("Slack callin' "+ptxt)
     channel = data["channel"]
     text = "Hello! new me, new everything, work in progress, comeback later :nancy-wink:"
     return await send_message(channel, text)
