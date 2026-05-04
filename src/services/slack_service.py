@@ -12,7 +12,6 @@ is a start :P
 async def slack_action(url_add,n_headers,n_data):
     url = BASE_URL+url_add
 
-    print(url)
     if n_headers == None:
         headers={
             "Authorization": f"Bearer {return_b_token}"
