@@ -28,7 +28,7 @@ async def slack_action(url_add,n_headers,n_data):
             headers=headers
     )
     
-    return await resp.json()
+    return resp.json()
 
 async def send_message(channel, txt):
     data = {
