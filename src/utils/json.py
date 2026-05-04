@@ -5,7 +5,7 @@ any json
 from jsonschema import validate
 
 schema = {
-  "type": "object"
+  "type": "object",
   "properties":{
      "type": {"type": "string"},
      "token": {"type": "string"},
