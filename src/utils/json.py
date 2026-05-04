@@ -4,5 +4,12 @@ any json
 """
 from jsonschema import validate
 
+schema = {
+  
+}
+
 def checkjson(json):
-  return true
+  try: validate(json, schema)
+      return true
+  except: 
+      return false
