@@ -8,6 +8,7 @@ async def cacheck_dupe(key):
     except asyncio.TimeoutError:
         return false
     except Exception:
+        return false
     return bool(check)
 
 async def cacheck_change(key):
