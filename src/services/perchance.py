@@ -15,8 +15,8 @@ async def call_site():
 
   
   resp = await client.get(link)
-print(resp.status_code, await resp.text()[:1000])
-print(resp.headers)
+  print(resp.status_code, await resp.text()[:1000])
+  print(resp.headers)
 
   
   return "hu"
