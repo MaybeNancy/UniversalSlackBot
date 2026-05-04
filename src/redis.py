@@ -14,7 +14,7 @@ async def cacheck_dupe(key):
 async def cacheck_change(key):
     redis = return_redis()
     try:
-        await asyncio.wait_for(redis.se (key, "1", ex=300), timeout=0.3)
+        await asyncio.wait_for(redis.set(key, "1", ex=300), timeout=0.3)
     except asyncio.TimeoutError:
         print("Timeout Error :(")
 
