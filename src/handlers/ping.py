@@ -10,7 +10,7 @@ from ..services.ai import call_site
 async def reply(data):
     # Example handler: respond "pong" when bot is mentioned
     #await new_name()
-    ptxt=await call_site()
+    await call_site()
     print("Slack callin'")
     channel = data["channel"]
     text = "Hello! new me, new everything, work in progress, comeback later :nancy-wink:"
