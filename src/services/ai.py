@@ -44,11 +44,13 @@ async def call_ai(prompt):
           "max_new_tokens": 150
         }
   }
+  
+ print(url)
+  print(token[:8] + "...") 
 
   resp = await client.post(url, headers=headers, json=payload)
   resp.raise_for_status()
-  print(url)
-  print(token[:8] + "...") 
+  
   try:
       print(resp.json())
   except Exception:
