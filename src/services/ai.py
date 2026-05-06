@@ -25,7 +25,7 @@ from ..globals import return_client, r_hug_token
 from huggingface_hub import InferenceClient
 
 token = r_hug_token()
-model = "google"
+model = "Qwen/Qwen3-0.6B:featherless-ai"
 url = f"https://api-inference.huggingface.co/models/{model}"
 
 client = return_client()
