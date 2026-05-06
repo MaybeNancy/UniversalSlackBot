@@ -28,9 +28,10 @@ token = r_hug_token()
 model = "Qwen/Qwen3-0.6B:featherless-ai"
 url = f"https://api-inference.huggingface.co/models/{model}"
 
-client = return_client()
-
 async def call_ai(prompt):
+  
+  client = return_client()
+
   headers = {
     "Authorization": f"Bearer {token}",
     "Accept": "application/json"
