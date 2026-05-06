@@ -30,10 +30,7 @@ def call_ai(prompt):
   hf_client = InferenceClient(token=r_hug_token())
 
   inputs={
-      {
-        "role":"user",
-        "content":prompt
-      }
+      "text":prompt
   }
   
   parameters = {
