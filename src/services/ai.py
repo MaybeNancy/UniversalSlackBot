@@ -16,7 +16,7 @@ async def call_site():
   
   params = {"template": TEMPLATE}
   
-  resp = await client.post(link,headers=headers, json=params)
+  resp = await client.post(link,headers=headers, json={"template": TEMPLATE})
   print(resp.status_code)
   print(resp.headers)
   print(await resp.aread())       # raw body bytes
