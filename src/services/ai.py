@@ -47,6 +47,8 @@ async def call_ai(prompt):
 
   resp = await client.post(url, headers=headers, json=payload)
   resp.raise_for_status()
+  print(url)
+  print(token[:8] + "...") 
   try:
       print(resp.json())
   except Exception:
