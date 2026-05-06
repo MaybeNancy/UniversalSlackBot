@@ -31,7 +31,7 @@ def call_ai(prompt):
 
   response = hf_client.chat(
     model=model,
-    messages=[
+    inputs=[
       {
         "role":"user",
         "content":prompt
