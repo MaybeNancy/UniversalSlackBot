@@ -1,3 +1,15 @@
+"""
+AI billing considerations:
+*Prefer CPU models for development, 
+batch small requests, and set conservative
+parameters (max_tokens, shorter prompts).
+
+*Use small models for prototyping and only
+switch to large/GPU models when necessary.
+
+*Monitor usage in the billing/usage dashboard
+and set org spending limits if available. 
+"""
 import asyncio
 from ..globals import return_client, r_hug_client
 
