@@ -12,6 +12,7 @@ SLACK_SECRET = None
 
 #HF / AI
 HF_TOKEN = None
+
 #REDIS
 REDIS = None
 
@@ -49,4 +50,4 @@ def return_redis(): return REDIS
 
 def return_b_token(): return BOT_TOKEN
 def return_s_secret(): return SLACK_SECRET
-dDf r_hug_client(): return HF_TOKEN
+def r_hug_client(): return HF_TOKEN
