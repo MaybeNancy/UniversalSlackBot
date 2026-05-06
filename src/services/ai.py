@@ -1,5 +1,7 @@
 import asyncio
-from ..globals import return_client
+from ..globals import return_client, r_hug_client
+
+from huggingface_hub import InferenceClient
 
 link = "https://perchance.org/api/generate"
 TEMPLATE = "test-n"
