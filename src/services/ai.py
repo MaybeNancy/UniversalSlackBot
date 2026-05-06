@@ -20,10 +20,11 @@ Pages -> 200 requests
 Rate limits are applied over 5-minute intervals. 
 """
 import asyncio
-from ..globals import return_client, r_hug_client
+from ..globals import return_client, r_hug_token
 
 from huggingface_hub import InferenceClient
 
+token = r_hug_token()
 link = "https://perchance.org/api/generate"
 TEMPLATE = "test-n"
 
