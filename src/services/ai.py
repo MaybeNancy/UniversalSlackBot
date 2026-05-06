@@ -20,7 +20,7 @@ Pages -> 200 requests
 Rate limits are applied over 5-minute intervals. 
 """
 import asyncio
-from ..globals import return_client, r_hug_token
+from ..globals import r_hug_token
 
 from huggingface_hub import InferenceClient
 
@@ -29,11 +29,15 @@ url = f"https://api-inference.huggingface.co/models/{model}"
 
 async def call_ai(prompt):
   hf_client = InferenceClient(token=r_hug_token())
-  client = return_client()
 
-  response = hf_client.chat(
-    prompt=prompt,
+  response = hf_client.chat.completions.create(
     model=model,
+    messages=[
+      {
+        "role":"user",
+        "content":prompt
+      }
+    ]
     max_new_tokens=100,
     temperature=0.7
   )
