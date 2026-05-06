@@ -24,7 +24,7 @@ from ..globals import return_client, r_hug_token
 
 from huggingface_hub import InferenceClient
 
-model = "google/gemma-2-2b-it"
+model = "Qwen/Qwen3-Coder-480B-A35B-Instruct
 url = f"https://api-inference.huggingface.co/models/{model}"
 
 async def call_ai(prompt):
