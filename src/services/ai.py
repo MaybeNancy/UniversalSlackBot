@@ -38,7 +38,7 @@ def call_ai(prompt):
     "temperature": 0.7
   }
 
-  response = hf_client.chat(
+  response = hf_client.chat.create(
     model=model,
     inputs=inputs,
     parameters=parameters
