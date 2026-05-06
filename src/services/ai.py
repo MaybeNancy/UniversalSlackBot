@@ -2,7 +2,7 @@ import asyncio
 from ..globals import return_client
 
 link = "https://perchance.org/api/generate"
-TEMPLATE = "nancy-ai-module"
+TEMPLATE = "test-n"
 
 async def call_site():
   client = return_client()
