@@ -24,13 +24,13 @@ from ..globals import return_client, r_hug_token
 
 from huggingface_hub import InferenceClient
 
-token = r_hug_token()
 model = "Qwen/Qwen3-0.6B"
 url = f"https://api-inference.huggingface.co/models/{model}"
 
 async def call_ai(prompt):
   
   client = return_client()
+  token = r_hug_token()
 
   headers = {
     "Authorization": f"Bearer {token}",
