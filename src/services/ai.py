@@ -29,16 +29,22 @@ model = "Qwen/Qwen3-Coder-480B-A35B-Instruct"
 def call_ai(prompt):
   hf_client = InferenceClient(token=r_hug_token())
 
-  response = hf_client.chat(
-    model=model,
-    inputs=[
+  inputs={
       {
         "role":"user",
         "content":prompt
       }
-    ],
-    max_new_tokens=100,
-    temperature=0.7
+  }
+  
+  parameters = {
+    "max_new_tokens": 100, 
+    "temperature": 0.7
+  }
+
+  response = hf_client.chat(
+    model=model,
+    inputs=inputs,
+    parameters=parameters
   )
 
   print(response)
