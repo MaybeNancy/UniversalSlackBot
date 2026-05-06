@@ -25,19 +25,18 @@ from ..globals import r_hug_token
 from huggingface_hub import InferenceClient
 
 model = "Qwen/Qwen3-Coder-480B-A35B-Instruct"
-url = f"https://api-inference.huggingface.co/models/{model}"
 
-async def call_ai(prompt):
+def call_ai(prompt):
   hf_client = InferenceClient(token=r_hug_token())
 
-  response = hf_client.chat.completions.create(
+  response = hf_client.chat(
     model=model,
     messages=[
       {
         "role":"user",
         "content":prompt
       }
-    ]
+    ],
     max_new_tokens=100,
     temperature=0.7
   )
