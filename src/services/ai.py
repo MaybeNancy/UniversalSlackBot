@@ -9,12 +9,14 @@ async def call_site():
 
   headers={
     "User-Agent": "MyBot/1.0",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
     "Referer": "https://perchance.org/"
   }
   
   params = {"template": TEMPLATE}
   
-  resp = await client.get(link,headers=headers, params=params)
+  resp = await client.post(link,headers=headers, params=params)
   print(resp.status_code)
   print(resp.headers)
   print(await resp.aread())       # raw body bytes
