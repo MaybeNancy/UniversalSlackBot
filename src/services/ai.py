@@ -31,7 +31,7 @@ async def call_ai(prompt):
   hf_client = InferenceClient(token=r_hug_token())
   client = return_client()
 
-  response = client.text_generation(
+  response = hf_client.text_generation(
     prompt=prompt,
     model=model,
     max_new_tokens=100,
