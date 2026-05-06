@@ -25,55 +25,29 @@ from ..globals import return_client, r_hug_token
 from huggingface_hub import InferenceClient
 
 token = r_hug_token()
-link = "https://perchance.org/api/generate"
-TEMPLATE = "test-n"
+model = "google"
+url = f"https://api-inference.huggingface.co/models/{model}"
 
-async def call_site():
-  client = return_client()
+client = return_client()
 
-  headers={
-    "User-Agent": "MyBot/1.0",
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-    "Referer": "https://perchance.org/"
+async def call_ai(prompt):
+  headers = {
+    "Authorization": f"Bearer {token}",
+    "Accept": "application/json"
   }
   
-  params = {"template": TEMPLATE}
-  
-  resp = await client.post(link,headers=headers, json={"template": TEMPLATE})
-  print(resp.status_code)
-  print(resp.headers)
-  print(await resp.aread())       # raw body bytes
+  payload = {
+    "inputs": prompt, 
+    "parameters": 
+        {
+          "max_new_tokens": 150
+        }
+  }
+
+  resp = await client.post(url, headers=headers, json=payload)
+  resp.raise_for_status()
   try:
-            print(resp.json())         # parsed JSON if available
+      print(resp.json())
   except Exception:
             pass
-  
-  return "hu"
-
-"""
-import asyncio
-import httpx
-
-LINK = "https://perchance.org/api/generate"
-TEMPLATE = "nancy-ai-module"  # template name or id
-
-async def call_site():
-    async with httpx.AsyncClient(timeout=10.0) as client:
-        headers = {
-            "User-Agent": "MyBot/1.0",
-            "Referer": "https://perchance.org/"
-        }
-        params = {"template": TEMPLATE}
-        resp = await client.get(LINK, headers=headers, params=params)
-        print(resp.status_code)
-        print(resp.headers)
-        print(await resp.aread())       # raw body bytes
-        try:
-            print(resp.json())         # parsed JSON if available
-        except Exception:
-            pass
-    return "done"
-
-asyncio.run(call_site())
-"""
+  return resp.json()
