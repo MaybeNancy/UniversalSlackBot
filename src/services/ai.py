@@ -24,35 +24,19 @@ from ..globals import return_client, r_hug_token
 
 from huggingface_hub import InferenceClient
 
-model = "Qwen/Qwen3-0.6B"
+model = "google/gemma-2-2b-it"
 url = f"https://api-inference.huggingface.co/models/{model}"
 
 async def call_ai(prompt):
-  
+  hf_client = InferenceClient(token=r_hug_token())
   client = return_client()
-  token = r_hug_token()
 
-  headers = {
-    "Authorization": f"Bearer {token}",
-    "Accept": "application/json"
-  }
-  
-  payload = {
-    "inputs": prompt, 
-    "parameters": 
-        {
-          "max_new_tokens": 150
-        }
-  }
-  
-  print(url)
-  print(token) 
+  response = client.text_generation(
+    prompt=prompt,
+    model=model,
+    max_new_tokens=100,
+    temperature=0.7
+  )
 
-  resp = await client.post(url, headers=headers, json=payload)
-  resp.raise_for_status()
-  
-  try:
-      print(resp.json())
-  except Exception:
-            pass
-  return resp.json()
+  print(response)
+  return response
