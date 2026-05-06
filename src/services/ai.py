@@ -46,10 +46,7 @@ async def call_ai(prompt):
   }
   
   print(url)
-
-  if token is not None: print("Value")
-  else:
-     print("Is None") 
+  print(token) 
 
   resp = await client.post(url, headers=headers, json=payload)
   resp.raise_for_status()
