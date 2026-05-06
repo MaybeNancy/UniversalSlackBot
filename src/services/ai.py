@@ -45,7 +45,7 @@ async def call_ai(prompt):
         }
   }
   
- print(url)
+  print(url)
   print(token[:8] + "...") 
 
   resp = await client.post(url, headers=headers, json=payload)
