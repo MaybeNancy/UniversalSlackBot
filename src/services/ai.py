@@ -46,7 +46,7 @@ def call_ai(prompt):
   )
 
   for out in response.choices:
-     print(out.message)
+     print(out.message.content)
   print(response.choices)
   print("aiing")
   return response
