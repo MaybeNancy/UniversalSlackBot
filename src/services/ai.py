@@ -27,7 +27,10 @@ from huggingface_hub import InferenceClient
 model = "Qwen/Qwen3-Coder-480B-A35B-Instruct"
 
 def call_ai(prompt):
-  hf_client = InferenceClient(token=r_hug_token())
+  hf_client = InferenceClient(
+    token=r_hug_token(),
+    timeout=30
+  )
 
   inputs={
       "text":prompt
