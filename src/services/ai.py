@@ -29,7 +29,8 @@ model = "meta-llama/Meta-Llama-3-8B-Instruct"
 def call_ai(prompt):
   hf_client = InferenceClient(
     token=r_hug_token(),
-    timeout=30
+    timeout=30,
+    model
   )
 
   messages=[
@@ -40,8 +41,8 @@ def call_ai(prompt):
   ]
 
   response = hf_client.chat_completion(
-    model,
-    messages
+    messages,
+    max_tokens=100
   )
 
   print(response)
