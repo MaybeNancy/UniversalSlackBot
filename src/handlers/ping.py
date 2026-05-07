@@ -14,7 +14,7 @@ async def reply(data):
     
    # except:
         #print("not working now")
-    txt="Write a short and lovely horror story staring Nancy"
+    txt="Write a random short and lovely horror story staring Nancy"
     channel = data["channel"]
     text = str(call_ai(txt))+" :nancy-scream: :candle-pumpkin"
     return await send_message(channel, text)
