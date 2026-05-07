@@ -10,10 +10,11 @@ from ..services.ai import call_ai
 async def reply(data):
     # Example handler: respond "pong" when bot is mentioned
     #await new_name()
-    try:
-        call_ai("Say hi to Nancy")
-    except:
-        print("not working now")
+    #try:
+    
+    call_ai("Say hi to Nancy")
+   # except:
+        #print("not working now")
     print("Slack callin'")
     channel = data["channel"]
     text = "Hello! new me, new everything, work in progress, comeback later :nancy-wink:"
