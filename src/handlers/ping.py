@@ -14,8 +14,8 @@ async def reply(data):
     
    # except:
         #print("not working now")
-    print("Slack callin'")
+    txt="Write a short and lovely horror story staring Nancy"
     channel = data["channel"]
-    text = str(call_ai("Say hi to Nancy"))+":nancy-wink:"
+    text = str(call_ai(txt))+":nancy-scream::candle-pumpkin"
     return await send_message(channel, text)
     # Use ctx.logger if present; fallback to ctx.slack.logger
