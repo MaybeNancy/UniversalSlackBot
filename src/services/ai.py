@@ -41,8 +41,7 @@ def call_ai(prompt):
 
   response = hf_client.chat_completion(
     model,
-    messages,
-    max_tokens=100
+    messages
   )
 
   print(response)
