@@ -43,7 +43,7 @@ def call_ai(prompt):
   response = hf_client.chat_completion(
     messages,
     max_tokens=100,
-    temperature=2
+    temperature=1.125
   )
 
   txt = response.choices[0].message.content
