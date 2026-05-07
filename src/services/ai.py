@@ -32,19 +32,17 @@ def call_ai(prompt):
     timeout=30
   )
 
-  inputs={
-      "text":prompt
-  }
-  
-  parameters = {
-    "max_new_tokens": 100, 
-    "temperature": 0.7
-  }
+  messages=[
+    {
+      "role": "user", 
+     "content": prompt
+    }
+  ]
 
-  response = hf_client.chat.create(
-    model=model,
-    inputs=inputs,
-    parameters=parameters
+  response = hf_client.chat_completion(
+    model,
+    messages,
+    max_tokens=100
   )
 
   print(response)
