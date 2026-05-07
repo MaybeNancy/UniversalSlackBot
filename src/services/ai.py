@@ -24,7 +24,7 @@ from ..globals import r_hug_token
 
 from huggingface_hub import InferenceClient
 
-model = "Qwen/Qwen3-Coder-480B-A35B-Instruct"
+model = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 def call_ai(prompt):
   hf_client = InferenceClient(
@@ -46,4 +46,5 @@ def call_ai(prompt):
   )
 
   print(response)
+  print("aiing")
   return response
