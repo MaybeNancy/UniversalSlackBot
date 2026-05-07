@@ -30,7 +30,7 @@ def call_ai(prompt):
   hf_client = InferenceClient(
     token=r_hug_token(),
     timeout=30,
-    model
+    model=model
   )
 
   messages=[
