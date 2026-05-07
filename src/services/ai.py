@@ -45,6 +45,8 @@ def call_ai(prompt):
     max_tokens=100
   )
 
+  for out in response.choices:
+     print(out)
   print(response.choices)
   print("aiing")
   return response
