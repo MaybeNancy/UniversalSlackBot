@@ -1,8 +1,12 @@
 """
 Singleton for httpx stuff
 """
+import httpx, json, asyncio
 
-url = BASE_URL+url_add
+from ..globals import return_client, return_b_token
+
+
+    url = BASE_URL+url_add
 
     if n_headers == None:
         headers={
