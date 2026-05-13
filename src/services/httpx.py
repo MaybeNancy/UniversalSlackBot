@@ -3,7 +3,7 @@ Singleton for httpx stuff
 """
 import httpx, asyncio
 
-from ..globals import return_client, return_b_token
+from ..globals import return_client
 
 async def post(url,headers,data):
     client = return_client()
