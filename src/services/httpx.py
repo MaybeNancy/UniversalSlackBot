@@ -1,0 +1,3 @@
+"""
+Singleton for httpx stuff
+"""
