@@ -43,7 +43,6 @@ async def globals_start():
 async def globals_end():
   await client.aclose()
   await REDIS.close()
-  #end semaphore
 
 def return_client(): return client
 def return_redis(): return REDIS
