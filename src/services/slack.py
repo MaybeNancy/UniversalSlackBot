@@ -4,31 +4,14 @@ from ..globals import return_client, return_b_token
 
 BASE_URL = "https://slack.com/api/"
 
+headers={
+            "Authorization": f"Bearer {return_b_token()}",
+            "Content-Type": "application/json; charset=utf-8"
+        }
 """
 Still needs improvements, but
 is a start :P
 """
-
-async def slack_action(url_add,n_headers,n_data):
-    url = BASE_URL+url_add
-
-    if n_headers == None:
-        headers={
-            "Authorization": f"Bearer {return_b_token()}",
-            "Content-Type": "application/json; charset=utf-8"
-        }
-    else:
-        headers=n_headers
-    data = n_data
-
-    client = return_client()
-    resp = await client.post(
-            url,
-            json=data,
-            headers=headers
-    )
-    
-    return resp.json()
 
 async def send_message(channel, txt):
     data = {
@@ -47,4 +30,5 @@ async def new_name():
             "display_name_normalized":"assistant"
         }
     }
+    return await post.json()
     return await slack_action("users.profile.set",None,data)
