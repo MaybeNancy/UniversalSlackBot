@@ -1,7 +1,7 @@
 import json, asyncio
 
 from ..globals import return_client, return_b_token
-from .httpx import post
+from .shttpx import spost
 
 BASE_URL = "https://slack.com/api/"
 
@@ -24,6 +24,7 @@ async def send_message(channel, txt):
             "username":"Assistant🤖 (Brian)"
         }
     )
+    print(res)
     return res.json()
     
 
