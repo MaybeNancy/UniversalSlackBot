@@ -24,7 +24,7 @@ async def send_message(channel, txt):
             "username":"Assistant🤖 (Brian)"
         }
     )
-    print(res.json())
+    print(BASE_HEAD)
     return res.json()
     
 
