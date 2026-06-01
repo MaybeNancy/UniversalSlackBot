@@ -20,5 +20,5 @@ async def reply(data):
     channel = data["channel"]
     text = str(call_ai(prompt))+" :nancy-scream: :candle-pumpkin:"
     text = nancyfy(text)
-    return await send_message(channel, text)
+    return await send_message(channel, "Hello :>")
     # Use ctx.logger if present; fallback to ctx.slack.logger
