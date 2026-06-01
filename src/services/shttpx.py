@@ -9,6 +9,7 @@ async def spost(url,headers,data):
     client = return_client()
     return await client.post(
             url,
-            json=data,
-            headers=headers
+            headers=headers,
+            json=data
+            
     )
