@@ -5,7 +5,7 @@ import httpx, asyncio
 
 from ..globals import return_client
 
-async def post(url,headers,data):
+async def spost(url,headers,data):
     client = return_client()
     return await client.post(
             url,
