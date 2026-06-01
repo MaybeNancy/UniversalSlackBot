@@ -15,7 +15,7 @@ is a start :P
 """
 
 async def send_message(channel, txt):
-    res = await post(
+    res = await spost(
         BASE_URL+"chat.postMessage",
         BASE_HEAD,
         {
