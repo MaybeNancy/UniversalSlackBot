@@ -15,7 +15,7 @@ is a start :P
 """
 
 async def send_message(channel, txt):
-    return await post(
+    res = await post(
         BASE_URL+"chat.postMessage",
         BASE_HEAD,
         {
@@ -23,7 +23,9 @@ async def send_message(channel, txt):
             "text": txt,
             "username":"Assistant🤖 (Brian)"
         }
-    ).json()
+    )
+    return res.json()
+    
 
 #fix this later
 async def new_name():
