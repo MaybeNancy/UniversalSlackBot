@@ -5,8 +5,12 @@ from .handlers.ping import reply
 async def message(data):
     return await reply(data)
 
+async def check_msg(data):
+    return await edit(data)
+    
 event_routes = {
-    "app_mention":message
+    "app_mention":message,
+    "message": check_msg
 }
 
 async def event_dispatch(data):
