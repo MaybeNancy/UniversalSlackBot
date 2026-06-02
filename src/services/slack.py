@@ -33,7 +33,7 @@ async def send_message(channel, txt):
 async def new_name():
     return await post(
         BASE_URL+"users.profile.set",
-        head_type(return_b_token()),,
+        head_type(return_b_token()),
         {
             "profile":{
                 "display_name":"Assistant",
