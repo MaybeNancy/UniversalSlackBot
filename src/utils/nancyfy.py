@@ -8,7 +8,7 @@ symbols in a funny way :>
 """
 
 def nancyfy(text):
-  return text+"nancy-wink"
+  return text+" :nancy-wink:"
 
 def nancymoji():
-  return ":nancy-wink"
+  return "nancy-wink"
