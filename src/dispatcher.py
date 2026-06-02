@@ -1,16 +1,11 @@
 import json, asyncio
 
 from .handlers.ping import reply
-
-async def message(data):
-    return await reply(data)
-
-async def check_msg(data):
-    return await edit(data)
+from .handlers.chat import emojify
     
 event_routes = {
-    "app_mention":message,
-    "message": check_msg
+    "app_mention": reply,
+    "message": emojify
 }
 
 async def event_dispatch(data):
