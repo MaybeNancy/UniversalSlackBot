@@ -1,7 +1,7 @@
 import json, asyncio
 
-from .handlers.ping import reply
-from .handlers.chat import emojify
+from .handlers.mention import reply
+from .handlers.chatted import emojify
     
 event_routes = {
     "app_mention": reply,
