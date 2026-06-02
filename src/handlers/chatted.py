@@ -2,9 +2,9 @@ import asyncio
 
 from ..services.slack import edit_message
 
-from ..utils.nancyfy import nancyfy
+from ..utils.nancyfy import nancymoji
 
 async def emojify(data):
     channel = data["channel"]
-    text = nancyfy(data["text"])
-    return await send_message(channel, text)
+    channel = data["ts"]
+    return await react(channel, nancymoji(),ts)
