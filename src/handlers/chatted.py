@@ -1,6 +1,6 @@
 import asyncio
 
-from ..services.slack import edit_message
+from ..services.slack import react
 
 from ..utils.nancyfy import nancymoji
 
