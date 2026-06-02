@@ -11,7 +11,14 @@ import random
 
 nancymojis = [
   "nancy-wink",
-  "nancy-cheerful"
+  "nancy-cheerful",
+  "b-nancy-impact",
+  "bandwidth-nancy",
+  "nancy-dance1",
+  "nancy-dance2",
+  "nancy-flirt",
+  "nancy-smile",
+  "nancy-sleep"
 ]
 
 def nancyfy(text):
