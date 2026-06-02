@@ -7,8 +7,15 @@ message, or just to replace
 symbols in a funny way :>
 """
 
+import random
+
+nancymojis = [
+  "nancy-wink",
+  "nancy-cheerful"
+]
+
 def nancyfy(text):
   return text+" :nancy-wink:"
 
 def nancymoji():
-  return "nancy-wink"
+  return nancymojis[randint(0,len(nancymojis))]
