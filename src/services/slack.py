@@ -5,10 +5,12 @@ from .shttpx import spost
 
 BASE_URL = "https://slack.com/api/"
 
-BASE_HEAD={
-            "Authorization": f"Bearer {return_b_token()}",
-            "Content-Type": "application/json; charset=utf-8"
-        }
+def head_type(token):
+    base_head={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json; charset=utf-8"
+            }
+    return base_head
 """
 Still needs improvements, but
 is a start :P
@@ -17,7 +19,7 @@ is a start :P
 async def send_message(channel, txt):
     res = await spost(
         BASE_URL+"chat.postMessage",
-        BASE_HEAD,
+        head_type(return_b_token()),
         {
             "channel": channel, 
             "text": txt,
@@ -32,7 +34,7 @@ async def send_message(channel, txt):
 async def new_name():
     return await post(
         BASE_URL+"users.profile.set",
-        BASE_HEAD,
+        head_type(return_b_token()),,
         {
             "profile":{
                 "display_name":"Assistant",
