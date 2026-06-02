@@ -27,6 +27,18 @@ async def send_message(channel, txt):
         }
     )
     return res.json()
+
+async def react(channel,emoji,ts):
+    res = await spost(
+        BASE_URL+"reactions.add",
+        head_type(return_b_token()),
+        {
+            "channel": channel, 
+            "name": emoji,
+            "timestamp":ts
+        }
+    )
+    return res.json()
     
 
 #fix this later
