@@ -10,6 +10,10 @@ client = None
 BOT_TOKEN = None
 SLACK_SECRET = None
 
+#DA
+DA_ID = None
+DA_SECRET = None
+
 #HF / AI
 HF_TOKEN = None
 
@@ -35,6 +39,11 @@ async def globals_start():
   BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
   global SLACK_SECRET
   SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
+
+  global DA_ID
+  DA_TOKEN = os.getenv("DA_API_ID")
+  global DA_SECRET
+  DA_TOKEN = os.getenv("DA_API_SECRET")
   
   global HF_TOKEN
   HF_TOKEN = os.getenv("SLACKNEURON")
@@ -49,4 +58,8 @@ def return_redis(): return REDIS
 
 def return_b_token(): return BOT_TOKEN
 def return_s_secret(): return SLACK_SECRET
+
+def return_da_id(): return DA_ID
+def return_da_secret(): return DA_SECRET
+
 def r_hug_token(): return HF_TOKEN
