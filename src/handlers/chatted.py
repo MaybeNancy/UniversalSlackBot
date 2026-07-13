@@ -23,8 +23,8 @@ async def talk(data):
 async def get_message(data):
     r = random.randint(1,3)
     if(r == 1):
-        return await emojify(data)
+        await emojify(data)
     if(r>=1):
-        return await talk(data)
+        await talk(data)
     
     return {"status":"ok"}
