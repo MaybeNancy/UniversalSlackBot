@@ -12,7 +12,7 @@ async def emojify(data):
 
 async def talk(data):
     channel = data["channel"]
-    s_user = data["user"]
+    s_user = data.get("user")
     text = data["text"]
     prompt="Say hello to Nancy"
     print(s_user)
