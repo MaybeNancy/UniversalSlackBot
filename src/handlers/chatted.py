@@ -15,7 +15,7 @@ async def talk(data):
     s_user = data.get("user")
     text = data["text"]
     prompt="Say hello to Nancy"
-    print(s_user)
+    print(data)
     print(await get_user(s_user))
     text = str(call_ai(prompt))
     return await send_message(channel, text)
