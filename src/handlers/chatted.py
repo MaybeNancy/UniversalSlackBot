@@ -1,6 +1,6 @@
 import asyncio, random
 
-from ..services.slack import react, send_message
+from ..services.slack import react, send_message, get_user
 from ..services.ai import call_ai
 
 from ..utils.nancyfy import nancymoji
@@ -16,7 +16,7 @@ async def talk(data):
     user = data["user"]
     text = data["text"]
     prompt="Say hello to Nancy"
-    print(data)
+    print(await get_user(user))
     text = str(call_ai(prompt))
     return await send_message(channel, text)
 
