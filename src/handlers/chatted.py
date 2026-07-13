@@ -1,6 +1,6 @@
 import asyncio, random
 
-from ..services.slack import react
+from ..services.slack import react, send_message
 from ..services.ai import call_ai
 
 from ..utils.nancyfy import nancymoji
