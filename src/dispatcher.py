@@ -1,11 +1,11 @@
 import json, asyncio
 
 from .handlers.mention import reply
-from .handlers.chatted import emojify
+from .handlers.chatted import get_message
     
 event_routes = {
     "app_mention": reply,
-    "message": emojify
+    "message": get_message
 }
 
 async def event_dispatch(data):
