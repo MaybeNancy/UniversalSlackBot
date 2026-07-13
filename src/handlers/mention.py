@@ -16,7 +16,7 @@ async def reply(data):
     
    # except:
         #print("not working now")
-    prompt="Write a random short and lovely horror story staring Nancy"
+    prompt="Write a short horror story staring Nancy"
     channel = data["channel"]
     text = str(call_ai(prompt))+" :nancy-scream: :candle-pumpkin:"
     text = nancyfy(text)
