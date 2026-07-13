@@ -11,7 +11,13 @@ async def emojify(data):
     return await react(channel, nancymoji(),ts)
 
 async def talk(data):
-    return {"status":"ok"}
+    
+    channel = data["channel"]
+    user = data["user"]
+    text = data["text"]
+    prompt="Say hello to "+user
+    text = str(call_ai(prompt))
+    return await send_message(channel, text)
 
 async def get_message(data):
     r = random.randint(1,3)
