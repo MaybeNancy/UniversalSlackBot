@@ -11,11 +11,11 @@ async def emojify(data):
     return await react(channel, nancymoji(),ts)
 
 async def talk(data):
-    
     channel = data["channel"]
     user = data["user"]
     text = data["text"]
     prompt="Say hello to Nancy"
+    print(user)
     print(await get_user(user))
     text = str(call_ai(prompt))
     return await send_message(channel, text)
