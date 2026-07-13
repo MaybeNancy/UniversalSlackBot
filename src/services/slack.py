@@ -40,12 +40,12 @@ async def react(channel,emoji,ts):
     )
     return res.json()
 
-async def get_user(user):
+async def get_user(s_user):
     res = await spost(
         BASE_URL+"users.info",
         head_type(return_b_token()),
         {
-            "user": user
+            "user": s_user
         }
     )
     return res.json()
