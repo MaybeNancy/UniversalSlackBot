@@ -40,6 +40,8 @@ def call_ai(prompt):
     }
   ]
 
+  txt=""
+
   try:
       response = hf_client.chat_completion(
         messages,
