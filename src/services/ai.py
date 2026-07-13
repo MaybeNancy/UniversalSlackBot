@@ -49,6 +49,6 @@ def call_ai(prompt):
 
       txt = response.choices[0].message.content
   except:
-      txt = "Not now, I'm sleepin' :nancy-sleep:
+      txt = "Not now, I\'m sleepin\' :nancy-sleep:
   
   return txt
