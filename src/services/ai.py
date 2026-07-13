@@ -40,12 +40,15 @@ def call_ai(prompt):
     }
   ]
 
-  response = hf_client.chat_completion(
-    messages,
-    max_tokens=100,
-    temperature=1.125
-  )
+  try:
+      response = hf_client.chat_completion(
+        messages,
+        max_tokens=100,
+        temperature=1.125
+      )
 
-  txt = response.choices[0].message.content
+      txt = response.choices[0].message.content
+  except:
+      txt = "Not now, I'm sleepin' :nancy-sleep:
   
   return txt
