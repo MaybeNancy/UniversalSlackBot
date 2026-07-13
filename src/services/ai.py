@@ -24,7 +24,7 @@ from ..globals import r_hug_token
 
 from huggingface_hub import InferenceClient
 
-model = "meta-llama/Meta-Llama-3-8B-Instruct"
+model = "deepseek-ai/DeepSeek-V4-Pro:novita"
 
 def call_ai(prompt):
   hf_client = InferenceClient(
