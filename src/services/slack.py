@@ -4,6 +4,7 @@ from ..globals import return_client, return_b_token
 from .shttpx import spost
 
 BASE_URL = "https://slack.com/api/"
+BOT_BASE_NAME = "Brian The SlackBot🤖 (AKA: Assistant)"
 
 def head_type(token):
     base_head={
@@ -23,7 +24,21 @@ async def send_message(channel, txt):
         {
             "channel": channel, 
             "text": txt,
-            "username":"Assistant🤖 (Brian)"
+            "username":BOT_BASE_NAME
+        }
+    )
+    return res.json()
+
+async def send_ghostly(channel,user,txt):
+    res = await spost(
+        BASE_URL+"chat.postEphemeral",
+        head_type(return_b_token()),
+        {
+            "channel": channel, 
+            "user": user,
+            #"icon_url": icon,
+            "text": txt+" (Ghostly! 👻)",
+            "username":BOT_BASE_NAME
         }
     )
     return res.json()
