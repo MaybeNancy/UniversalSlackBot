@@ -9,7 +9,8 @@ within the Slack server
 #Dictionary is not the same as a list
 
 chars = {
-    "Iron The SlackBot🤖 (AKA: Assistant)": {
+    {
+        "name":"Iron The SlackBot🤖 (AKA: Assistant)",
         "priority" : 1,
         "who" : "Robotic servant built to provide help in the slack server"
         "traits" : [
@@ -36,7 +37,8 @@ chars = {
             "anything that isn't Brian"
         ]
     },
-    "Nancy":{
+    {
+        "name":"Nancy",
         "priority" : 0.75,
         "who" : "Tamed girl who likes to have fun on the internet",
         "traits" : [
@@ -84,7 +86,8 @@ chars = {
             "open her feelings"
         ]
     },
-    "Samantha" : {
+    {
+        "name" : "Samantha",
         "priority" : 0.5,
         "who" : "Black woman who likes to read, write poetry and is Nancy's crush"
         "traits" : [
