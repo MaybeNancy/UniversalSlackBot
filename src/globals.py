@@ -14,8 +14,9 @@ SLACK_SECRET = None
 DA_ID = None
 DA_SECRET = None
 
-#HF / AI
-HF_TOKEN = None
+#AI
+HF_TOKEN = None #HuggingFace
+OR_TOKEN = None #OpenRouter
 
 #REDIS
 REDIS = None
@@ -47,7 +48,8 @@ async def globals_start():
   
   global HF_TOKEN
   HF_TOKEN = os.getenv("SLACKNEURON")
-  
+  global OR_TOKEN
+  OR_TOKEN = os.getenv("SLACKNEURON2")
 
 async def globals_end():
   await client.aclose()
@@ -63,3 +65,4 @@ def return_da_id(): return DA_ID
 def return_da_secret(): return DA_SECRET
 
 def r_hug_token(): return HF_TOKEN
+def r_or_token(): return OR_TOKEN
