@@ -24,7 +24,7 @@ async def get_message(data):
     r = random.randint(1,5)
     if(r >= 3):
         return await emojify(data)
-    if(r>=4):
+    elif(r>=4):
         return await talk(data)
-    
-    return {"status":"ok"}
+    else:
+        return {"status":"ok"}
