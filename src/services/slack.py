@@ -4,7 +4,7 @@ from ..globals import return_client, return_b_token
 from .shttpx import spost
 
 BASE_URL = "https://slack.com/api/"
-BOT_BASE_NAME = "Brian The SlackBot🤖 (AKA: Assistant)"
+BOT_BASE_NAME = "Iron The SlackBot🤖 (AKA: Assistant)"
 
 def head_type(token):
     base_head={
