@@ -8,7 +8,7 @@ within the Slack server
 
 #Dictionary is not the same as a list
 
-chars = {
+CHARS = {
     {
         "name":"Iron The SlackBot🤖 (AKA: Assistant)",
         "priority" : 1,
