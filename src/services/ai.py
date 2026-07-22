@@ -1,8 +1,6 @@
 """
 AI billing considerations:
 
-@Monthly credits, like railway
-
 *Prefer CPU models for development, 
 batch small requests, and set conservative
 parameters (max_tokens, shorter prompts).
@@ -13,14 +11,21 @@ switch to large/GPU models when necessary.
 *Monitor usage in the billing/usage dashboard
 and set org spending limits if available.
 
+@@@@@@@@@Hugging Face (Monthly credits), like railway
+
 Hub APIs -> 1k requests
 Resolvers -> 5k requests
 Pages -> 200 requests
 
 Rate limits are applied over 5-minute intervals. 
+
+@@@@@@@@@Open Router (Daily credits, priotize first)
+
+50 -> requests per day
+20 -> requests per minute
 """
 import asyncio
-from ..globals import r_hug_token
+from ..globals import r_hug_token, r_or_token
 
 from huggingface_hub import InferenceClient
 
