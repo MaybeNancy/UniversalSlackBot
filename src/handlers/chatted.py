@@ -14,17 +14,17 @@ async def talk(data):
     channel = data["channel"]
     s_user = data.get("user")
     text = data["text"]
-    prompt="Someone said: "+text+", add something to the conversation if needed"
+    prompt="Someone said: "+text+", add something short to the conversation if needed"
     
-    """print(await get_user(s_user))"""
+   print(await get_user(s_user))
     text = str(call_ai(prompt))
     return await send_message(channel, text)
 
 async def get_message(data):
     r = random.randint(1,5)
-    if r > 2:
+    if r > 3:
         return await emojify(data)
-    elif r <= 1:
+    elif r <= 2:
         return await talk(data)
     else:
         return {"status":"ok"}
