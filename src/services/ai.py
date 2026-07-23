@@ -28,34 +28,66 @@ import asyncio
 from ..globals import r_hug_token, r_or_token
 
 from huggingface_hub import InferenceClient
+from openai import OpenAI
 
 model = "deepseek-ai/DeepSeek-V4-Pro:novita"
 
-def call_ai(prompt):
-  hf_client = InferenceClient(
-    token=r_hug_token(),
-    timeout=30,
-    model=model
-  )
+def weekly_ai():
+    hf_client = InferenceClient(
+        token=r_hug_token(),
+        timeout=30,
+        model=model
+    )
 
-  messages=[
-    {
-      "role": "user", 
-     "content": prompt
-    }
-  ]
+    messages=[
+        {
+            "role": "user", 
+            "content": prompt
+        }
+    ]
 
-  txt=""
+    try:
+        response = hf_client.chat_completion(
+            messages,
+            max_tokens=100,
+            temperature=1.125
+        )
 
-  try:
-      response = hf_client.chat_completion(
-        messages,
-        max_tokens=100,
-        temperature=1.125
+        txt = response.choices[0].message.content
+        return txt
+    except:
+        print("an error ocurred!")
+  
+def attempt_daily_ai():
+    or_client = OpenAI(
+      base_url="https://openrouter.ai/api/v1",
+      api_key=r_or_token()
+    )
+
+    try:
+      response = or_client.chat.completions.create(
+        model="openrouter/free",
+        messages=[
+          {
+            "role":"user",
+            "content":prompt
+          }
+        ],
+        extra_body={
+          "reasoning":{
+           "enabled":True
+          }
+        }
       )
+      return response.choices[0].message
+    except:
+      print("ai error from open router!")
+  
+    return False
 
-      txt = response.choices[0].message.content
-  except:
-      txt = "Sleeping... :nancy-sleep:"
+def call_ai(prompt):
+  
+
+  txt = "Sleeping... :nancy-sleep:"
   
   return txt
