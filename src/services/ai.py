@@ -24,7 +24,6 @@ Rate limits are applied over 5-minute intervals.
 50 -> requests per day
 20 -> requests per minute
 """
-import asyncio
 
 from ..globals import r_hug_token, r_or_token
 from ..utils.diy_ai import unavailable
@@ -34,7 +33,7 @@ from openai import OpenAI
 
 model = "deepseek-ai/DeepSeek-V4-Pro:novita"
 
-def message(prompt):
+def mess(prompt):
     default=[
         {
             "role": "user", 
@@ -52,7 +51,7 @@ def weekly_ai(prompt):
 
     try:
         response = hf_client.chat_completion(
-            message(prompt),
+            messages=mess(prompt),
             max_tokens=100,
             temperature=1
         )
@@ -72,14 +71,14 @@ def daily_ai(prompt):
     try:
       response = or_client.chat.completions.create(
         model="openrouter/free",
-        message(prompt),
+        messages=mess(prompt),
         extra_body={
             "reasoning":{
                "enabled":True
             }
          }
       )
-      return response.choices[0].message
+      return response.choices[0].message.content
     except:
         print("ai error from open router!")
         
