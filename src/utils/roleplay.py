@@ -8,7 +8,7 @@ within the Slack server
 
 char_list = [
     "Iron",
-    "Nancy,
+    "Nancy",
     "Sam"
 ]
 
