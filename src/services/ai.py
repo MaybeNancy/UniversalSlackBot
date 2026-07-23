@@ -59,7 +59,7 @@ def weekly_ai(prompt):
         return response.choices[0].message.content
     except:
         print("an error ocurred in hugging face!")
-
+        return unavailable()
     return unavailable()
   
 def daily_ai(prompt):
@@ -81,8 +81,8 @@ def daily_ai(prompt):
       return response.choices[0].message.content
     except Exception as e:
         print("ai error from open router!",repr(e))
-        
-    return weekly_ai(prompt)
+        return weekly_ai(prompt)
+    return unavailable()
 
 def call_ai(prompt):
   return daily_ai(prompt)
