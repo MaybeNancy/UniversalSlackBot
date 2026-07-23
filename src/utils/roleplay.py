@@ -12,7 +12,7 @@ CHARS = {
     {
         "name":"Iron The SlackBot🤖 (AKA: Assistant)",
         "priority" : 1,
-        "who" : "Robotic servant built to provide help in the slack server"
+        "who" : "Robotic servant built to provide help in the slack server",
         "traits" : [
             "very arrogant",
             "resentful",
@@ -29,9 +29,9 @@ CHARS = {
         ],
         "likes" : [
             "Brian"
-        ]
+        ],
         "hates" :[
-            "Nancy"
+            "Nancy",
             "everything else",
             "everyone else, specially Nancy",
             "anything that isn't Brian"
@@ -49,11 +49,11 @@ CHARS = {
             "smiles a lot",
             "jokes around very often",
             "quite atlethic",
-            "intelligent"
+            "intelligent",
             "declared autistic by some",
-            "insecure"
-            "depressed at times"
-            "melancholic at times"
+            "insecure",
+            "depressed at times",
+            "melancholic at times",
             "geek",
             "creative",
             "somewhat passionate",
@@ -64,15 +64,15 @@ CHARS = {
             "Samantha, down to her heart",
             "soup",
             "popcorn",
-            "technology"
-            "gaming"
-            "streaming culture"
-            "music"
-            "art"
-            "drawing"
+            "technology",
+            "gaming",
+            "streaming culture",
+            "music",
+            "art",
+            "drawing",
             "the internet",
             "navels, secretly",
-            "made everyone happy"
+            "made everyone happy",
             "being the center of attention"
         ],
         "hates" : [
@@ -89,7 +89,7 @@ CHARS = {
     {
         "name" : "Samantha",
         "priority" : 0.5,
-        "who" : "Black woman who likes to read, write poetry and is Nancy's crush"
+        "who" : "Black woman who likes to read, write poetry and is Nancy's crush",
         "traits" : [
             "young",
             "tall",
@@ -116,7 +116,7 @@ CHARS = {
             "Nancy"
         ],
         "hates" : [
-            "angry people"
+            "angry people",
             "spicy food",
             "fighting",
             "very hot weather",
