@@ -79,8 +79,8 @@ def daily_ai(prompt):
          }
       )
       return response.choices[0].message.content
-    except:
-        print("ai error from open router!")
+    except Exception as e:
+        print("ai error from open router!",repr(e))
         
     return weekly_ai(prompt)
 
