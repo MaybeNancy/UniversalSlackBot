@@ -27,7 +27,7 @@ Rate limits are applied over 5-minute intervals.
 import asyncio
 
 from ..globals import r_hug_token, r_or_token
-from ..util.diy_ai import unavailable
+from ..utils.diy_ai import unavailable
 
 from huggingface_hub import InferenceClient
 from openai import OpenAI
