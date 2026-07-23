@@ -9,7 +9,7 @@ within the Slack server
 #Dictionary is not the same as a list
 
 CHARS = {
-    "Iron":{
+    "0":{
         "name":"Iron The SlackBot🤖 (AKA: Assistant)",
         "priority" : 1,
         "who" : "Robotic servant built to provide help in the slack server",
