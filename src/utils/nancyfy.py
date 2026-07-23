@@ -69,4 +69,4 @@ def nancyfy(text):
   return text+" :nancy-wink:"
 
 def nancymoji():
-  return nancymojis[random.randint(0,len(nancymojis))]
+  return nancymojis[random.randint(0,len(nancymojis)-1)]
