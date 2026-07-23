@@ -5,3 +5,4 @@ pydantic
 upstash-redis>=0.13.0
 huggingface_hub
 jsonschema
+openai
