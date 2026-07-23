@@ -49,7 +49,7 @@ word = [
 ]
 
 def r(max):
-  return random.rand(0,max)
+  return random.randint(0,max-1)
 
 def unavailable():
   type = r(1)
