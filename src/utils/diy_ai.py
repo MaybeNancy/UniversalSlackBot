@@ -38,8 +38,8 @@ word = [
   ""
   ":<",
   "hmm",
-  "3-dots",
-  "welp :3-dots",
+  ":3-dots:",
+  "welp :3-dots;",
   "nah"
   "shh I'm trying to sleep"
   "Do it yourself",
