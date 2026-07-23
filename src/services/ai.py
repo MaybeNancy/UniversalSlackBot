@@ -32,33 +32,36 @@ from openai import OpenAI
 
 model = "deepseek-ai/DeepSeek-V4-Pro:novita"
 
-def weekly_ai():
+def message(prompt):
+    default=[
+        {
+            "role": "user", 
+            "content": prompt
+        }
+    ]
+    return default
+
+def weekly_ai(prompt):
     hf_client = InferenceClient(
         token=r_hug_token(),
         timeout=30,
         model=model
     )
 
-    messages=[
-        {
-            "role": "user", 
-            "content": prompt
-        }
-    ]
-
     try:
         response = hf_client.chat_completion(
-            messages,
+            message(prompt),
             max_tokens=100,
-            temperature=1.125
+            temperature=1
         )
-
-        txt = response.choices[0].message.content
-        return txt
+        
+        return response.choices[0].message.content
     except:
-        print("an error ocurred!")
+        print("an error ocurred in hugging face!")
+
+    return "No AI :<, Sleeping... :nancy-sleep:"
   
-def attempt_daily_ai():
+def daily_ai(prompt):
     or_client = OpenAI(
       base_url="https://openrouter.ai/api/v1",
       api_key=r_or_token()
@@ -67,27 +70,18 @@ def attempt_daily_ai():
     try:
       response = or_client.chat.completions.create(
         model="openrouter/free",
-        messages=[
-          {
-            "role":"user",
-            "content":prompt
-          }
-        ],
+        message(prompt),
         extra_body={
-          "reasoning":{
-           "enabled":True
-          }
-        }
+            "reasoning":{
+               "enabled":True
+            }
+         }
       )
       return response.choices[0].message
     except:
-      print("ai error from open router!")
-  
-    return False
+        print("ai error from open router!")
+        
+    return weekly_ai(prompt)
 
 def call_ai(prompt):
-  
-
-  txt = "Sleeping... :nancy-sleep:"
-  
-  return txt
+  return daily_ai(prompt)
