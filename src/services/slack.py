@@ -5,7 +5,7 @@ from .shttpx import spost
 from ..utils.roleplay import CHARS
 
 BASE_URL = "https://slack.com/api/"
-BOT_BASE_NAME = CHARS[0]["name"]
+BOT_BASE_NAME = CHARS[str(0)]["name"]
 
 def head_type(token):
     base_head={
