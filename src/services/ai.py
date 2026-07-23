@@ -25,7 +25,9 @@ Rate limits are applied over 5-minute intervals.
 20 -> requests per minute
 """
 import asyncio
+
 from ..globals import r_hug_token, r_or_token
+from ..util.diy_ai import unavailable
 
 from huggingface_hub import InferenceClient
 from openai import OpenAI
@@ -59,7 +61,7 @@ def weekly_ai(prompt):
     except:
         print("an error ocurred in hugging face!")
 
-    return "No AI :<, Sleeping... :nancy-sleep:"
+    return unavailable()
   
 def daily_ai(prompt):
     or_client = OpenAI(
