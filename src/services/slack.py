@@ -68,7 +68,7 @@ async def get_user(s_user):
 
 #fix this later
 async def new_name():
-    return await post(
+    res = await spost(
         BASE_URL+"users.profile.set",
         head_type(return_b_token()),
         {
@@ -77,4 +77,5 @@ async def new_name():
                 "display_name_normalized":"assistant"
             }
         }
-    ).json()
+    )
+    return res.json()
