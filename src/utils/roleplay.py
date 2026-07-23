@@ -6,10 +6,16 @@ construct a roleplay conversation
 within the Slack server
 """
 
+char_list = [
+    "Iron",
+    "Nancy,
+    "Sam"
+]
+
 #Dictionary is not the same as a list
 
 CHARS = {
-    "0":{
+    "Iron":{
         "name":"Iron The SlackBot🤖 (AKA: Assistant)",
         "priority" : 1,
         "who" : "Robotic servant built to provide help in the slack server",
