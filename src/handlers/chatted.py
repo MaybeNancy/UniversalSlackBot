@@ -14,7 +14,8 @@ async def talk(data):
     channel = data["channel"]
     s_user = data.get("user")
     text = data["text"]
-    prompt="Someone said: "+text+", add something short to the conversation if needed"
+    txt1 = "You're a discord bot, someone said: '"
+    prompt=txt1+text+"', reply with something very short to the chat if needed"
     
    # print(await get_user(s_user))
     #print(data)
@@ -25,7 +26,7 @@ async def get_message(data):
     r = random.randint(0,5)
     if r >= 3:
         return await emojify(data)
-    elif r <= 1:
+    elif r < 1:
         return await talk(data)
     else:
         return {"status":"ok"}
