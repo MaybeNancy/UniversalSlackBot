@@ -15,7 +15,7 @@ async def talk(data):
     s_user = data.get("user")
     text = data["text"]
     txt1 = "You're a discord bot, someone said: '"
-    prompt=txt1+text+"', reply with something very short to the chat if needed"
+    prompt=txt1+text+"', reply with something very short in plan text to the chat if needed"
     
    # print(await get_user(s_user))
     #print(data)
