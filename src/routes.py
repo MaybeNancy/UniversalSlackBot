@@ -92,6 +92,11 @@ async def slack_events(request: Request, background: BackgroundTasks):
     #Another and better logger here, maybe
     return {"status": "ok"}
 
+"""
+Cron job from cron-job.org here to maintain
+redis alive :>
+"""
+
 #Railway needs this, for some reason
 @router.get("/health")
 async def health():
