@@ -16,9 +16,10 @@ async def reply(data):
     
    # except:
         #print("not working now")
-    prompt="Someone mentioned you, say something"
+    text = data["text"]
+    prompt = "Someone said to you the following: "+text
     channel = data["channel"]
-    text = str(call_ai(prompt))
-    text = nancyfy(text)
-    return await send_message(channel, text)
+    ai = str(call_ai(prompt))
+    response = nancyfy(ai)
+    return await send_message(channel, ai)
     # Use ctx.logger if present; fallback to ctx.slack.logger
