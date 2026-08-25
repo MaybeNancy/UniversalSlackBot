@@ -3,20 +3,22 @@ from .globals import return_redis
 
 async def cacheck_dupe(key):
     redis = return_redis()
+    
     try:
-        check = await asyncio.wait_for(redis.get(key), timeout=0.2)
-    except asyncio.TimeoutError:
+        value = await asyncio.wait_for(redis.get(key), timeout=2.0)
+        return value is not None
+    except (asyncio.TimeoutError, Exception):
         return False
-    except Exception:
-        return False
-    return bool(check)
 
 async def cacheck_change(key):
     redis = return_redis()
+    
     try:
-        await asyncio.wait_for(redis.set(key, "1", ex=300), timeout=0.3)
-    except asyncio.TimeoutError:
-        print("Timeout Error :(")
+        result = await asyncio.wait_for(redis.set(key, "1", ex=300), timeout=2.0)
+        return result is not None
+    except (asyncio.TimeoutError, Exception):
+        print("Error :(")
+        return false
 
 """
 Stuff to be checked
