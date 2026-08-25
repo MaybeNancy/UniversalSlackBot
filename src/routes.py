@@ -6,7 +6,7 @@ from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
 
 from .dispatcher import event_dispatch
 from .globals import return_s_secret
-from .redis import cacheck_dupe ,cacheck_change
+from .redis import check
 from .utils.json import checkjson
 
 router = APIRouter()
@@ -81,16 +81,16 @@ async def slack_events(request: Request, background: BackgroundTasks):
     event_type = payload.get("event").get("type")
     ts = payload.get("event").get("ts")
     key = "key:"+event_type+":"+ts
-    
-    if await cacheck_dupe(key): return {"status": "ok"}
-        
-    result = await event_dispatch(payload)
 
-    await cacheck_change(key)
+    if await check(key):
+        return await event_dispatch(payload)
+    else:
+        return {"status": "ok"}
+    
     #Context code here, idk, maybe useful
 
     #Another and better logger here, maybe
-    return result
+    return {"status": "ok"}
 
 #Railway needs this, for some reason
 @router.get("/health")
