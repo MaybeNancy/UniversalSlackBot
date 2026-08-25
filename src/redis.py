@@ -7,8 +7,8 @@ async def check(key):
     try:
         result = await asyncio.wait_for(redis.set(key,"1",nx=True,ex=300), timeout=2.0)
         return result is not None
-    except Exception:
-        print("Redis Error :<")
+    except Exception as e:
+        print("Redis Error :<, this is what happened: ", repr(e))
         return False
     except asyncio.TimeoutError:
         print("Redis Timeout:<")
