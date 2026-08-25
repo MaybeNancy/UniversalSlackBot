@@ -95,6 +95,10 @@ async def slack_events(request: Request, background: BackgroundTasks):
 """
 Cron job from cron-job.org here to maintain
 redis alive :>
+
+Or any cronjob request, like notifications,
+
+allat here :>
 """
 
 #Railway needs this, for some reason
