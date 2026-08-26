@@ -4,7 +4,7 @@ I just need the thing working
 """
 import asyncio
 
-from ..services.slack import send_message, new_name, get_user
+from ..services.slack import send_message, new_name
 from ..services.ai import call_ai
 
 from ..utils.nancyfy import nancyfy
@@ -16,7 +16,6 @@ async def reply(data):
     
    # except:
         #print("not working now")
-    print(await get_user(data.get("user")))
     text = data["text"]
     prompt = "Someone said to you the following: "+text
     channel = data["channel"]
