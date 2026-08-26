@@ -23,10 +23,12 @@ async def talk(data):
     return await send_message(channel, text)
 
 async def get_message(data):
+    print(await get_user(data.get("user")))
+    
     r = random.randint(0,5)
     if r >= 3:
         return await emojify(data)
-    elif r < 1:
+    elif r == 0:
         return await talk(data)
     else:
         return {"status":"ok"}
