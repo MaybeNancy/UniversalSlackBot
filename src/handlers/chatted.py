@@ -23,7 +23,7 @@ async def talk(data):
     return await send_message(channel, text)
 
 async def get_message(data):
-    print(await get_user(data.get("user")))
+    print(data,await get_user(data.get("user")))
     
     r = random.randint(0,5)
     if r >= 3:
