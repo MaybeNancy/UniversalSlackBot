@@ -58,8 +58,8 @@ async def react(channel,emoji,ts):
     return res.json()
 
 async def get_all_users(pcursor, id):
-    print("cursor =",cursor)
     cursor = pcursor
+    print("cursor =",cursor)
     users_page = await spost(
         BASE_URL+"users.list",
         head_type(return_b_token()),
