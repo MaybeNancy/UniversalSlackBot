@@ -77,11 +77,11 @@ async def get_all_users(pcursor, id):
               else:
                   return u["real_name"]
 
-    if user_page.get("response_metadata") not None:
+    if user_page.get("response_metadata") != None:
         metadata = user_page.get("response_metadata")
-        if metadata.get("next_cursor") not None:
+        if metadata.get("next_cursor") != None:
             cursor = metadata.get("next_cursor")
-            if cursor not "":
+            if cursor != "":
                 return await get_all_users(cursor, id)
     
     return "Unknown"
