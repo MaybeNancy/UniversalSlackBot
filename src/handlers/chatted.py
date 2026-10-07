@@ -29,8 +29,8 @@ async def get_message(data):
         print(s_user)
         print(repr(await get_user(s_user)))
     
-    r = random.randint(0,5)
-    if r >= 3:
+    r = random.randint(0,7)
+    if r >= 5:
         return await emojify(data)
     elif r == 0:
         return await talk(data)
