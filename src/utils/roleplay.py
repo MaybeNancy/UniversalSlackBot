@@ -1,3 +1,5 @@
+from ..services.ai import callai
+
 """
 Dictionary of all the characters
 and their attributes for the ai
