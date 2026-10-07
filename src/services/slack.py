@@ -76,7 +76,7 @@ async def get_user_name(id):
         print(u["id"]
         if u["id"] == id:
               if "display_name" in u["profile"]:
-                  return u["profile"][display_name"]
+                  return u["profile"]["display_name"]
               else:
                   return u["real_name"]
 
