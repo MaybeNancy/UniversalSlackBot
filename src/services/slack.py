@@ -57,20 +57,16 @@ async def react(channel,emoji,ts):
     )
     return res.json()
 
-async def get_all_users(cursor):
-    res = await spost(
+async def get_all_users(pcursor, id):
+    cursor = pcursor
+    users_page = await spost(
         BASE_URL+"users.list",
         head_type(return_b_token()),
         {
-            "cursor":cursor,
-            "limit":5
+            "cursor":cursor%3D,
+            "limit":PAGE_LENGTH
         }
     )
-    return res.json()
-
-async def get_user_name(id):
-    cursor = ""
-    users_page = await get_all_users(cursor)
 
     for u in users_page["members"]:
         print(u["id"])
@@ -80,7 +76,18 @@ async def get_user_name(id):
               else:
                   return u["real_name"]
 
+    if user_page.get("response_metadata") not None:
+        metadata = user_page.get("response_metadata")
+        if metadata.get("next_cursor") not None:
+            cursor = metadata.get("next_cursor")
+            if cursor not "":
+                return await get_all_users(cursor, id)
+    
     return "Unknown"
+
+async def get_user_name(id):
+    cursor = ""
+    return await get_all_users(cursor, id)
 
 #fix this later
 async def new_name():
