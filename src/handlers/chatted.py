@@ -13,9 +13,10 @@ async def emojify(data):
 async def talk(data):
     channel = data["channel"]
     s_user = data.get("user")
+    user_name = get_user_name(s_user)
     text = data["text"]
-    txt1 = "You're a discord bot, someone said: '"
-    prompt=txt1+text+"', reply with something very short in plan text to the chat if needed"
+    txt1 = "You're a discord bot, "+username+" said: '"
+    prompt=txt1+text+"', please say hi and his/her name back"
     
    # print(await get_user(s_user))
     #print(data)
@@ -23,12 +24,7 @@ async def talk(data):
     return await send_message(channel, text)
 
 async def get_message(data):
-    if "user" in data:
-        s_user = data["user"]
-        print(data)
-        print(s_user, "Hehe")
-        print(repr(await get_user_name(s_user)))
-    
+    return await talk(data)
     r = random.randint(0,7)
     if r >= 5:
         return await emojify(data)
