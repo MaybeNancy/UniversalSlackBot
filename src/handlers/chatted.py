@@ -23,7 +23,7 @@ async def talk(data):
     return await send_message(channel, text)
 
 async def get_message(data):
-    if "user" is in data:
+    if "user" in data:
         s_user = data["user"]
         print(data)
         print(s_user)
