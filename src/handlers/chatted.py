@@ -15,8 +15,8 @@ async def talk(data):
     s_user = data.get("user")
     username = await get_user_name(s_user)
     text = data["text"]
-    txt1 = "You're a discord bot, "+username+" said: '"
-    prompt=txt1+text+"', please say hi and his/her name back"
+    txt1 = "You're a discord chatbot, the user "+username+" said: '"
+    prompt=txt1+text+"', please say reply with something appropiate to that person"
     
    # print(await get_user(s_user))
     #print(data)
@@ -24,7 +24,6 @@ async def talk(data):
     return await send_message(channel, text)
 
 async def get_message(data):
-    return await talk(data)
     r = random.randint(0,7)
     if r >= 5:
         return await emojify(data)
