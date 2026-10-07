@@ -58,10 +58,10 @@ async def react(channel,emoji,ts):
 
 async def get_user(s_user):
     res = await spost(
-        BASE_URL+"users.info",
+        BASE_URL+"users.list",
         head_type(return_b_token()),
         {
-            "user": "Nancy"
+            "limit":5
         }
     )
     return res.json()
