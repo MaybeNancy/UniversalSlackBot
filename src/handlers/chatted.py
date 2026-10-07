@@ -13,7 +13,7 @@ async def emojify(data):
 async def talk(data):
     channel = data["channel"]
     s_user = data.get("user")
-    username = get_user_name(s_user)
+    username = await get_user_name(s_user)
     text = data["text"]
     txt1 = "You're a discord bot, "+username+" said: '"
     prompt=txt1+text+"', please say hi and his/her name back"
