@@ -1,5 +1,3 @@
-from ..services.ai import call_ai
-
 """
 Dictionary of all the characters
 and their attributes for the ai
