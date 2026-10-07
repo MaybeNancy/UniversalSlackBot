@@ -69,7 +69,7 @@ async def get_all_users(pcursor, id):
         }
     )
 
-    users_page = res.json()
+    users_page = await res.json()
 
     for u in users_page["members"]:
         if u["id"] == id:
