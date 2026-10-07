@@ -27,7 +27,7 @@ async def get_message(data):
         s_user = data["user"]
         print(data)
         print(s_user)
-        print(repr(await get_user(s_user)))
+        print(repr(await get_user("Nancy")))
     
     r = random.randint(0,7)
     if r >= 5:
