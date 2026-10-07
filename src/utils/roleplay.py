@@ -1,4 +1,4 @@
-from ..services.ai import callai
+from ..services.ai import call_ai
 
 """
 Dictionary of all the characters
