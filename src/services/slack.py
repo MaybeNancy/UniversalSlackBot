@@ -73,7 +73,7 @@ async def get_user_name(id):
     users_page = await get_all_users(cursor)
 
     for u in users_page["members"]:
-        print(u["id"]
+        print(u["id"])
         if u["id"] == id:
               if "display_name" in u["profile"]:
                   return u["profile"]["display_name"]
