@@ -77,14 +77,14 @@ async def get_all_users(pcursor, id):
                   return u["profile"]["display_name"]
               else:
                   return u["real_name"]
-
+"""
     if users_page.get("response_metadata") != None:
         metadata = users_page.get("response_metadata")
         if metadata.get("next_cursor") != None:
             cursor = metadata.get("next_cursor")
             if cursor != "":
                 return await get_all_users(cursor, id)
-    
+    """
     return "Unknown"
 
 async def get_user_name(id):
