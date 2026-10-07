@@ -17,7 +17,9 @@ async def reply(data):
    # except:
         #print("not working now")
     text = data["text"]
-    prompt = "Someone said to you the following: "+text
+    user = await get_user_name(data.get("user"))
+    busy = ", reply and say that you're busy right now"
+    prompt = user+" said to you the following: "+text+busy
     channel = data["channel"]
     ai = str(call_ai(prompt))
     response = nancyfy(ai)
