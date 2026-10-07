@@ -6,6 +6,7 @@ from ..utils.roleplay import CHARS, char_list
 
 BASE_URL = "https://slack.com/api/"
 BOT_BASE_NAME = CHARS[char_list[0]]["name"]
+PAGE_LENGTH = 50
 
 def head_type(token):
     base_head={
@@ -56,15 +57,30 @@ async def react(channel,emoji,ts):
     )
     return res.json()
 
-async def get_user(s_user):
+async def get_all_users(cursor):
     res = await spost(
         BASE_URL+"users.list",
         head_type(return_b_token()),
         {
+            "cursor":cursor,
             "limit":5
         }
     )
     return res.json()
+
+async def get_user_name(id):
+    cursor = ""
+    users_page = await get_all_users(cursor)
+
+    for u in users_page["members"]:
+        print(u["id"]
+        if u["id"] == id:
+              if "display_name" in u["profile"]:
+                  return u["profile"][display_name"]
+              else:
+                  return u["real_name"]
+
+    return "Unknown"
 
 #fix this later
 async def new_name():
