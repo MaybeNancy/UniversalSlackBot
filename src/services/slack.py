@@ -60,7 +60,7 @@ async def react(channel,emoji,ts):
 async def get_all_users(pcursor, id):
     cursor = pcursor
     print("cursor =",cursor)
-    users_page = await spost(
+    res = await spost(
         BASE_URL+"users.list",
         head_type(return_b_token()),
         {
@@ -68,6 +68,8 @@ async def get_all_users(pcursor, id):
             "limit":PAGE_LENGTH
         }
     )
+
+    users_page = res.json()
 
     for u in users_page["members"]:
         print(u["id"])
