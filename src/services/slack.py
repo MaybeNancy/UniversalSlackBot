@@ -61,7 +61,7 @@ async def get_user(s_user):
         BASE_URL+"users.profile.get",
         head_type(return_b_token()),
         {
-            "user": s_user
+            "user": "U0AAS5ZGSAD"
         }
     )
     return res.json()
