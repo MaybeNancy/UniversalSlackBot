@@ -12,7 +12,7 @@ async def emojify(data):
 
 async def talk(data):
     channel = data["channel"]
-    s_user = data.["user"]
+    s_user = data.get("user")
     text = data["text"]
     txt1 = "You're a discord bot, someone said: '"
     prompt=txt1+text+"', reply with something very short in plan text to the chat if needed"
@@ -23,8 +23,8 @@ async def talk(data):
     return await send_message(channel, text)
 
 async def get_message(data):
-    if data.get("user") is not None:
-        s_user = data.get("user")
+    if "user" is in data:
+        s_user = data["user"]
         print(data)
         print(s_user)
         print(repr(await get_user(s_user)))
