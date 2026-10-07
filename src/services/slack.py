@@ -58,7 +58,7 @@ async def react(channel,emoji,ts):
 
 async def get_user(s_user):
     res = await spost(
-        BASE_URL+"users.info",
+        BASE_URL+"users.profile.get",
         head_type(return_b_token()),
         {
             "user": s_user
