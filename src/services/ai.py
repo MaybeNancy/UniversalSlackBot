@@ -36,7 +36,7 @@ model = "deepseek-ai/DeepSeek-V4-Pro:novita"
 def mess(prompt):
     default=[
         {
-            "role": "user", 
+            "role": "You (the chatbot)", 
             "content": prompt
         }
     ]
