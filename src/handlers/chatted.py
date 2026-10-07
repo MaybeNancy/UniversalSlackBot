@@ -1,6 +1,6 @@
 import asyncio, random
 
-from ..services.slack import react, send_message, get_user
+from ..services.slack import react, send_message, get_user_name
 from ..services.ai import call_ai
 
 from ..utils.nancyfy import nancymoji
@@ -27,7 +27,7 @@ async def get_message(data):
         s_user = data["user"]
         print(data)
         print(s_user, "Hehe")
-        print(repr(await get_user("Nancy")))
+        print(repr(await get_user_name(s_user)))
     
     r = random.randint(0,7)
     if r >= 5:
