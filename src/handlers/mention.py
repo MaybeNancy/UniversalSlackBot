@@ -4,7 +4,7 @@ I just need the thing working
 """
 import asyncio
 
-from ..services.slack import send_message, new_name
+from ..services.slack import send_message, new_name, get_user_name
 from ..services.ai import call_ai
 
 from ..utils.nancyfy import nancyfy
