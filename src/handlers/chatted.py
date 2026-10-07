@@ -26,7 +26,7 @@ async def get_message(data):
     if "user" in data:
         s_user = data["user"]
         print(data)
-        print(s_user)
+        print(s_user, "Hehe")
         print(repr(await get_user("Nancy")))
     
     r = random.randint(0,7)
