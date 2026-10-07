@@ -12,7 +12,7 @@ async def emojify(data):
 
 async def talk(data):
     channel = data["channel"]
-    s_user = data.get("user")
+    s_user = data.["user"]
     text = data["text"]
     txt1 = "You're a discord bot, someone said: '"
     prompt=txt1+text+"', reply with something very short in plan text to the chat if needed"
