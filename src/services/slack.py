@@ -64,7 +64,7 @@ async def get_all_users(pcursor, id):
         BASE_URL+"users.list",
         head_type(return_b_token()),
         {
-            "cursor":cursor
+            "cursor":cursor,
             "limit":PAGE_LENGTH
         }
     )
