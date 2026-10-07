@@ -72,7 +72,6 @@ async def get_all_users(pcursor, id):
     users_page = res.json()
 
     for u in users_page["members"]:
-        print(u["id"])
         if u["id"] == id:
               if "display_name" in u["profile"]:
                   return u["profile"]["display_name"]
