@@ -23,7 +23,7 @@ async def slack_events(request: Request):
     """
 
     checkjson(payload)
-    verify_slack_signature(
+    await verify_slack_signature(
         request,
         return_s_secret()
     )
