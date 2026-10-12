@@ -1,6 +1,6 @@
 import asyncio, random
 
-from ..services.slack import react, send_message, get_user_name
+from ..services.slack import react, send_message, get_user_name, get_chat
 from ..services.ai import call_ai
 
 from ..utils.nancyfy import nancymoji
@@ -24,6 +24,7 @@ async def talk(data):
     return await send_message(channel, text)
 
 async def get_message(data):
+    print(get_chat)
     r = random.randint(0,7)
     if r >= 5:
         return await emojify(data)
