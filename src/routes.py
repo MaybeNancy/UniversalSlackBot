@@ -22,7 +22,6 @@ async def slack_events(request: Request):
     else. :P
     """
 
-    checkjson(payload)
     await verify_slack_signature(
         request,
         return_s_secret()
@@ -30,8 +29,11 @@ async def slack_events(request: Request):
     
     try:
         payload = json.loads(body_bytes.decode("utf-8"))
+        
     except json.JSONDecodeError:
         raise HTTPException(status_code=400, detail="invalid json")
+
+    checkjson(payload)
     
     if payload.get("type") == "url_verification":
        return {"challenge": payload["challenge"]}
