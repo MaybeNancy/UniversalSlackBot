@@ -7,7 +7,7 @@ the app from dealing with
 unauthorized/malicious traffic
 """
 
-import hmac, hashlib, json, time
+import hmac, hashlib, json, time, asyncio
 from hmac import compare_digest
 from fastapi import Request, HTTPException
 
@@ -42,7 +42,7 @@ def verify_signature(
     # verified
 
 #Slack signature, we need to check this
-def verify_slack_signature(request, signing_secret):
+async def verify_slack_signature(request, signing_secret):
     verify_signature(
         request.headers.get("X-Slack-Request-Timestamp", ""),
         request.headers.get("X-Slack-Signature", ""),
