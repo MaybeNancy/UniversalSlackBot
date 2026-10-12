@@ -57,6 +57,18 @@ async def react(channel,emoji,ts):
     )
     return res.json()
 
+async def get_chat(channel):
+    res = await spost(
+        BASE_URL+"conversations.history,
+        head_type(return_b_token()),
+        {
+            "channel": channel, 
+            "limit": 20
+
+        }
+    )
+    return res.json()
+
 async def get_all_users(pcursor, id):
     cursor = pcursor
     res = await spost(
