@@ -2,6 +2,9 @@ import asyncio
 import httpx
 import os
 
+from huggingface_hub import InferenceClient
+from openai import OpenAI
+
 from upstash_redis.asyncio import Redis
 #httpx or session
 client = None
@@ -15,45 +18,54 @@ DA_ID = None
 DA_SECRET = None
 
 #AI
-HF_TOKEN = None #HuggingFace
-OR_TOKEN = None #OpenRouter
+HF_client = None #HuggingFace
+OR_client = None #OpenRouter
+model = "deepseek-ai/DeepSeek-V4-Pro:novita"
 
 #REDIS
 REDIS = None
 
 async def globals_start():
-  #aquire the slack credentiaks
-  #da credentials
-  #twitter credentials
-  #perchance credentials?
-  TIMEOUT = httpx.Timeout(8.0, connect=2.0)
-  LIMITS = httpx.Limits(max_connections=10,max_keepalive_connections=5)
+    #aquire the slack credentiaks
+    #da credentials
+    #twitter credentials
+    
+    TIMEOUT = httpx.Timeout(8.0, connect=2.0)
+    LIMITS = httpx.Limits(max_connections=10,max_keepalive_connections=5)
   
-  global client
-  client = httpx.AsyncClient(timeout=TIMEOUT, limits=LIMITS)
+    global client
+    client = httpx.AsyncClient(timeout=TIMEOUT, limits=LIMITS)
 
-  #start REDIS
-  global REDIS
-  REDIS = Redis.from_env()
+    #start REDIS
+    global REDIS
+    REDIS = Redis.from_env()
 
-  global BOT_TOKEN
-  BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
-  global SLACK_SECRET
-  SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
+    global BOT_TOKEN
+    BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+    global SLACK_SECRET
+    SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
 
-  global DA_ID
-  DA_TOKEN = os.getenv("DA_API_ID")
-  global DA_SECRET
-  DA_TOKEN = os.getenv("DA_API_SECRET")
-  
-  global HF_TOKEN
-  HF_TOKEN = os.getenv("SLACKNEURON")
-  global OR_TOKEN
-  OR_TOKEN = os.getenv("SLACKNEURON2")
+    global DA_ID
+    DA_TOKEN = os.getenv("DA_API_ID")
+    global DA_SECRET
+    DA_TOKEN = os.getenv("DA_API_SECRET")
+
+    global HF_client
+    HF_client = InferenceClient(
+        token=os.getenv("SLACKNEURON"),
+        timeout=30,
+        model=model
+    )
+
+    global OR_client
+    OR_client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=os.getenv("SLACKNEURON2")
+    )
 
 async def globals_end():
-  await client.aclose()
-  await REDIS.close()
+    await client.aclose()
+    await REDIS.close()
 
 def return_client(): return client
 def return_redis(): return REDIS
@@ -64,5 +76,5 @@ def return_s_secret(): return SLACK_SECRET
 def return_da_id(): return DA_ID
 def return_da_secret(): return DA_SECRET
 
-def r_hug_token(): return HF_TOKEN
-def r_or_token(): return OR_TOKEN
+def r_hug_client(): return HF_client
+def r_or_client(): return OR_client
