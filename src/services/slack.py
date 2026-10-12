@@ -59,7 +59,7 @@ async def react(channel,emoji,ts):
 
 async def get_chat(channel):
     res = await spost(
-        BASE_URL+"conversations.history,
+        BASE_URL+"conversations.history",
         head_type(return_b_token()),
         {
             "channel": channel, 
