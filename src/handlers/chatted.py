@@ -1,14 +1,6 @@
 import asyncio, random
 
 from ..services.slack import react, send_message, get_user_name, get_chat
-from ..services.ai import call_ai
-
-from ..utils.nancyfy import nancymoji
-
-async def emojify(data):
-    channel = data["channel"]
-    ts = data["ts"]
-    return await react(channel, nancymoji(),ts)
 
 async def talk(data):
     channel = data["channel"]
@@ -18,9 +10,6 @@ async def talk(data):
     txt1 = "You're a discord chatbot, the user "+username+" said: '"
     prompt=txt1+text+"', please say reply with something appropiate to that person"
     
-   # print(await get_user(s_user))
-    #print(data)
-    text = str(call_ai(prompt))
     return await send_message(channel, text)
 
 async def get_message(data):
