@@ -1,6 +1,6 @@
 """
 Tool made specifically
-to add or react nancy emojis
+to add or react nancy/custom emojis
 to any text given
 based on the tone of the
 message, or just to replace
