@@ -25,19 +25,10 @@ Rate limits are applied over 5-minute intervals.
 20 -> requests per minute
 """
 
-from ..globals import r_hug_token, r_or_token
-
-from huggingface_hub import InferenceClient
-from openai import OpenAI
-
-model = "deepseek-ai/DeepSeek-V4-Pro:novita"
+from ..globals import r_hug_client, r_or_client
 
 def weekly_ai(info_table):
-    hf_client = InferenceClient(
-        token=r_hug_token(),
-        timeout=30,
-        model=model
-    )
+    hf_client = r_hug_client()
 
     try:
         response = hf_client.chat_completion(
@@ -46,18 +37,14 @@ def weekly_ai(info_table):
             temperature=1
         )
         
-        return response.choices[0].message.content
+        return response
     except:
         print("an error ocurred in hugging face!")
-        return unavailable()
-    return unavailable()
+        return False
+    return False
   
 def daily_ai(info_table):
-    or_client = OpenAI(
-      base_url="https://openrouter.ai/api/v1",
-      api_key=r_or_token()
-    )
-
+    or_client = r_or_client()
     try:
       response = or_client.chat.completions.create(
         model="openrouter/free",
@@ -68,7 +55,7 @@ def daily_ai(info_table):
             }
          }
       )
-      return response.choices[0].message.content
+      return response
     except Exception as e:
         print("ai error from open router!",repr(e))
         return weekly_ai(info_table)
