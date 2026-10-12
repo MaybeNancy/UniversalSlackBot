@@ -3,7 +3,7 @@ from fastapi import APIRouter, Request
 from .dispatcher import event_dispatch
 from .globals import return_s_secret
 from .redis import check
-from .utils.json import checkjson
+from .security.json import checkjson
 from .security.traffic_in import verify_slack_signature
 
 router = APIRouter()
