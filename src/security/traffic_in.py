@@ -11,7 +11,6 @@ import hmac, hashlib, json, time
 from hmac import compare_digest
 from fastapi import Request, HTTPException
 
-#Slack signature, we need to check this
 def verify_signature(
   timestamp,
   signature,
@@ -42,6 +41,7 @@ def verify_signature(
         raise HTTPException(status_code=401, detail="invalid signature")
     # verified
 
+#Slack signature, we need to check this
 def verify_slack_signature(request, signing_secret):
     verify_signature(
         request.headers.get("X-Slack-Request-Timestamp", ""),
