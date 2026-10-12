@@ -1,46 +1,16 @@
-#check the imports later
-import hmac, hashlib, json, time
-from hmac import compare_digest
-from fastapi import APIRouter, Request, HTTPException, BackgroundTasks
-#from src.tasks.background import run_in_background
+from fastapi import APIRouter, Request
 
 from .dispatcher import event_dispatch
 from .globals import return_s_secret
 from .redis import check
 from .utils.json import checkjson
+from .security.traffic_in import verify_slack_signature
 
 router = APIRouter()
 
-#Slack signature, we need to check this
-def verify_signature(request, signing_secret, body_bytes):
-    timestamp = request.headers.get("X-Slack-Request-Timestamp", "")
-    slack_signature = request.headers.get("X-Slack-Signature", "")
-    if not timestamp or not slack_signature:
-        raise HTTPException(status_code=401, detail="missing slack signature")
-
-    # Reject if timestamp is too old (5 minutes)
-    try:
-        req_ts = int(timestamp)
-    except ValueError:
-        raise HTTPException(status_code=401, detail="invalid timestamp")
-    if abs(time.time() - req_ts) > 60 * 5:
-        raise HTTPException(status_code=401, detail="timestamp too old")
-    
-    sig_basestring = b"v0:" + timestamp.encode("utf-8") + b":" + body_bytes
-
-    my_signature = "v0=" + hmac.new(
-        signing_secret.encode("utf-8"),
-        sig_basestring,
-        hashlib.sha256
-    ).hexdigest()
-
-    if not compare_digest(my_signature, slack_signature):
-        raise HTTPException(status_code=401, detail="invalid signature")
-    # verified
-
 #Routing events
 @router.post("/slack/events")
-async def slack_events(request: Request, background: BackgroundTasks):
+async def slack_events(request: Request):
     #We will handle this differently
     """
     -We verify that the data is ok
@@ -51,19 +21,17 @@ async def slack_events(request: Request, background: BackgroundTasks):
     -Dispatcher will handle everything
     else. :P
     """
-    body_bytes = await request.body()
 
-    s_secret=return_s_secret()
-    
-    verify_signature(request,s_secret,body_bytes)
-    
+    checkjson(payload)
+    verify_slack_signature(
+        request,
+        return_s_secret()
+    )
     
     try:
         payload = json.loads(body_bytes.decode("utf-8"))
     except json.JSONDecodeError:
         raise HTTPException(status_code=400, detail="invalid json")
-
-    checkjson(payload)
     
     if payload.get("type") == "url_verification":
        return {"challenge": payload["challenge"]}
