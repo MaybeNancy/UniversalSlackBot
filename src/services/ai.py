@@ -32,16 +32,7 @@ from openai import OpenAI
 
 model = "deepseek-ai/DeepSeek-V4-Pro:novita"
 
-def mess(prompt):
-    default=[
-        {
-            "role": "user", 
-            "content": prompt
-        }
-    ]
-    return default
-
-def weekly_ai(prompt):
+def weekly_ai(info_table):
     hf_client = InferenceClient(
         token=r_hug_token(),
         timeout=30,
@@ -50,7 +41,7 @@ def weekly_ai(prompt):
 
     try:
         response = hf_client.chat_completion(
-            messages=mess(prompt),
+            messages=info_table,
             max_tokens=100,
             temperature=1
         )
@@ -61,7 +52,7 @@ def weekly_ai(prompt):
         return unavailable()
     return unavailable()
   
-def daily_ai(prompt):
+def daily_ai(info_table):
     or_client = OpenAI(
       base_url="https://openrouter.ai/api/v1",
       api_key=r_or_token()
@@ -70,7 +61,7 @@ def daily_ai(prompt):
     try:
       response = or_client.chat.completions.create(
         model="openrouter/free",
-        messages=mess(prompt),
+        messages=info_table,
         extra_body={
             "reasoning":{
                "enabled":True
@@ -80,8 +71,8 @@ def daily_ai(prompt):
       return response.choices[0].message.content
     except Exception as e:
         print("ai error from open router!",repr(e))
-        return weekly_ai(prompt)
+        return weekly_ai(info_table)
     return False
 
-def call_ai(prompt):
-  return daily_ai(prompt)
+def call_ai(info_table):
+  return daily_ai(info_table)
