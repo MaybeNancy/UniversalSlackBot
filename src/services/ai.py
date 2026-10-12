@@ -26,7 +26,6 @@ Rate limits are applied over 5-minute intervals.
 """
 
 from ..globals import r_hug_token, r_or_token
-from ..utils.diy_ai import unavailable
 
 from huggingface_hub import InferenceClient
 from openai import OpenAI
@@ -82,7 +81,7 @@ def daily_ai(prompt):
     except Exception as e:
         print("ai error from open router!",repr(e))
         return weekly_ai(prompt)
-    return unavailable()
+    return False
 
 def call_ai(prompt):
   return daily_ai(prompt)
