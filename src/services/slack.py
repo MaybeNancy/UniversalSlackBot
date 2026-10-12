@@ -2,10 +2,9 @@ import json, asyncio
 
 from ..globals import return_client, return_b_token
 from .shttpx import spost
-from ..utils.roleplay import CHARS, char_list
 
 BASE_URL = "https://slack.com/api/"
-BOT_BASE_NAME = CHARS[char_list[0]]["name"]
+BOT_BASE_NAME = "Iron"
 PAGE_LENGTH = 50
 
 def head_type(token):
