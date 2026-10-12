@@ -24,7 +24,7 @@ async def talk(data):
     return await send_message(channel, text)
 
 async def get_message(data):
-    print(get_chat)
+    print(get_chat(data["channel"]))
     r = random.randint(0,7)
     if r >= 5:
         return await emojify(data)
