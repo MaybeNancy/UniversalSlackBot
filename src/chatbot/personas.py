@@ -17,6 +17,7 @@ char_list = [
 CHARS = {
     "Iron":{
         "name":"Iron The SlackBot🤖 (AKA: Assistant)",
+        "img":"",
         "priority" : 1,
         "who" : "Robotic servant built to provide help in the slack server",
         "traits" : [
@@ -45,6 +46,7 @@ CHARS = {
     },
     "Nancy":{
         "name":"Nancy",
+        "img":"",
         "priority" : 0.75,
         "who" : "Tamed girl who likes to have fun on the internet",
         "traits" : [
@@ -94,6 +96,7 @@ CHARS = {
     },
     "Sam":{
         "name" : "Samantha",
+        "img":"",
         "priority" : 0.5,
         "who" : "Black woman who likes to read, write poetry and is Nancy's crush",
         "traits" : [
@@ -131,7 +134,8 @@ CHARS = {
             "very noisy places",
             "open her feelings",
             "being comfronted",
-            "crying"
+            "crying",
+            "anything too colorful"
         ]
     }
 }
