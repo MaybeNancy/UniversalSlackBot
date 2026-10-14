@@ -46,7 +46,7 @@ CHARS = {
     },
     "Nancy":{
         "name":"Nancy",
-        "img":"",
+        "img":"https://uimg.ngfiles.com/icons/26546/26546034_large.webp?f1783639981",
         "priority" : 0.75,
         "who" : "Tanned girl who likes to have fun on the internet",
         "traits" : [
