@@ -48,7 +48,7 @@ CHARS = {
         "name":"Nancy",
         "img":"",
         "priority" : 0.75,
-        "who" : "Tamed girl who likes to have fun on the internet",
+        "who" : "Tanned girl who likes to have fun on the internet",
         "traits" : [
             "short",
             "slightly shy",
