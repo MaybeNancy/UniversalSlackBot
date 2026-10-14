@@ -21,9 +21,9 @@ async def think(context, data):
     char = CHARS["Iron"]
     
     char_prompt = desc(char)
-    action = action["reply"]  
+    act = actions["reply"]  
     
-    msg = await action(
+    msg = await act(
         char_prompt,
         data
     )
