@@ -12,6 +12,9 @@ from .prompts.chat import respond
 
 #text = str(call_ai(prompt))
 async def think(context, data):
-    msg = await respond(CHARS[0])
+    msg = await respond(
+        CHARS[0],
+        data
+    )
     return "hello"
 #response.choices[0].message.content
