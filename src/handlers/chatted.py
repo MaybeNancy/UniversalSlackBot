@@ -10,7 +10,7 @@ async def talk(data):
     txt1 = "You're a discord chatbot, the user "+username+" said: '"
     prompt=txt1+text+"', please say reply with something appropiate to that person"
     
-    return await send_message(channel, text)
+    return await send_message(channel, "nancy-think")
 
 async def get_message(data):
     print(await get_chat(data["channel"]))
