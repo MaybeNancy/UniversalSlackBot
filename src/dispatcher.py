@@ -22,7 +22,8 @@ async def event_dispatch(data):
             handler = event_routes[event][0]
             #process as AI
             await think(
-                event_routes[event][1]),
+                event_routes[event][1],
                 event_d
+            )
             #Process as Slack/App
             return await handler(event_d)
