@@ -5,9 +5,11 @@ from .handlers.chatted import get_message
 
 from .chatbot.orchestrator import think
 
+#element 0 for the method
+#element 1 for the context
 event_routes = {
-    "app_mention": reply,
-    "message": get_message
+    "app_mention": [reply, "mentioned you"],
+    "message": [get_message, "sent something"]
 }
 
 async def event_dispatch(data):
@@ -17,6 +19,8 @@ async def event_dispatch(data):
         event = event_d["type"]
 
         if event in event_routes:
-            handler = event_routes[event]
-            await think()
+            handler = event_routes[event][0]
+            #process as AI
+            await think(event_routes[event][1])
+            #Process as Slack/App
             return await handler(event_d)
