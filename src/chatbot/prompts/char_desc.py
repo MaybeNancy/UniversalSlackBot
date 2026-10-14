@@ -7,5 +7,7 @@ rolplay as
 def desc(persona):
     return f"""
     You are {persona["name"]}
-    a {persona["who"]}
+    a {persona["who"]} that
+    is {" ,".join(persona["traits"])},
+    likes and
     """
