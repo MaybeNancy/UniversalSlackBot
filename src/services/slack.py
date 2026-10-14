@@ -18,14 +18,15 @@ Still needs improvements, but
 is a start :P
 """
 
-async def send_message(channel, txt):
+async def send_message(icon,name,channel,txt):
     res = await spost(
         BASE_URL+"chat.postMessage",
         head_type(return_b_token()),
         {
             "channel": channel, 
+            "icon_url": icon,
             "text": txt,
-            "username":BOT_BASE_NAME
+            "username":name
         }
     )
     return res.json()
@@ -39,7 +40,7 @@ async def send_ghostly(channel,user,txt):
             "user": user,
             #"icon_url": icon,
             "text": txt+" (Ghostly! 👻)",
-            "username":BOT_BASE_NAME
+            "username":"bot"
         }
     )
     return res.json()
