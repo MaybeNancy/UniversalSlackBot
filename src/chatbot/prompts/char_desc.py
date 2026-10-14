@@ -9,4 +9,3 @@ def desc(persona):
     f"a {persona["who"]} "
     f"that is {" ,".join(persona["traits"])},"
     f"likes and"
-    """
