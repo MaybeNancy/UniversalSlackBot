@@ -13,7 +13,8 @@ from .prompts.chat import respond
 #text = str(call_ai(prompt))
 async def think(context, data):
     msg = await respond(
-        CHARS[0],
+        #change to use names themselves
+        CHARS[char_list[0]],
         data
     )
     return "hello"
