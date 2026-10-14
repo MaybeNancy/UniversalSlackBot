@@ -7,4 +7,5 @@ rolplay as
 def desc(persona):
     return f"""
     You are {persona["name"]}
+    a {persona["who"]}
     """
