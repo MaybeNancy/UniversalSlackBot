@@ -2,7 +2,9 @@ import json, asyncio
 
 from .handlers.mention import reply
 from .handlers.chatted import get_message
-    
+
+from .chatbot.orchestrator import think
+
 event_routes = {
     "app_mention": reply,
     "message": get_message
@@ -16,4 +18,5 @@ async def event_dispatch(data):
 
         if event in event_routes:
             handler = event_routes[event]
+            await think()
             return await handler(event_d)
