@@ -4,6 +4,7 @@ to use, or call any other API, feature
 available
 """
 
+import random
 from ..services.ai import call_ai
 from ..services.slack import send_message, react
 
@@ -18,16 +19,24 @@ actions = {
 }
 #text = str(call_ai(prompt))
 async def think(context, data):
-    char = CHARS["Iron"]
+    if random.randint(0,3) == 3:
+     char = CHARS["Iron"]
     
-    char_prompt = desc(char)
-    act = actions["reply"]  
+     char_prompt = desc(char)
+     act = actions["reply"]  
     
-    msg = await act(
+     msg = await act(
         char_prompt,
         data
-    )
-    res = call_ai(msg)
-    print(res.choices[0].message.content)
-    return "hello"
+     )
+
+     res = call_ai(msg)
+     txt = res.choices[0].message.content)
+     slack = await send_message(
+        char["img"],
+        char["name"],
+        data["channel"],
+        txt
+     )
+     return True
 #response.choices[0].message.content
