@@ -8,12 +8,14 @@ use for chatting
 import asyncio
 from ...services.slack import get_chat
 
-async def lookchat():
+async def lookchat(persona):
     chat = await get_chat()
+    print(chat)
+    print(persona)
     messages=[
         {
             "role": "user", 
-            "content": prompt
+            "content": "hello"
         }
     ]
     return messages
