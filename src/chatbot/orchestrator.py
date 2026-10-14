@@ -27,5 +27,7 @@ async def think(context, data):
         char_prompt,
         data
     )
+    res = call_ai(msg)
+    print(res.choices[0].message.content)
     return "hello"
 #response.choices[0].message.content
