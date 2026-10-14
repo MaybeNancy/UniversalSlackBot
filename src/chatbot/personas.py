@@ -16,8 +16,8 @@ char_list = [
 
 CHARS = {
     "Iron":{
-        "name":"Iron The SlackBot🤖 (AKA: Assistant)",
-        "img":"https://cdn.pixabay.com/photo/2017/12/10/17/00/robot-3010309_1280.jpg"
+        "name":"Iron The SlackBot🤖 (AKA: Assistant)",  
+        "img":"https://cdn.pixabay.com/photo/2017/12/10/17/00/robot-3010309_1280.jpg",
         "priority" : 1,
         "who" : "Robotic servant built to provide help in the slack server",
         "traits" : [
