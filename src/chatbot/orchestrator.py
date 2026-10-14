@@ -20,7 +20,7 @@ actions = {
 #text = str(call_ai(prompt))
 async def think(context, data):
     if random.randint(0,3) == 3:
-     char = CHARS["Iron"]
+     char = CHARS["Nancy"]
     
      char_prompt = desc(char)
      act = actions["reply"]  
