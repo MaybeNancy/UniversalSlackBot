@@ -14,7 +14,7 @@ async def respond(persona, data):
     test = f"""
     data is: {persona["traits"]} and :)
     """
-    print(persona)
+
     print(test)
     messages=[
         {
