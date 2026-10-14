@@ -31,7 +31,7 @@ async def think(context, data):
      )
 
      res = call_ai(msg)
-     txt = res.choices[0].message.content)
+     txt = res.choices[0].message.content
      slack = await send_message(
         char["img"],
         char["name"],
