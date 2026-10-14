@@ -11,12 +11,13 @@ from ...services.slack import get_chat
 async def respond(persona, data):
     chat = await get_chat(data["channel"])
     #print(chat)
-    test = f"""
-    data is: {persona["traits"]} and :)
-    """
 
-    print(test)
+    prompt = f"{persona} and someone said hello"
     messages=[
+        {
+            "role":"system",
+            "content":prompt
+        },
         {
             "role": "user", 
             "content": "hello"
