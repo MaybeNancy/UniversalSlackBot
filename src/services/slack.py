@@ -63,7 +63,7 @@ async def get_chat(channel):
         head_type(return_b_token()),
         {
             "channel": channel, 
-            "limit": 20
+            "limit": PAGE_LENGTH
 
         }
     )
