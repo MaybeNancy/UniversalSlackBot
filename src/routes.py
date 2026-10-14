@@ -29,7 +29,9 @@ async def slack_events(request: Request):
     )
     
     try:
-        payload = json.loads(body_bytes.decode("utf-8"))
+        payload = json.loads(
+            (await request.body()).decode("utf-8")
+        )
         
     except json.JSONDecodeError:
         raise HTTPException(status_code=400, detail="invalid json")
