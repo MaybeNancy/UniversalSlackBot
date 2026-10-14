@@ -1,7 +1,7 @@
 import json, asyncio
 
 from .handlers.mention import reply
-from .handlers.chatted import get_message
+from .handlers.chatted import check_mess
 
 from .chatbot.orchestrator import think
 
@@ -9,7 +9,7 @@ from .chatbot.orchestrator import think
 #element 1 for the context
 event_routes = {
     "app_mention": [reply, "mentioned you"],
-    "message": [get_message, "sent something"]
+    "message": [check_mess, "sent something"]
 }
 
 async def event_dispatch(data):
