@@ -11,16 +11,20 @@ from .personas import CHARS, char_list
 from .prompts.chat import respond
 from .prompts.char_desc import desc
 
+actions = {
+    "reply":respond#,
+   # "react":react
+    
+}
 #text = str(call_ai(prompt))
 async def think(context, data):
     char = CHARS["Iron"]
     
     char_prompt = desc(char)
-    print(char_prompt)
+    action = action["reply"]  
     
-    msg = await respond(
-        #change to use names themselves
-        char,
+    msg = await action(
+        char_prompt,
         data
     )
     return "hello"
