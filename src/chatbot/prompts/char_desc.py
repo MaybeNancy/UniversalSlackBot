@@ -4,7 +4,7 @@ the character the chatbot will
 rolplay as
 """
 
-def desc(persona)
+def desc(persona):
     return f"""
     You are {persona["name"]}
     """
