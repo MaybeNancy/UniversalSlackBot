@@ -5,7 +5,7 @@ from .shttpx import spost
 
 BASE_URL = "https://slack.com/api/"
 BOT_BASE_NAME = "Iron"
-PAGE_LENGTH = 50
+PAGE_LENGTH = 20
 
 def head_type(token):
     base_head={
