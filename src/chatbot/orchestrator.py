@@ -59,7 +59,7 @@ async def think(context, data):
     char = CHARS["Iron"]
     
     char_prompt = desc(char)
-    act = actions[decision]
+    act = decision
     
     msg = await act[0](
         char_prompt,
