@@ -7,7 +7,10 @@ Homemade ai:
 
 Just an algorith that produces
 sentences in a simple way based
-on english syntaxis
+on english syntaxis,
+
+Requires language study to talk
+consistently
 """
 
 import random
@@ -31,21 +34,22 @@ verb = [
 ]
 
 word = [
-  "no",
-  "hey!"
-  "ok",
-  "good night",
-  ""
+  "No",
+  "Hey!"
+  "Ok",
+  "Good night",
+  "Perhaps"
   ":<",
-  "hmm",
+  "Hmm",
   ":3-dots:",
-  "welp :3-dots:",
-  "nah"
-  "shh I'm trying to sleep"
+  "Welp :3-dots:",
+  "Nah"
+  "Shh I'm trying to sleep"
   "Do it yourself",
-  "zzzzzz",
-  "maybe later",
-  "yup"
+  "Zzzzzz",
+  "Maybe later",
+  "Yup",
+  "What?"
 ]
 
 def r(max):
@@ -53,11 +57,11 @@ def r(max):
 
 def unavailable():
   type = r(1)
-  reply = ""
   if type==0:
-     reply += word[r(len(word))] + " "
-     reply += person[r(len(person))] + " "
-     reply += verb[r(len(verb))]
-     return reply
+     return (
+       f"{word[r(len(word))]} "
+       f"{person[r(len(person))]} "
+       f"{verb[r(len(verb))]}"
+     )
   else:
      return word[r(len(word))]
