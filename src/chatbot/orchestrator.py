@@ -25,19 +25,16 @@ async def chat(char,data,res):
     
 active = 1
 actions = {
-    "reply":{
+    {
         "func":respond, 
-        "prob":(60*active),
         "slack":chat
     },
-    "react":{
+    {
         "func":react, 
-        "prob":30-(30*active),
         "slack":nothing
     },
-    "nothing":{
+    {
         "func":nothing, 
-        "prob":5-(5*active),
         "slack":nothing
     }
 }
@@ -51,7 +48,11 @@ async def think(context, data):
 
     decision = random.choices(
         actions["func"],
-        actions["prob"],
+        weights=[
+            "prob":(60*active),
+            "prob":30-(30*active),
+            "prob":5-(5*active)
+        ],
         k=1
     )[0]
     
@@ -60,14 +61,14 @@ async def think(context, data):
     char_prompt = desc(char)
     act = actions[decision][0]
     
-    msg = await act(
+    msg = await act["func"](
         char_prompt,
         data
     )
 
     res = call_ai(msg)
     txt = res.choices[0].message.content
-    await actions[decision]["slack"](
+    await actions["slack"](
         char,data,txt
     )
 
