@@ -54,7 +54,7 @@ async def think(context, data):
         k=1
     )[0]
 
-    char = CHARS["Iron"]
+    char = CHARS[cchar]
     
     char_prompt = desc(char)
     
@@ -65,6 +65,7 @@ async def think(context, data):
 
     print(msg)
 
+    global cchar
     if cchar=="Iron":
         cchar="Nancy"
     else:
