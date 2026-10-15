@@ -12,7 +12,7 @@ from .personas import CHARS, char_list
 from .prompts.chat import respond
 from .prompts.char_desc import desc
 
-async def nothing():
+async def nothing(chat,data,res):
     return {"status":"ok"}
 
 async def chat(char,data,res):
@@ -30,8 +30,8 @@ actions = (
         chat
     ),
     (
-        react, 
-        nothing
+        respond, 
+        chat
     ),
     (
         nothing, 
