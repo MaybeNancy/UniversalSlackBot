@@ -46,18 +46,15 @@ async def think(context, data):
         if msg != 0:
             res = call_ai(msg)
             txt = res.choices[0].message.content
-            await decision[1](
-                char,data,txt
+
+            return await send_message(
+                char["name"],
+                char["img"],
+                data["channel"],
+                res
             )
 
-        return await send_message(
-            char["name"],
-            char["img"],
-            data["channel"],
-            res
-        )
-
-        return True
+        return False
         
     elif r>=0 and r<=0:
         char_prompt = desc(CHARS["Iron"])
