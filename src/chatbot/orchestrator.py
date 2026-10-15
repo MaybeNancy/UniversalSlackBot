@@ -39,8 +39,8 @@ actions = (
         chat
     ),
     (
-        (async lambda a,b: False), 
-        (async lambda a,b,c: False)
+        (lambda a,b: False), 
+        (lambda a,b,c: False)
     )
 )
 
