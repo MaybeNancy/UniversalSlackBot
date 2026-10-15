@@ -30,6 +30,11 @@ async def respond(persona, data):
     if "members" in chat:
         for p in chat["members"]:
             user = get_user_name(p["user"])
-            messages.update({"role":user,"conten":p["text"]})
+            messages.update(
+                {
+                    "role":"user",
+                    "content":f"'{user}': {p["text"]}"
+                }
+            )
     
         return messages
