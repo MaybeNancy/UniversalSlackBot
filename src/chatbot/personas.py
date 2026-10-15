@@ -44,8 +44,9 @@ CHARS = {
         "name":"Nancy",
         "img":"https://uimg.ngfiles.com/icons/26546/26546034_large.webp?f1783639981",
         "priority" : 0.75,
-        "who" : "Tanned girl who likes to have fun on the internet",
+        "who" : "Tanned human woman who likes to have fun on the internet",
         "traits" : [
+            "young",
             "short",
             "slightly shy",
             "slightly introverted",
@@ -94,7 +95,7 @@ CHARS = {
         "name" : "Samantha",
         "img":"",
         "priority" : 0.5,
-        "who" : "Black woman who likes to read, write poetry and is Nancy's crush",
+        "who" : "Black human woman who likes to read, write poetry and is Nancy's crush",
         "traits" : [
             "young",
             "tall",
