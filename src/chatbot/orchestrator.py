@@ -18,8 +18,7 @@ from .prompts.unavailable import unavailable
 async def checknancy():
     res = await presence(r_nancy())
 
-    print(res)
-    if res["manual_away"] == False:
+    if res["presence"] == "active":
         return "Iron"
     else:
         return "Nancy"
@@ -40,7 +39,7 @@ async def think(context, data):
         global cchar
         if cchar=="Iron":
             cchar = "Nancy"
-        else: "Iron"
+        else: cchar="Iron"
         char = CHARS[cchar]
         char_prompt = desc(char)
 
