@@ -55,7 +55,7 @@ async def think(context, data):
         k=1
     )[0]
 
-    char = CHARS[checknancy()]
+    char = CHARS[await checknancy()]
     
     char_prompt = desc(char)
     
