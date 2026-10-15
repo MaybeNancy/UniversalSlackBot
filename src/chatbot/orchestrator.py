@@ -31,10 +31,11 @@ def range(x,min,max):
         return False
 
 async def think(context, data):
+    char = CHARS[await checknancy()]
     r = random.random()
 
     if range(r,0.4,1) == True:
-        char = CHARS[await checknancy()]
+        
         char_prompt = desc(char)
 
         msg = await respond(
@@ -42,13 +43,10 @@ async def think(context, data):
             data
         )
 
-        print(msg)
-        
         if msg != False:
             res = call_ai(msg)
             if res != False:
                 txt = res.choices[0].message.content
-
 
             else:
                 txt = unavailable()
