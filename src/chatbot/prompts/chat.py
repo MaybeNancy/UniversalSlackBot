@@ -32,9 +32,10 @@ async def respond(persona, data):
             user = ""
             
             if "user" in p:
-                user = f"[{await get_user_name(p["user"])}]: "
-                if user != False:
-                   role = "user"
+                name = await get_user_name(p["user"])
+                if name != False:
+                    role = "user"
+                    user = f"[{name}]: "
                 else:
                     user = ""
                     
