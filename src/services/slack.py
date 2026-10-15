@@ -5,7 +5,7 @@ from .shttpx import spost
 
 BASE_URL = "https://slack.com/api/"
 BOT_BASE_NAME = "Iron"
-PAGE_LENGTH = 20
+PAGE_LENGTH = 15
 
 def head_type(token):
     base_head={
@@ -18,7 +18,7 @@ Still needs improvements, but
 is a start :P
 """
 
-async def send_message(icon,name,channel,txt):
+async def send_message(name,icon,channel,txt):
     res = await spost(
         BASE_URL+"chat.postMessage",
         head_type(return_b_token()),
