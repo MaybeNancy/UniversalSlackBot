@@ -59,16 +59,16 @@ async def think(context, data):
     char = CHARS["Iron"]
     
     char_prompt = desc(char)
-    act = actions[decisions][0]
+    act = actions[decisions]
     
-    msg = await act(
+    msg = await act[0](
         char_prompt,
         data
     )
 
     res = call_ai(msg)
     txt = res.choices[0].message.content
-    await actions[1](
+    await act[1](
         char,data,txt
     )
 
