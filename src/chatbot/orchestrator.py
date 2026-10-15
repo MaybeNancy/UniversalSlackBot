@@ -13,7 +13,7 @@ from ..globals import r_nancy
 from .personas import CHARS
 from .prompts.chat import respond
 from .prompts.char_desc import desc
-from .prompts.unavailable import
+from .prompts.unavailable import unavailable
 
 async def checknancy():
     res = await presence(r_nancy())
