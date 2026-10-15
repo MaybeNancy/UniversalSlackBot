@@ -8,12 +8,14 @@ import random
 from ..services.ai import call_ai
 from ..services.slack import get_chat,send_message,presence
 
+from ..globals import r_nancy
+
 from .personas import CHARS
 from .prompts.chat import respond
 from .prompts.char_desc import desc
 
 async def checknancy():
-    res = await presence("U0AAS5ZGSAD")
+    res = await presence(r_nancy())
 
     print(res["presence"])
     if res["presence"] == "active":
@@ -39,8 +41,8 @@ actions = (
         chat
     ),
     (
-        (lambda a,b: False), 
-        (lambda a,b,c: False)
+        (lambda a,b: 0), 
+        (lambda a,b,c: 0)
     )
 )
 
@@ -66,7 +68,7 @@ async def think(context, data):
 
     print(msg)
         
-    if msg != False:
+    if msg != 0:
         res = call_ai(msg)
         txt = res.choices[0].message.content
         await decision[1](
