@@ -68,6 +68,8 @@ async def think(context, data):
         data
     )
 
+    print(msg)
+
     if msg != False:
         res = call_ai(msg)
         txt = res.choices[0].message.content
