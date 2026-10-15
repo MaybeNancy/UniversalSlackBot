@@ -43,7 +43,7 @@ async def think(context, data):
 
         print(msg)
         
-        if msg != 0:
+        if msg != False:
             res = call_ai(msg)
             txt = res.choices[0].message.content
 
@@ -56,8 +56,7 @@ async def think(context, data):
 
         return False
         
-    elif range(r,0.2,0.4)==True:
+    elif range(r,0.2,0.4) == True:
         char_prompt = desc(CHARS["Iron"])
-        return True
+        return False
     return False
-    
