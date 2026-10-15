@@ -6,14 +6,7 @@ construct a roleplay conversation
 within the Slack server
 """
 
-char_list = [
-    "Iron",
-    "Nancy",
-    "Sam"
-]
-
 #Dictionary is not the same as a list
-
 CHARS = {
     "Iron":{
         "name":"Iron The SlackBot🤖 (AKA: Assistant)",  
