@@ -61,7 +61,7 @@ async def think(context, data):
     char_prompt = desc(char)
     act = actions[0]
     
-    msg = await act["func"](
+    msg = await act(
         char_prompt,
         data
     )
