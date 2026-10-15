@@ -11,7 +11,7 @@ CHARS = {
     "Iron":{
         "name":"Iron The SlackBot🤖 (AKA: Assistant)",  
         "img":"https://cdn.pixabay.com/photo/2017/12/10/17/00/robot-3010309_1280.jpg",
-        "priority" : 1,
+        "range" : [1,0.5],
         "who" : "Female robotic servant built to provide help in the slack server",
         "traits" : [
             "very arrogant",
@@ -43,7 +43,7 @@ CHARS = {
     "Nancy":{
         "name":"Nancy",
         "img":"https://uimg.ngfiles.com/icons/26546/26546034_large.webp?f1783639981",
-        "priority" : 0.75,
+        "range" : [0.5,0.2],
         "who" : "Tanned human woman who likes to have fun on the internet",
         "traits" : [
             "young",
