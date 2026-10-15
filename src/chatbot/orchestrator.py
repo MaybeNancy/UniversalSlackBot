@@ -6,7 +6,7 @@ available
 
 import random
 from ..services.ai import call_ai
-from ..services.slack import send_message,PAGE_LENGTH
+from ..services.slack import get_chat,send_message,PAGE_LENGTH
 
 from .personas import CHARS
 from .prompts.chat import respond
