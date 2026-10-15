@@ -25,7 +25,7 @@ async def respond(persona, data):
     ]
 
     if "messages" in chat:
-        for p in chat["messages"]:
+        for p in reversed(chat["messages"]):
             role = "user"
             user = ""
             if "user" in p:
