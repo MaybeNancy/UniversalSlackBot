@@ -13,6 +13,7 @@ from ..globals import r_nancy
 from .personas import CHARS
 from .prompts.chat import respond
 from .prompts.char_desc import desc
+from .prompts.unavailable import
 
 async def checknancy():
     res = await presence(r_nancy())
@@ -45,15 +46,18 @@ async def think(context, data):
         
         if msg != False:
             res = call_ai(msg)
-            txt = res.choices[0].message.content
+            if res != False:
+                txt = res.choices[0].message.content
 
+
+            else:
+                txt = unavailable()
             return await send_message(
                 char["name"],
                 char["img"],
                 data["channel"],
-                res
+                txt
             )
-
         return False
         
     elif range(r,0.2,0.4) == True:
