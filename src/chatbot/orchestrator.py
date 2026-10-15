@@ -28,16 +28,17 @@ actions = {
     "reply":{
         "func":respond, 
         "prob":(60*active),
-        "slack":await chat
+        "slack":chat
     },
     "react":{
         "func":react, 
-        "prob":30-(30*active)
+        "prob":30-(30*active),
+        "slack":nothing
     },
     "nothing":{
         "func":nothing, 
         "prob":5-(5*active),
-        "slack":await nothing
+        "slack":nothing
     }
 }
 
