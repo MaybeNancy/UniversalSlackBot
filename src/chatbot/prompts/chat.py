@@ -26,8 +26,8 @@ async def respond(persona, data):
         }
     ]
 
-    if "members" in chat:
-        for p in chat["members"]:
+    if "messages" in chat:
+        for p in chat["messages"]:
             user = get_user_name(p["user"])
             new_mssg = {
                 "role":"user",
