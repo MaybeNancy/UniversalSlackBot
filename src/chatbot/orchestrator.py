@@ -47,7 +47,7 @@ async def activity(data):
     
 #text = str(call_ai(prompt))
 async def think(context, data):
-    active = (await(data))/PAGE_LENGTH
+    active = (await activity(data))/PAGE_LENGTH
 
     decision = random.choices(
         actions["func"],
