@@ -13,7 +13,7 @@ async def respond(persona, data):
 
     prompt = (
         f"{persona}, "
-        f"add something short to the conversation"
+        f"add a response to the following conversation"
     )
     messages=[
         {
@@ -31,7 +31,7 @@ async def respond(persona, data):
             role = "user"
             user = ""
             if "user" in p:
-                user = get_user_name(p["user"])
+                user = await get_user_name(p["user"])
             else:
                 role = "assistant"
             new_mssg = {
