@@ -103,16 +103,13 @@ async def get_user_name(id):
     cursor = ""
     return await get_all_users(cursor, id)
 
-#fix this later
-async def new_name():
+async def presence(user):
     res = await spost(
-        BASE_URL+"users.profile.set",
+        BASE_URL+"users.getPresence",
         head_type(return_b_token()),
         {
-            "profile":{
-                "display_name":"Assistant",
-                "display_name_normalized":"assistant"
-            }
+            "user":user
+
         }
     )
     return res.json()
