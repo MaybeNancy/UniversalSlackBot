@@ -18,7 +18,7 @@ async def checknancy():
     res = await presence(r_nancy())
 
     print(res)
-    if res["presence"] == "active":
+    if res["manual_away"] == False:
         return "Iron"
     else:
         return "Nancy"
@@ -36,7 +36,7 @@ async def think(context, data):
         char = CHARS[await checknancy()]
         char_prompt = desc(char)
 
-        msg = respond(
+        msg = await respond(
             char_prompt,
             data
         )
