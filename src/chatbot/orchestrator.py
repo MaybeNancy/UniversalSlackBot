@@ -46,6 +46,12 @@ actions = (
     )
 )
 
+def range(x,a,b):
+    if(x>=a) and (x<=b):
+        return True
+    else:
+        return False
+
 async def think(context, data):
     decision = random.choices(
         actions,
