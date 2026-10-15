@@ -20,13 +20,12 @@ async def nothing(chat,data,res):
 
 async def chat(char,data,res):
    return await send_message(
+       char["name"],
         char["img"],
-        char["name"],
         data["channel"],
         res
     )
     
-active = 1
 actions = (
     (
         respond, 
@@ -37,24 +36,20 @@ actions = (
         chat
     ),
     (
-        nothing2, 
-        nothing
+        (lambda a,b: False), 
+        (lambda a,b,c: False)
     )
 )
 
-async def activity(data):
-    return 1
-    
+cchar = "Iron"
 #text = str(call_ai(prompt))
 async def think(context, data):
-    active = (await activity(data))/PAGE_LENGTH
-
     decision = random.choices(
         actions,
         weights=[
-            (10*active),
-            10-(10*active),
-            30-(30*active)
+            40,
+            20,
+            20
         ],
         k=1
     )[0]
@@ -70,6 +65,11 @@ async def think(context, data):
 
     print(msg)
 
+    if cchar=="Iron":
+        cchar="Nancy"
+    else:
+        cchat="Iron"
+        
     if msg != False:
         res = call_ai(msg)
         txt = res.choices[0].message.content
