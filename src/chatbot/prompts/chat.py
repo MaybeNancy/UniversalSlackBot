@@ -28,9 +28,14 @@ async def respond(persona, data):
 
     if "messages" in chat:
         for p in chat["messages"]:
-            user = get_user_name(p["user"])
+            role = "user"
+            user = ""
+            if "user" in p:
+                user = get_user_name(p["user"])
+            else:
+                role = "assistant"
             new_mssg = {
-                "role":"user",
+                "role":role,
                 "content":f"'{user}': {p["text"]}"
             }
             messages.append(new_mssg)
