@@ -32,7 +32,7 @@ def range(x,min,max):
 async def think(context, data):
     r = random.random()
 
-    if range(r,0.4,1) == True:
+    if range(r,0.6,1) == True:
         char = CHARS[await checknancy()]
         char_prompt = desc(char)
 
@@ -56,7 +56,7 @@ async def think(context, data):
             )
         return False
         
-    elif range(r,0.2,0.4) == True:
+    elif range(r,0.4,0.6) == True:
         char_prompt = desc(CHARS["Iron"])
         return False
     return False
