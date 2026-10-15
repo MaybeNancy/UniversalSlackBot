@@ -97,7 +97,7 @@ async def get_all_users(pcursor, id):
             if cursor != "":
                 return await get_all_users(cursor, id)
     
-    return "Unknown"
+    return False
 
 async def get_user_name(id):
     cursor = ""
