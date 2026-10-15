@@ -13,9 +13,8 @@ async def respond(persona, data):
 
     prompt = (
         f"{persona}, "
-        f", and you're chatting, so avoid adding story"
-        f" verbs and all of that,"
-        f"just add a response/text to the following conversation"
+        f", and you're in a chat room/server, so avoid adding story"
+        f"just add a plain text response to the following conversation"
     )
     messages=[
         {
