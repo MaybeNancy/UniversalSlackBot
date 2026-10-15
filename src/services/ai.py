@@ -38,8 +38,11 @@ def weekly_ai(info_table):
         )
         
         return response
-    except:
-        print("an error ocurred in hugging face!")
+    except Exception as e:
+        print(
+            "an error ocurred in hugging face!",
+            repr(e)
+        )
         return False
     return False
   
