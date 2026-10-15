@@ -33,7 +33,7 @@ async def think(context, data):
     r = random.random()
 
     if range(r,0.4,1) == True:
-        char = CHARS["Sam"]
+        char = CHARS[await checknancy()]
         char_prompt = desc(char)
 
         msg = await respond(
