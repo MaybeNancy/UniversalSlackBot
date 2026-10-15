@@ -36,7 +36,7 @@ actions = {
     },
     "nothing":{
         "func":nothing, 
-        "prob":5-(5*active)
+        "prob":5-(5*active),
         "slack":await nothing
     }
 }
@@ -66,7 +66,7 @@ async def think(context, data):
 
     res = call_ai(msg)
     txt = res.choices[0].message.content
-    actions[decision]["slack"](
+    await actions[decision]["slack"](
         char,data,txt
     )
 
