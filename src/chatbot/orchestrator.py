@@ -24,20 +24,20 @@ async def chat(char,data,res):
     )
     
 active = 1
-actions = {
-    {
-        "func":respond, 
-        "slack":chat
-    },
-    {
-        "func":react, 
-        "slack":nothing
-    },
-    {
-        "func":nothing, 
-        "slack":nothing
-    }
-}
+actions = (
+    (
+        respond, 
+        chat
+    ),
+    (
+        react, 
+        nothing
+    ),
+    (
+        nothing, 
+        nothing
+    )
+)
 
 async def activity(data):
     return 1
@@ -47,7 +47,7 @@ async def think(context, data):
     active = (await activity(data))/PAGE_LENGTH
 
     decision = random.choices(
-        actions["func"],
+        actions,
         weights=[
             (60*active),
             30-(30*active),
@@ -59,7 +59,7 @@ async def think(context, data):
     char = CHARS["Iron"]
     
     char_prompt = desc(char)
-    act = actions[decision][0]
+    act = actions[0]
     
     msg = await act["func"](
         char_prompt,
@@ -68,7 +68,7 @@ async def think(context, data):
 
     res = call_ai(msg)
     txt = res.choices[0].message.content
-    await actions["slack"](
+    await actions[1](
         char,data,txt
     )
 
