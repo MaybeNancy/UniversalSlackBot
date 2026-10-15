@@ -13,10 +13,10 @@ from .prompts.chat import respond
 from .prompts.char_desc import desc
 
 async def nothing2(chat,data):
-    return {"status":"ok"}
+    return False
     
 async def nothing(chat,data,res):
-    return {"status":"ok"}
+    return False
 
 async def chat(char,data,res):
    return await send_message(
@@ -58,22 +58,22 @@ async def think(context, data):
         ],
         k=1
     )[0]
-    
+
     char = CHARS["Iron"]
     
     char_prompt = desc(char)
-    act = decision
     
-    msg = await act[0](
+    msg = await decision[0](
         char_prompt,
         data
     )
 
-    res = call_ai(msg)
-    txt = res.choices[0].message.content
-    await act[1](
-        char,data,txt
-    )
+    if msg != False:
+        res = call_ai(msg)
+        txt = res.choices[0].message.content
+        await decision[1](
+            char,data,txt
+        )
 
-    return True
+        return True
 #response.choices[0].message.content
