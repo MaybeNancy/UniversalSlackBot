@@ -32,7 +32,7 @@ async def respond(persona, data):
             user = ""
             
             if "user" in p:
-                user = await get_user_name(p["user"])
+                user = f"[{await get_user_name(p["user"])}]: "
                 if user != False:
                    role = "user"
                 else:
@@ -40,7 +40,7 @@ async def respond(persona, data):
                     
             new_mssg = {
                 "role":role,
-                "content":f"[{user}]: {p["text"]}"
+                "content":f'{user}{p["text"]}'
             }
             messages.append(new_mssg)
     
