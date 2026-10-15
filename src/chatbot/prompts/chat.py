@@ -14,8 +14,10 @@ async def respond(persona, data):
 
     prompt = (
         f"{persona}, "
-        f", and you're in a chat room/server, so avoid adding story"
-        f"just add a plain text response to the following conversation"
+        f"and you're talking in a chat room/server, "
+        f"like talking to someone face to face in 1st person, "
+        f"avoid writing like describing/telling a story, "
+        f"add a response to the following conversation"
     )
     messages=[
         {
@@ -41,4 +43,5 @@ async def respond(persona, data):
             }
             messages.append(new_mssg)
     
-    return messages
+        return messages
+    return False
