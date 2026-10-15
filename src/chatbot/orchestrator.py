@@ -23,8 +23,8 @@ async def checknancy():
     else:
         return "Nancy"
 
-def range(x,a,b):
-    if(x>=a) and (x<=b):
+def range(x,min,max):
+    if(x>=min) and (x<=max):
         return True
     else:
         return False
@@ -32,7 +32,7 @@ def range(x,a,b):
 async def think(context, data):
     r = random.random()
 
-    if r>=0 and r<=0:
+    if range(r,0.4,1) == True:
         char = CHARS[await checknancy()]
         char_prompt = desc(char)
 
@@ -56,7 +56,7 @@ async def think(context, data):
 
         return False
         
-    elif r>=0 and r<=0:
+    elif range(r,0.2,0.4)==True:
         char_prompt = desc(CHARS["Iron"])
         return True
     return False
