@@ -49,9 +49,9 @@ async def think(context, data):
     decision = random.choices(
         actions["func"],
         weights=[
-            "prob":(60*active),
-            "prob":30-(30*active),
-            "prob":5-(5*active)
+            (60*active),
+            30-(30*active),
+            5-(5*active)
         ],
         k=1
     )[0]
