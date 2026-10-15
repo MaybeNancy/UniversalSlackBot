@@ -31,7 +31,8 @@ CHARS = {
             "skilled in combat",
             "very emotional",
             "cries when comfronted",
-            "obsessed with her creator: 'Brian'",
+            #"obsessed with her creator: 'Brian'",
+            "slightly glitched",
             "made of intergalactic steel"
         ],
         "likes" : [
