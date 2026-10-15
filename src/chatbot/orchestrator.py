@@ -17,34 +17,11 @@ from .prompts.char_desc import desc
 async def checknancy():
     res = await presence(r_nancy())
 
-    print(res["presence"])
+    print(res)
     if res["presence"] == "active":
         return "Iron"
     else:
         return "Nancy"
-
-async def chat(char,data,res):
-   return await send_message(
-       char["name"],
-        char["img"],
-        data["channel"],
-        res
-    )
-    
-actions = (
-    (
-        respond, 
-        chat
-    ),
-    (
-        respond, 
-        chat
-    ),
-    (
-        (lambda a,b: 0), 
-        (lambda a,b,c: 0)
-    )
-)
 
 def range(x,a,b):
     if(x>=a) and (x<=b):
@@ -53,33 +30,37 @@ def range(x,a,b):
         return False
 
 async def think(context, data):
-    decision = random.choices(
-        actions,
-        weights=[
-            40,
-            20,
-            60
-        ],
-        k=1
-    )[0]
+    r = random.random()
 
-    char = CHARS[await checknancy()]
-    
-    char_prompt = desc(char)
-    
-    msg = await decision[0](
-        char_prompt,
-        data
-    )
+    if r>=0 and r<=0:
+        char = CHARS[await checknancy()]
+        char_prompt = desc(char)
 
-    print(msg)
+        msg = respond(
+            char_prompt,
+            data
+        )
+
+        print(msg)
         
-    if msg != 0:
-        res = call_ai(msg)
-        txt = res.choices[0].message.content
-        await decision[1](
-            char,data,txt
+        if msg != 0:
+            res = call_ai(msg)
+            txt = res.choices[0].message.content
+            await decision[1](
+                char,data,txt
+            )
+
+        return await send_message(
+            char["name"],
+            char["img"],
+            data["channel"],
+            res
         )
 
         return True
-#response.choices[0].message.content
+        
+    elif r>=0 and r<=0:
+        char_prompt = desc(CHARS["Iron"])
+        return True
+    return False
+    
