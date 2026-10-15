@@ -29,11 +29,10 @@ async def respond(persona, data):
     if "members" in chat:
         for p in chat["members"]:
             user = get_user_name(p["user"])
-            messages.update(
-                {
-                    "role":"user",
-                    "content":f"'{user}': {p["text"]}"
-                }
-            )
+            new_mssg = {
+                "role":"user",
+                "content":f"'{user}': {p["text"]}"
+            }
+            messages.append(new_mssg)
     
     return messages
