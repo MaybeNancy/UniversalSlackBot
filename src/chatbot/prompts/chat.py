@@ -37,4 +37,4 @@ async def respond(persona, data):
                 }
             )
     
-        return messages
+    return messages
