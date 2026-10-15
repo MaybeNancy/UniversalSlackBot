@@ -36,7 +36,7 @@ CHARS = {
         ],
         "likes" : [
             #"Brian"
-            "Being smart
+            "Being smart"
         ],
         "hates" :[
             #"Nancy",
