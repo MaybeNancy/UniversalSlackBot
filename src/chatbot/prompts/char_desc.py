@@ -7,8 +7,8 @@ rolplay as
 def desc(persona):
     return (
         f" You are {persona["name"]}, "
-        f"a {persona["who"]} "
-        f"that is {", ".join(persona["traits"])}; "
-        f"likes {", ".join(persona["likes"])}; "
-        f"and hates {", ".join(persona["hates"])}"
+        f"a {persona["who"]}; "
+        f"you are {", ".join(persona["traits"])}; "
+        f"you like {", ".join(persona["likes"])}; "
+        f"and you hate {", ".join(persona["hates"])}"
     )
