@@ -10,9 +10,12 @@ from ...services.slack import get_chat, get_user_name
 
 async def respond(persona, data):
     chat = await get_chat(data["channel"])
-    #print(chat)
+    print(chat)
 
-    prompt = f"{persona} and someone said hello"
+    prompt = (
+        f"{persona}, "
+        f"add something short to the conversation"
+    )
     messages=[
         {
             "role":"system",
