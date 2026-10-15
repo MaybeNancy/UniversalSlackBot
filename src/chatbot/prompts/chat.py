@@ -13,16 +13,14 @@ async def respond(persona, data):
 
     prompt = (
         f"{persona}, "
-        f"add a response to the following conversation"
+        f", and you're chatting, so avoid adding story"
+        f" verbs and all of that,"
+        f"just add a response/text to the following conversation"
     )
     messages=[
         {
             "role":"system",
             "content":prompt
-        },
-        {
-            "role": "user", 
-            "content": "hello"
         }
     ]
 
