@@ -12,6 +12,7 @@ client = None
 #Slack
 BOT_TOKEN = None
 SLACK_SECRET = None
+NANCY = None
 
 #DA
 DA_ID = None
@@ -45,6 +46,9 @@ async def globals_start():
     global SLACK_SECRET
     SLACK_SECRET = os.getenv("SLACK_SIGNING_SECRET")
 
+    global NANCY
+    NANCY = os.getenv("NANCY")
+
     global DA_ID
     DA_TOKEN = os.getenv("DA_API_ID")
     global DA_SECRET
@@ -72,6 +76,7 @@ def return_redis(): return REDIS
 
 def return_b_token(): return BOT_TOKEN
 def return_s_secret(): return SLACK_SECRET
+def r_nancy():return NANCY
 
 def return_da_id(): return DA_ID
 def return_da_secret(): return DA_SECRET
