@@ -6,37 +6,69 @@ available
 
 import random
 from ..services.ai import call_ai
-from ..services.slack import send_message, react
+from ..services.slack import send_message,react,PAGE_LENGTH
 
 from .personas import CHARS, char_list
 from .prompts.chat import respond
 from .prompts.char_desc import desc
 
-actions = {
-    "reply":respond#,
-   # "react":react
-    
-}
-#text = str(call_ai(prompt))
-async def think(context, data):
-    if random.randint(0,3) == 3:
-     char = CHARS["Nancy"]
-    
-     char_prompt = desc(char)
-     act = actions["reply"]  
-    
-     msg = await act(
-        char_prompt,
-        data
-     )
+async def nothing():
+    return {"status":"ok"}
 
-     res = call_ai(msg)
-     txt = res.choices[0].message.content
-     slack = await send_message(
+async def chat(char,data,res):
+   return await send_message(
         char["img"],
         char["name"],
         data["channel"],
-        txt
-     )
-     return True
+        res
+    )
+    
+active = 1
+actions = {
+    "reply":{
+        "func":respond, 
+        "prob":(60*active),
+        "slack":await chat
+    },
+    "react":{
+        "func":react, 
+        "prob":30-(30*active)
+    },
+    "nothing":{
+        "func":nothing, 
+        "prob":5-(5*active)
+        "slack":await nothing
+    }
+}
+
+async def activity(data):
+    return 1
+    
+#text = str(call_ai(prompt))
+async def think(context, data):
+    active = (await(data))/PAGE_LENGTH
+
+    decision = random.choices(
+        actions["func"],
+        actions["prob"],
+        k=1
+    )[0]
+    
+    char = CHARS["Iron"]
+    
+    char_prompt = desc(char)
+    act = actions[decision][0]
+    
+    msg = await act(
+        char_prompt,
+        data
+    )
+
+    res = call_ai(msg)
+    txt = res.choices[0].message.content
+    actions[decision]["slack"](
+        char,data,txt
+    )
+
+    return True
 #response.choices[0].message.content
