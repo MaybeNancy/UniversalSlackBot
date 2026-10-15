@@ -30,12 +30,18 @@ def range(x,min,max):
     else:
         return False
 
+cchar = "Iron"
 async def think(context, data):
-    char = CHARS[await checknancy()]
+    
     r = random.random()
 
     if range(r,0.4,1) == True:
-        
+
+        global cchar
+        if cchar=="Iron":
+            cchar = "Nancy"
+        else: "Iron"
+        char = CHARS[cchar]
         char_prompt = desc(char)
 
         msg = await respond(
