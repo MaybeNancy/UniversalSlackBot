@@ -17,7 +17,7 @@ async def respond(persona, data):
         f"and you're talking in a chat room/server, "
         f"like talking to someone face to face in 1st person, "
         f"avoid writing like describing/telling a story, "
-        f"add a response to the following conversation"
+        f"add a short but worth-reading response to the conversation"
     )
     messages=[
         {
