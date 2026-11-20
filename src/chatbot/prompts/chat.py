@@ -36,8 +36,6 @@ async def respond(persona, data):
                 if name != False:
                     role = "user"
                     user = f"'{name}' said: "
-                else:
-                    user = ""
                     
             new_mssg = {
                 "role":role,
