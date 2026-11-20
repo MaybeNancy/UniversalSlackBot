@@ -42,7 +42,7 @@ CHARS = {
             #"Nancy",
             "everything else",
             "organic creatures",
-            "being called 'roomba' or 'botsi'
+            "being called 'roomba' or 'botsi'"
             #"everyone else, specially Nancy",
             #"anything that isn't Brian"
         ]
