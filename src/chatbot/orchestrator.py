@@ -6,7 +6,7 @@ available
 
 import random
 from ..services.ai import call_ai
-from ..services.slack import get_chat,send_message,presence
+from ..services.slack import get_chat,send_message,presence, PAGE_LENGTH
 
 from ..globals import r_nancy
 
@@ -34,7 +34,7 @@ async def think(context, data):
     chat = await get_chat(data["channel"])
 
     r = random.random()
-    if "user" in (reversed(chat))[0]:
+    if "user" in chat[PAGE_LENGTH]:
         r += (1-r) / 1.125 
     else:
         r += (1-r) / 10
