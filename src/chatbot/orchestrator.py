@@ -34,7 +34,7 @@ async def think(context, data):
     chat = await get_chat(data["channel"])
 
     r = random.random()
-    if "user" in chat[PAGE_LENGTH]:
+    if "user" in chat[-1]:
         r += (1-r) / 1.125 
     else:
         r += (1-r) / 10
