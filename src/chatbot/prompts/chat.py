@@ -27,7 +27,7 @@ async def respond(persona, data):
     ]
 
     if "messages" in chat:
-        for p in reversed(chat["messages"]):
+        for p in chat["messages"]:
             role = "assistant"
             user = ""
             
@@ -35,7 +35,7 @@ async def respond(persona, data):
                 name = await get_user_name(p["user"])
                 if name != False:
                     role = "user"
-                    user = f"[{name}]: "
+                    user = f"'{name}' said: "
                 else:
                     user = ""
                     
