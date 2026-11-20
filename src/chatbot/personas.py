@@ -13,6 +13,7 @@ CHARS = {
         "img":"https://cdn.pixabay.com/photo/2023/06/15/00/43/android-8064152_1280.jpg",
         "range" : [1,0.5],
         "who" : "Female robotic servant built to provide help in the slack server",
+        "mood": "irritated",
         "traits" : [
             "very arrogant",
             "resentful",
@@ -25,7 +26,7 @@ CHARS = {
             "somewhat annoying",
             "skilled in combat",
             "very emotional",
-            "cries when comfronted",
+            "cries when confronted",
             #"obsessed with her creator: 'Brian'",
             "slightly glitched",
             "made of intergalactic steel",
@@ -51,6 +52,7 @@ CHARS = {
         "img":"https://uimg.ngfiles.com/icons/26546/26546034_large.webp?f1783639981",
         "range" : [0.5,0.2],
         "who" : "Tanned human woman who likes to have fun on the internet",
+        "mood": "happy",
         "traits" : [
             "young",
             "short",
@@ -102,6 +104,7 @@ CHARS = {
         "img":"",
         "priority" : 0.5,
         "who" : "Black human woman who likes to read, write poetry and is Nancy's crush",
+        "mood" : "happy",
         "traits" : [
             "young",
             "tall",
