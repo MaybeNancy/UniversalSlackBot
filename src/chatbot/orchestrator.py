@@ -30,8 +30,15 @@ def range(x,min,max):
         return False
 
 async def think(context, data):
-    r = random.random()
 
+    chat = await get_chat(data["channel"])
+
+    r = random.random()
+    if "user" in (reversed(chat))[0]:
+        r += (1-r) / 1.125 
+    else:
+        r += (1-r) / 10
+        
     if range(r,0.8,1) == True:
         char = CHARS[await checknancy()]
         char_prompt = desc(char)
