@@ -35,9 +35,9 @@ async def think(context, data):
 
     r = random.random()
     if "user" in list(chat.values())[-1]:
-        r += (1-r) / 1.125 
+        r += (1-r)
     else:
-        r += (1-r) / 10
+        r += (1-r) / 15
         
     if range(r,0.8,1) == True:
         char = CHARS[await checknancy()]
